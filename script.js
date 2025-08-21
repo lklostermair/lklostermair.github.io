@@ -8,17 +8,16 @@ const tabs = [...document.querySelectorAll('.top-nav [role="tab"]')];
 const panels = [...document.querySelectorAll('[role="tabpanel"]')];
 
 // --- Data placeholders ---
-// Add your CV entries here. Each item requires:
-// image, timeframe, position, company, description
-const cvData = [
-  /* {
-    image: 'assets/companies/company.png',
-    timeframe: '2020-2022',
-    position: 'Job Title',
-    company: 'Company Name',
-    description: 'Short description of your role.'
-  } */
-];
+// Map institutions to logo paths for CV entries
+const logoMap = {
+  'Baind AG': 'assets/companies/baind.jpg',
+  'Intelligent Neuroprosthetics and Human Robotics Lab, Prof. Cristina Piazza': 'assets/companies/MIRMI.png',
+  'Technical University of Munich': 'assets/companies/TUM.png',
+  'F. Hoffmann La Roche AG': 'assets/companies/Roche.svg',
+  'Syskron GmbH / Krones AG': 'assets/companies/Krones.svg',
+  'BMW AG': 'assets/companies/BMW.png',
+  'University of Applied Sciences Regensburg': 'assets/companies/oth-regensburg-logo.svg'
+};
 
 // Add your projects here. Each item requires:
 // image, timeframe, name, description
@@ -80,16 +79,17 @@ initFromHash();
 const cvList = document.getElementById('cv-list');
 const projectsList = document.getElementById('projects-list');
 
-function renderCV() {
+function renderCV(items) {
   if (!cvList) return;
   const frag = document.createDocumentFragment();
-  cvData.forEach(item => {
+  items.forEach(item => {
     const li = document.createElement('li');
     li.className = 'cv-item';
+    const imgTag = item.image ? `<img src="${item.image}" alt="">` : '';
     li.innerHTML = `
-      <img src="${item.image}" alt="">
+      ${imgTag}
       <div class="cv-details">
-        <div><strong>${item.position}</strong> at ${item.company}</div>
+        <div><strong>${item.position}</strong>${item.company ? ` at ${item.company}` : ''}</div>
         <div class="cv-timeframe">${item.timeframe}</div>
         <p>${item.description}</p>
       </div>
@@ -115,6 +115,22 @@ function renderProjects() {
   projectsList.appendChild(frag);
 }
 
-renderCV();
+function loadCV() {
+  fetch('assets/cv.json')
+    .then(res => res.json())
+    .then(data => {
+      const mapped = data.map(item => ({
+        image: logoMap[item.institution] || '',
+        timeframe: item.year,
+        position: item.position,
+        company: item.institution,
+        description: item.description
+      }));
+      renderCV(mapped);
+    })
+    .catch(err => console.error('CV load failed', err));
+}
+
+loadCV();
 renderProjects();
 
