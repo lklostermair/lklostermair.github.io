@@ -129,17 +129,12 @@ function mapCV(data) {
 
 async function loadCV() {
   try {
-    const res = await fetch('assets/cv.json');
+    const url = new URL('./assets/cv.json', import.meta.url);
+    const res = await fetch(url);
     const data = await res.json();
     renderCV(mapCV(data));
   } catch (err) {
-    console.error('CV fetch failed, attempting import', err);
-    try {
-      const mod = await import('./assets/cv.json', { with: { type: 'json' } });
-      renderCV(mapCV(mod.default));
-    } catch (err2) {
-      console.error('CV load failed', err2);
-    }
+    console.error('CV load failed', err);
   }
 }
 
