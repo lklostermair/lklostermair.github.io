@@ -3,10 +3,11 @@
 Static site served via GitHub Pages.
 
 ## Customize
-- Edit profile, publications and projects in `script.js` under the `PROFILE`, `PUBLICATIONS` and `PROJECTS` objects.
+- Update navigation content in `index.html`.
 - Update theme tokens in `styles.css` under the `:root[data-theme="*"]` blocks.
 - Replace `assets/portrait.svg` and social SVGs in `assets/social/`.
-- CV entries are stored in `assets/cv.json`.
+
+ CV and project entries can be added in `script.js` under the `cvData` and `projectData` arrays.
 
 ## Development
 Open `index.html` locally in a browser. Run linters before committing:

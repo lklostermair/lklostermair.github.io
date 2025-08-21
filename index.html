@@ -47,10 +47,8 @@
 
       <!-- Tabs directly under name (lowercase like the screenshot) -->
       <nav class="top-nav" aria-label="Primary" role="tablist">
-        <button role="tab" id="tab-iprl" aria-controls="panel-iprl" aria-selected="true">iprl</button>
-        <button role="tab" id="tab-news" aria-controls="panel-news" aria-selected="false">news</button>
-        <button role="tab" id="tab-pubs" aria-controls="panel-pubs" aria-selected="false">publications</button>
-        <button role="tab" id="tab-teaching" aria-controls="panel-teaching" aria-selected="false">teaching</button>
+        <button role="tab" id="tab-cv" aria-controls="panel-cv" aria-selected="true">cv</button>
+        <button role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="false">projects</button>
         <button role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false">contact</button>
       </nav>
     </div>
@@ -68,36 +66,18 @@
 
     <!-- Panels area: content swaps here without scrolling -->
     <section class="panels-area">
-      <div id="panel-iprl" role="tabpanel" aria-labelledby="tab-iprl" class="panel active">
-        <h2 class="panel-title">iprl</h2>
-        <p>Lab/initiative content placeholder.</p>
+      <div id="panel-cv" role="tabpanel" aria-labelledby="tab-cv" class="panel active">
+        <h2 class="panel-title">cv</h2>
+        <ul id="cv-list" class="list cv-list"></ul>
       </div>
 
-      <div id="panel-news" role="tabpanel" aria-labelledby="tab-news" class="panel">
-        <h2 class="panel-title">news</h2>
-        <ul class="list">
-          <li>08/2025 — Site refresh with minimal design and in-place tabbed content.</li>
-          <li>06/2025 — Project milestones and new publications coming soon.</li>
-        </ul>
-      </div>
-
-      <div id="panel-pubs" role="tabpanel" aria-labelledby="tab-pubs" class="panel">
-        <h2 class="panel-title">publications</h2>
-        <div class="filter-chips" id="pub-filter" aria-label="Filter publications"></div>
-        <p id="pub-count" aria-live="polite"></p>
-        <ul id="pub-list" class="list"></ul>
-      </div>
-
-      <div id="panel-teaching" role="tabpanel" aria-labelledby="tab-teaching" class="panel">
-        <h2 class="panel-title">teaching</h2>
-        <ul class="list">
-          <li>Guest lectures and workshop topics to be announced.</li>
-        </ul>
+      <div id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" class="panel">
+        <h2 class="panel-title">projects</h2>
+        <ul id="projects-list" class="list projects-list"></ul>
       </div>
 
       <div id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" class="panel">
         <h2 class="panel-title">contact</h2>
-        <p><a id="email" href="mailto:lukas.klostermair@gmail.com" aria-label="Email Lukas">lukas.klostermair@gmail.com</a></p>
         <div class="social-icons" aria-label="Social links">
           <a href="https://github.com/lklostermair" target="_blank" rel="noopener" aria-label="GitHub">
             <img src="assets/social/github.svg" width="24" height="24" alt="">
