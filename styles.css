@@ -1,14 +1,30 @@
 /* styles.css — single light theme, centered + in-place panels */
 /* stylelint-disable */
 
+/* === Dina TTF (regular + bold) === */
+@font-face{
+  font-family:'Dina';
+  src:url('assets/fonts/DinaRemaster-Regular-01.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Dina';
+  src:url('assets/fonts/DinaRemaster-Bold-02.ttf') format('truetype');
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
+}
+
 /* Tokens */
 :root{
   --bg:#ffffff;
   --text:#111111;
-  --muted:#6b7280;      /* soft gray for subtitle + body */
-  --line:#e5e7eb;       /* hairline borders */
-  --accent:#ff5c8a;     /* soft pink accent for links/chips */
-  --accent-soft:#ffe5ee;/* light pink (selected chip) */
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --accent:#ff5c8a;
+  --accent-soft:#ffe5ee;
   --card:#ffffff;
 }
 
@@ -17,7 +33,8 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:'Courier New', monospace;
+  /* Use Dina site-wide; good monospace fallbacks */
+  font-family:'Dina', ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size:16px;
   line-height:1.7;
   background:var(--bg);
@@ -64,7 +81,7 @@ header.hero{
 }
 .portrait img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 
-/* Top tabs (buttons styled like links; lowercase) */
+/* Top tabs */
 .top-nav{
   display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin:.25rem 0 0.5rem;
 }
@@ -85,13 +102,13 @@ header.hero{
 /* Bio paragraph */
 .bio{max-width:760px;margin:0 auto 1.5rem;color:var(--text);padding:0 0.5rem}
 
-/* Panels area (content swaps here) */
+/* Panels */
 .panels-area{max-width:760px;margin:0 auto 2rem;padding:0 0.5rem}
 .panel{display:none;opacity:0;transform:translateY(18px);transition:opacity .3s ease, transform .3s ease; text-align:center}
 .panel.active{display:block;opacity:1;transform:none}
 .panel-title{font-size:1.35rem;margin:1rem 0 .75rem}
 
-/* Simple list formatting */
+/* Lists */
 .list{list-style:none;margin:0 auto 1rem;padding:0;max-width:760px;text-align:left}
 .list li{padding:.5rem 0;border-bottom:1px solid var(--line)}
 
@@ -100,12 +117,12 @@ header.hero{
 .cv-list img{width:48px;height:48px;object-fit:contain;border-radius:4px}
 .cv-timeframe{font-size:.9rem;color:var(--muted)}
 
-/* Projects list with large images */
+/* Projects */
 .projects-list li{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
 .projects-list img{width:100%;border-radius:8px}
 .project-timeframe{font-size:.9rem;color:var(--muted)}
 
-/* Publications filter chips */
+/* Filter chips */
 .filter-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:.5rem 0 1rem}
 .filter-chips button{
   padding:.3rem .8rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:inherit;cursor:pointer

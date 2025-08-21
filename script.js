@@ -1,5 +1,5 @@
-// script.js — tabs swap content in-place
-// Last updated is shown in footer.
+// script.js — tabs + CV rendering
+// Last updated in footer
 const updated = document.getElementById('updated');
 if (updated) updated.textContent = new Date(document.lastModified).toLocaleDateString();
 
@@ -7,8 +7,59 @@ if (updated) updated.textContent = new Date(document.lastModified).toLocaleDateS
 const tabs = [...document.querySelectorAll('.top-nav [role="tab"]')];
 const panels = [...document.querySelectorAll('[role="tabpanel"]')];
 
-// --- Data placeholders ---
-// Map institutions to logo paths for CV entries
+function activateTab(tab, pushHash = true) {
+  tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+  panels.forEach(p =>
+    p.classList.toggle('active', p.id === tab.getAttribute('aria-controls'))
+  );
+  if (pushHash) {
+    const hash = tab.id.replace('tab-', ''); // e.g., cv
+    history.replaceState(null, '', `#${hash}`);
+  }
+}
+function getTabByHash(hash) {
+  return tabs.find(t => t.id === `tab-${hash}`);
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => activateTab(tab));
+  tab.addEventListener('keydown', (e) => {
+    const i = tabs.indexOf(tab);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const next = tabs[(i + 1) % tabs.length];
+      next.focus();
+      activateTab(next);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prev = tabs[(i - 1 + tabs.length) % tabs.length];
+      prev.focus();
+      activateTab(prev);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      tabs[0].focus();
+      activateTab(tabs[0]);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      tabs[tabs.length - 1].focus();
+      activateTab(tabs[tabs.length - 1]);
+    }
+  });
+});
+
+function initFromHash() {
+  const raw = (location.hash || '').replace('#', '').trim();
+  const valid = raw && getTabByHash(raw);
+  activateTab(valid || tabs[0], false);
+}
+window.addEventListener('hashchange', initFromHash);
+initFromHash();
+
+// --- CV rendering ---
+const cvList = document.getElementById('cv-list');
+const projectsList = document.getElementById('projects-list');
+
+// Known logos map
 const logoMap = {
   'Baind AG': 'assets/companies/baind.jpg',
   'Intelligent Neuroprosthetics and Human Robotics Lab, Prof. Cristina Piazza': 'assets/companies/MIRMI.png',
@@ -21,75 +72,38 @@ const logoMap = {
   'Ilmtalkliniken GmbH': 'assets/companies/Ilmtalkliniken.svg'
 };
 
-// Add your projects here. Each item requires:
-// image, timeframe, name, description
-const projectData = [
-  /* {
-    image: 'assets/projects/project.png',
-    timeframe: '2024',
-    name: 'Project Name',
-    description: 'Short description of the project.'
-  } */
-];
-
-function activateTab(tab, pushHash = true) {
-  // aria state
-  tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
-  // panels
-  panels.forEach(p => p.classList.toggle('active', p.id === tab.getAttribute('aria-controls')));
-  // URL state (no scroll)
-  if (pushHash) {
-    const hash = tab.id.replace('tab-',''); // e.g., cv
-    history.replaceState(null, '', `#${hash}`);
-  }
+function guessLogoPath(name) {
+  if (logoMap[name]) return logoMap[name];
+  const safeName = name.replace(/\s+/g, '_');
+  const candidates = ['svg', 'png', 'jpg', 'jpeg']
+    .map(ext => `assets/companies/${safeName}.${ext}`);
+  return candidates[0];
 }
 
-function getTabByHash(hash) {
-  return tabs.find(t => t.id === `tab-${hash}`);
+function mapCV(data) {
+  return data.map(item => ({
+    image: guessLogoPath(item.institution || item.company || ''),
+    timeframe: item.year || item.timeframe || '',
+    position: item.position || item.role || '',
+    company: item.institution || item.company || '',
+    description: item.description || ''
+  }));
 }
-
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => activateTab(tab));
-  tab.addEventListener('keydown', (e) => {
-    const i = tabs.indexOf(tab);
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      e.preventDefault();
-      const next = tabs[(i + 1) % tabs.length];
-      next.focus(); activateTab(next);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      const prev = tabs[(i - 1 + tabs.length) % tabs.length];
-      prev.focus(); activateTab(prev);
-    } else if (e.key === 'Home') {
-      e.preventDefault(); tabs[0].focus(); activateTab(tabs[0]);
-    } else if (e.key === 'End') {
-      e.preventDefault(); tabs[tabs.length - 1].focus(); activateTab(tabs[tabs.length - 1]);
-    }
-  });
-});
-
-// Hash deep-link support (e.g., /#projects)
-function initFromHash() {
-  const raw = (location.hash || '').replace('#','').trim();
-  const valid = raw && getTabByHash(raw);
-  activateTab(valid || tabs[0], false);
-}
-window.addEventListener('hashchange', initFromHash);
-initFromHash();
-
-// --- Render helpers ---
-const cvList = document.getElementById('cv-list');
-const projectsList = document.getElementById('projects-list');
 
 function renderCV(items) {
   if (!cvList) return;
+  cvList.innerHTML = '';
   const frag = document.createDocumentFragment();
+
   items.forEach(item => {
     const li = document.createElement('li');
     li.className = 'cv-item';
-    const imgTag = item.image ? `<img src="${item.image}" alt="${item.company} logo">` : '';
+
+    const img = item.image
+      ? `<img src="${item.image}" alt="${item.company} logo" onerror="this.style.display='none'">`
+      : '';
     li.innerHTML = `
-      ${imgTag}
+      ${img}
       <div class="cv-details">
         <div><strong>${item.position}</strong>${item.company ? ` at ${item.company}` : ''}</div>
         <div class="cv-timeframe">${item.timeframe}</div>
@@ -98,46 +112,30 @@ function renderCV(items) {
     `;
     frag.appendChild(li);
   });
+
   cvList.appendChild(frag);
-}
-
-function renderProjects() {
-  if (!projectsList) return;
-  const frag = document.createDocumentFragment();
-  projectData.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'project-item';
-    li.innerHTML = `
-      <img src="${item.image}" alt="">
-      <div><strong>${item.name}</strong> <span class="project-timeframe">${item.timeframe}</span></div>
-      <p>${item.description}</p>
-    `;
-    frag.appendChild(li);
-  });
-  projectsList.appendChild(frag);
-}
-
-function mapCV(data) {
-  return data.map(item => ({
-    image: logoMap[item.institution] || '',
-    timeframe: item.year,
-    position: item.position,
-    company: item.institution,
-    description: item.description
-  }));
 }
 
 async function loadCV() {
   try {
-    const url = new URL('./assets/cv.json', import.meta.url);
-    const res = await fetch(url);
+    const res = await fetch('assets/cv.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
+    if (!Array.isArray(data)) throw new Error('cv.json must be an array');
     renderCV(mapCV(data));
   } catch (err) {
     console.error('CV load failed', err);
+    if (cvList) {
+      cvList.innerHTML = `<li><em>Could not load CV (see console).</em></li>`;
+    }
   }
+}
+
+// Projects placeholder
+function renderProjects() {
+  if (!projectsList) return;
+  projectsList.innerHTML = '';
 }
 
 loadCV();
 renderProjects();
-
