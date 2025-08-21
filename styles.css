@@ -94,6 +94,16 @@ header.hero{
 .list{list-style:none;margin:0 auto 1rem;padding:0;max-width:760px;text-align:left}
 .list li{padding:.5rem 0;border-bottom:1px solid var(--line)}
 
+/* CV list */
+.cv-list li{display:flex;gap:1rem;align-items:flex-start}
+.cv-list img{width:48px;height:48px;object-fit:contain;border-radius:4px}
+.cv-timeframe{font-size:.9rem;color:var(--muted)}
+
+/* Projects list with large images */
+.projects-list li{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.projects-list img{width:100%;border-radius:8px}
+.project-timeframe{font-size:.9rem;color:var(--muted)}
+
 /* Publications filter chips */
 .filter-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:.5rem 0 1rem}
 .filter-chips button{
