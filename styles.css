@@ -1,15 +1,6 @@
 /* styles.css — single light theme, centered + in-place panels */
 /* stylelint-disable */
 
-/* === Custom font face === */
-@font-face {
-  font-family: 'Dina';
-  src: url('assets/fonts/DinaRemasterCollection.ttc') format('truetype-collection');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* Tokens */
 :root{
   --bg:#ffffff;
@@ -26,7 +17,7 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:'Dina', monospace;
+  font-family:'Courier New', monospace;
   font-size:16px;
   line-height:1.7;
   background:var(--bg);

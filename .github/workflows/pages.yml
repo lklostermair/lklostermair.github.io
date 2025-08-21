@@ -20,7 +20,7 @@ jobs:
       - if: github.event_name == 'push'
         run: |
           mkdir _site
-          cp -R . _site
+          rsync -av --exclude=_site --exclude=.git --exclude=node_modules . _site
       - if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
         with:
