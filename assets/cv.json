@@ -1,13 +1,19 @@
 [
   {
-    "year": "2024–present",
-    "position": "Student Machine Learning Engineer (Part Time)",
+    "year": "2025–present",
+    "position": "Visiting Student Researcher",
+    "institution": "Stanford University",
+    "description": "Work on underwater robotic grasping."
+  },
+  {
+    "year": "2024–2025",
+    "position": "Student Machine Learning Engineer",
     "institution": "Baind AG",
-    "description": "Work on ML data pipelines, boost model efficiency, and help build a scalable RL environment for energy optimization."
+    "description": "Work on ML data pipelines for timeseries forecasts and non intrusive load monitoring."
   },
   {
     "year": "2024",
-    "position": "Student Researcher (Part Time)",
+    "position": "Student Researcher",
     "institution": "Intelligent Neuroprosthetics and Human Robotics Lab, Prof. Cristina Piazza",
     "description": "Designed a modular prosthetic hand socket and worked on semi-autonomous grasping with object recognition."
   },
@@ -19,13 +25,13 @@
   },
   {
     "year": "2023",
-    "position": "Student Researcher (Full Time)",
+    "position": "Student Researcher",
     "institution": "F. Hoffmann La Roche AG",
     "description": "Bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime."
   },
   {
     "year": "2022–2023",
-    "position": "Student Project Manager (Part Time)",
+    "position": "Student Project Manager",
     "institution": "Syskron GmbH / Krones AG",
     "description": "Created budget forecasts for 20+ projects and set up a cleaner, standardized budgeting template."
   },
@@ -37,7 +43,7 @@
   },
   {
     "year": "2021–2022",
-    "position": "Innovation Intern (Full Time)",
+    "position": "Innovation Intern",
     "institution": "BMW AG",
     "description": "Handled big datasets for an ML project and built nationwide micro-IT tools in PowerApps."
   },
