@@ -5,12 +5,13 @@ Static site served via GitHub Pages.
 ## Customize
 - Update navigation content in `index.html`.
 - Update theme tokens in `styles.css` under the `:root[data-theme="*"]` blocks.
-- Replace `assets/portrait.svg` and social SVGs in `assets/social/`.
+- Replace `assets/portrait.jpg` and social SVGs in `assets/social/`.
 
- CV and project entries can be added in `script.js` under the `cvData` and `projectData` arrays.
+CV entries are loaded from `assets/cv.json`. Project entries can be added in `script.js` under the `projectData` array.
 
 ## Development
-Open `index.html` locally in a browser. Run linters before committing:
+Start a local server (e.g., `npx serve` or `python -m http.server`) and open the page through it. Direct `file://` viewing blocks the JSON fetch used for the CV section.
+Run linters before committing:
 
 ```bash
 npm run lint
