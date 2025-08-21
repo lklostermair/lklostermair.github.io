@@ -16,7 +16,7 @@ const logoMap = {
   'F. Hoffmann La Roche AG': 'assets/companies/Roche.svg',
   'Syskron GmbH / Krones AG': 'assets/companies/Krones.svg',
   'BMW AG': 'assets/companies/BMW.png',
-  'University of Applied Sciences Regensburg': 'assets/companies/oth-regensburg-logo.svg'
+  'University of Applied Sciences Regensburg': 'assets/companies/OHTR.png'
 };
 
 // Add your projects here. Each item requires:

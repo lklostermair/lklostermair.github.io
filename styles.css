@@ -1,5 +1,13 @@
 /* styles.css — single light theme, centered + in-place panels */
 
+/* === Custom font face === */
+@font-face {
+  font-family: 'Dina';
+  src: url('assets/fonts/DinaRemasterCollection.ttc') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Tokens */
 :root{
   --bg:#ffffff;
@@ -16,7 +24,7 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family:'Dina', monospace;
   font-size:16px;
   line-height:1.7;
   background:var(--bg);
