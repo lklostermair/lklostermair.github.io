@@ -10,7 +10,8 @@ Static site served via GitHub Pages.
 CV entries are loaded from `assets/cv.json`. Project entries can be added in `script.js` under the `projectData` array.
 
 ## Development
-Open `index.html` locally in a browser. Run linters before committing:
+Start a local server (e.g., `npx serve` or `python -m http.server`) and open the page through it. Direct `file://` viewing blocks the JSON fetch used for the CV section.
+Run linters before committing:
 
 ```bash
 npm run lint

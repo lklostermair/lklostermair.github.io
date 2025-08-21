@@ -115,20 +115,30 @@ function renderProjects() {
   projectsList.appendChild(frag);
 }
 
-function loadCV() {
-  fetch('assets/cv.json')
-    .then(res => res.json())
-    .then(data => {
-      const mapped = data.map(item => ({
-        image: logoMap[item.institution] || '',
-        timeframe: item.year,
-        position: item.position,
-        company: item.institution,
-        description: item.description
-      }));
-      renderCV(mapped);
-    })
-    .catch(err => console.error('CV load failed', err));
+function mapCV(data) {
+  return data.map(item => ({
+    image: logoMap[item.institution] || '',
+    timeframe: item.year,
+    position: item.position,
+    company: item.institution,
+    description: item.description
+  }));
+}
+
+async function loadCV() {
+  try {
+    const res = await fetch('assets/cv.json');
+    const data = await res.json();
+    renderCV(mapCV(data));
+  } catch (err) {
+    console.error('CV fetch failed, attempting import', err);
+    try {
+      const mod = await import('./assets/cv.json', { with: { type: 'json' } });
+      renderCV(mapCV(mod.default));
+    } catch (err2) {
+      console.error('CV load failed', err2);
+    }
+  }
 }
 
 loadCV();
