@@ -3,66 +3,78 @@
     "year": "2025–present",
     "position": "Visiting Student Researcher",
     "institution": "Stanford University",
-    "description": "Work on underwater robotic grasping."
+    "description": "Work on underwater robotic grasping.",
+    "category": "academic"
+  },
+  {
+    "year": "2025",
+    "position": "Student Research Scientist",
+    "institution": "IN-HAND Lab (Prof. Piazza)",
+    "description": "Tactile informed reinforcement learning for grasping.",
+    "category": "academic"
   },
   {
     "year": "2024–2025",
     "position": "Student Machine Learning Engineer",
     "institution": "Baind AG",
-    "description": "Work on ML data pipelines for timeseries forecasts and non intrusive load monitoring."
+    "description": "Work on ML data pipelines for timeseries forecasts and non intrusive load monitoring.",
+    "category": "professional"
   },
   {
     "year": "2024",
-    "position": "Student Researcher",
-    "institution": "Intelligent Neuroprosthetics and Human Robotics Lab, Prof. Cristina Piazza",
-    "description": "Designed a modular prosthetic hand socket and worked on semi-autonomous grasping with object recognition."
+    "position": "Teaching Assistant",
+    "institution": "Munich Institute of Robotics and Machine Intelligence",
+    "description": "Designed a modular prosthetic hand socket and worked on semi-autonomous grasping with object recognition.",
+    "category": "professional"
   },
   {
     "year": "2024–present",
     "position": "M. Sc. Biomedical Engineering and Medical Physics",
     "institution": "Technical University of Munich",
-    "description": "Studying deep learning and robotics, currently ranked in the top 12% of the program."
+    "description": "Studying deep learning and robotics, currently ranked in the top 12% of the program.",
+    "category": "academic"
   },
   {
     "year": "2023",
     "position": "Student Researcher",
     "institution": "F. Hoffmann La Roche AG",
-    "description": "Bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime."
+    "description": "Bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime.",
+    "category": "professional"
   },
   {
     "year": "2022–2023",
     "position": "Student Project Manager",
     "institution": "Syskron GmbH / Krones AG",
-    "description": "Created budget forecasts for 20+ projects and set up a cleaner, standardized budgeting template."
+    "description": "Created budget forecasts for 20+ projects and set up a cleaner, standardized budgeting template.",
+    "category": "professional"
   },
   {
     "year": "2022",
     "position": "Semester Abroad",
     "institution": "Universidad EAN, Bogotá",
-    "description": "Took courses in chemistry, finance, and project management — finished with a perfect GPA."
+    "description": "Took courses in chemistry, finance, and project management — finished with a perfect GPA.",
+    "category": "academic"
   },
   {
     "year": "2021–2022",
     "position": "Innovation Intern",
     "institution": "BMW AG",
-    "description": "Handled big datasets for an ML project and built nationwide micro-IT tools in PowerApps."
+    "description": "Handled big datasets for an ML project and built nationwide micro-IT tools in PowerApps.",
+    "category": "professional"
   },
   {
     "year": "2021",
     "position": "Teaching Assistant",
     "institution": "University of Applied Sciences Regensburg",
-    "description": "Helped teach Technical Mechanics III – Dynamics."
+    "description": "Helped teach Technical Mechanics III – Dynamics.",
+    "category": "professional"
   },
-  {
-    "year": "2020–2021",
-    "position": "Working Student & Intern",
-    "institution": "Ilmtalkliniken GmbH",
-    "description": "Assisted in nursing and functional medicine departments."
-  },
+
   {
     "year": "2019–2023",
     "position": "B. Sc. Biomedical Engineering",
     "institution": "University of Applied Sciences Regensburg",
-    "description": "Focused on machine learning and dynamics, graduated in the top 20%."
+    "description": "Focused on machine learning and dynamics, graduated in the top 20%.",
+    "category": "academic"
   }
 ]

@@ -1,4 +1,5 @@
-// script.js — tabs + CV rendering
+// script.js — tabs + CV rendering (split into Academics / Professional)
+
 // Last updated in footer
 const updated = document.getElementById('updated');
 if (updated) updated.textContent = new Date(document.lastModified).toLocaleDateString();
@@ -20,7 +21,6 @@ function activateTab(tab, pushHash = true) {
 function getTabByHash(hash) {
   return tabs.find(t => t.id === `tab-${hash}`);
 }
-
 tabs.forEach(tab => {
   tab.addEventListener('click', () => activateTab(tab));
   tab.addEventListener('keydown', (e) => {
@@ -28,114 +28,116 @@ tabs.forEach(tab => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
       const next = tabs[(i + 1) % tabs.length];
-      next.focus();
-      activateTab(next);
+      next.focus(); activateTab(next);
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
       const prev = tabs[(i - 1 + tabs.length) % tabs.length];
-      prev.focus();
-      activateTab(prev);
+      prev.focus(); activateTab(prev);
     } else if (e.key === 'Home') {
-      e.preventDefault();
-      tabs[0].focus();
-      activateTab(tabs[0]);
+      e.preventDefault(); tabs[0].focus(); activateTab(tabs[0]);
     } else if (e.key === 'End') {
-      e.preventDefault();
-      tabs[tabs.length - 1].focus();
-      activateTab(tabs[tabs.length - 1]);
+      e.preventDefault(); tabs[tabs.length - 1].focus(); activateTab(tabs[tabs.length - 1]);
     }
   });
 });
-
 function initFromHash() {
-  const raw = (location.hash || '').replace('#', '').trim();
+  const raw = (location.hash || '').replace('#','').trim();
   const valid = raw && getTabByHash(raw);
   activateTab(valid || tabs[0], false);
 }
 window.addEventListener('hashchange', initFromHash);
 initFromHash();
 
-// --- CV rendering ---
-const cvList = document.getElementById('cv-list');
-const projectsList = document.getElementById('projects-list');
+// --- CV rendering (split) ---
+const cvListAcademic = document.getElementById('cv-list-academic');
+const cvListProfessional = document.getElementById('cv-list-professional');
 
-// Known logos map
+// Known logos in your repo
 const logoMap = {
   'Baind AG': 'assets/companies/baind.jpg',
-  'Intelligent Neuroprosthetics and Human Robotics Lab, Prof. Cristina Piazza': 'assets/companies/MIRMI.png',
+  'Munich Institute of Robotics and Machine Intelligence': 'assets/companies/MIRMI.png',
   'Technical University of Munich': 'assets/companies/TUM.png',
   'F. Hoffmann La Roche AG': 'assets/companies/Roche.svg',
   'Syskron GmbH / Krones AG': 'assets/companies/Krones.svg',
   'BMW AG': 'assets/companies/BMW.png',
   'University of Applied Sciences Regensburg': 'assets/companies/OTHR.png',
-  'Universidad EAN, Bogotá': 'assets/companies/EAN.svg',
-  'Ilmtalkliniken GmbH': 'assets/companies/Ilmtalkliniken.svg'
+  'Universidad EAN, Bogotá': 'assets/companies/EAN.png',
+  'Stanford University': 'assets/companies/Stanford.png',
+  'IN-HAND Lab (Prof. Piazza)': 'assets/companies/IN-HAND-Logo.png'
 };
 
 function guessLogoPath(name) {
+  if (!name) return '';
   if (logoMap[name]) return logoMap[name];
-  const safeName = name.replace(/\s+/g, '_');
-  const candidates = ['svg', 'png', 'jpg', 'jpeg']
-    .map(ext => `assets/companies/${safeName}.${ext}`);
-  return candidates[0];
+  const safe = name.replace(/\s+/g, '_');
+  // adjust extension if most of yours are .png/.jpg
+  return `assets/companies/${safe}.png`;
 }
 
 function mapCV(data) {
   return data.map(item => ({
-    image: guessLogoPath(item.institution || item.company || ''),
-    timeframe: item.year || item.timeframe || '',
-    position: item.position || item.role || '',
     company: item.institution || item.company || '',
-    description: item.description || ''
+    position: item.position || item.role || '',
+    timeframe: item.year || item.timeframe || '',
+    description: item.description || '',
+    image: guessLogoPath(item.institution || item.company || ''),
+    category: (item.category || '').toLowerCase()
   }));
 }
 
-function renderCV(items) {
-  if (!cvList) return;
-  cvList.innerHTML = '';
-  const frag = document.createDocumentFragment();
+// No heuristics — trust cv.json
+function classifyItem(it) {
+  return it.category === 'academic' ? 'academic' : 'professional';
+}
 
+function rowHTML(item) {
+  const img = item.image
+    ? `<img src="${item.image}" alt="${item.company} logo" onerror="this.style.display='none'">`
+    : '';
+  return `
+    ${img}
+    <div class="cv-block">
+      <div class="cv-headline">
+        <span class="cv-title">${item.position || ''}</span>
+        ${item.company ? `<span class="cv-company">at ${item.company}</span>` : ''}
+        ${item.timeframe ? `<span class="cv-timeframe">— ${item.timeframe}</span>` : ''}
+      </div>
+      ${item.description ? `<div class="cv-desc">${item.description}</div>` : ''}
+    </div>
+  `;
+}
+
+function renderList(targetUL, items) {
+  if (!targetUL) return;
+  targetUL.innerHTML = '';
+  const frag = document.createDocumentFragment();
   items.forEach(item => {
     const li = document.createElement('li');
-    li.className = 'cv-item';
-
-    const img = item.image
-      ? `<img src="${item.image}" alt="${item.company} logo" onerror="this.style.display='none'">`
-      : '';
-    li.innerHTML = `
-      ${img}
-      <div class="cv-details">
-        <div><strong>${item.position}</strong>${item.company ? ` at ${item.company}` : ''}</div>
-        <div class="cv-timeframe">${item.timeframe}</div>
-        <p>${item.description}</p>
-      </div>
-    `;
+    li.innerHTML = rowHTML(item);
     frag.appendChild(li);
   });
-
-  cvList.appendChild(frag);
+  targetUL.appendChild(frag);
 }
 
 async function loadCV() {
   try {
     const res = await fetch('assets/cv.json', { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    if (!Array.isArray(data)) throw new Error('cv.json must be an array');
-    renderCV(mapCV(data));
+    const json = await res.json();
+    if (!Array.isArray(json)) throw new Error('cv.json must be an array');
+
+    const mapped = mapCV(json);
+    const academic = mapped.filter(it => classifyItem(it) === 'academic');
+    const professional = mapped.filter(it => classifyItem(it) === 'professional');
+
+    renderList(cvListAcademic, academic);
+    renderList(cvListProfessional, professional);
   } catch (err) {
     console.error('CV load failed', err);
-    if (cvList) {
-      cvList.innerHTML = `<li><em>Could not load CV (see console).</em></li>`;
-    }
+    if (cvListAcademic) cvListAcademic.innerHTML = `<li><em>Could not load CV (see console).</em></li>`;
+    if (cvListProfessional) cvListProfessional.innerHTML = '';
   }
 }
-
-// Projects placeholder
-function renderProjects() {
-  if (!projectsList) return;
-  projectsList.innerHTML = '';
-}
-
 loadCV();
+
 renderProjects();
