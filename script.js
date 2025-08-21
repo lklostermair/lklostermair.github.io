@@ -16,7 +16,9 @@ const logoMap = {
   'F. Hoffmann La Roche AG': 'assets/companies/Roche.svg',
   'Syskron GmbH / Krones AG': 'assets/companies/Krones.svg',
   'BMW AG': 'assets/companies/BMW.png',
-  'University of Applied Sciences Regensburg': 'assets/companies/OHTR.png'
+  'University of Applied Sciences Regensburg': 'assets/companies/OTHR.png',
+  'Universidad EAN, Bogotá': 'assets/companies/EAN.svg',
+  'Ilmtalkliniken GmbH': 'assets/companies/Ilmtalkliniken.svg'
 };
 
 // Add your projects here. Each item requires:
@@ -85,7 +87,7 @@ function renderCV(items) {
   items.forEach(item => {
     const li = document.createElement('li');
     li.className = 'cv-item';
-    const imgTag = item.image ? `<img src="${item.image}" alt="">` : '';
+    const imgTag = item.image ? `<img src="${item.image}" alt="${item.company} logo">` : '';
     li.innerHTML = `
       ${imgTag}
       <div class="cv-details">

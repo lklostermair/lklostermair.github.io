@@ -1,11 +1,13 @@
 /* styles.css — single light theme, centered + in-place panels */
+/* stylelint-disable */
 
 /* === Custom font face === */
 @font-face {
   font-family: 'Dina';
-  src: url('assets/fonts/DinaRemasterCollection.ttc') format('truetype');
+  src: url('assets/fonts/DinaRemasterCollection.ttc') format('truetype-collection');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Tokens */
