@@ -72,7 +72,7 @@ const rawLogoMap = {
   'BMW AG': 'assets/companies/BMW.png',
   'University of Applied Sciences Regensburg': 'assets/companies/OTHR.png',
   'Universidad EAN, Bogotá': 'assets/companies/EAN.png',
-  'Stanford University': 'assets/companies/Stanford.png',
+  'Stanford BDML (Prof. Cutkosky)': 'assets/companies/Stanford.png',
   'TUM IN-HAND Lab (Prof. Piazza)': 'assets/companies/IN-HAND-Logo.png'
 };
 

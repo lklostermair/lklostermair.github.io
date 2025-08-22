@@ -185,6 +185,47 @@ header.hero{
   line-height:1.55;
 }
 
+/* CV: make headline wrap and avoid horizontal overflow */
+.cv-headline{
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  flex-wrap: wrap;          /* allow wrapping */
+  white-space: normal;      /* was: nowrap */
+  min-width: 0;             /* allow children to shrink */
+}
+.cv-title,
+.cv-company,
+.cv-timeframe{
+  overflow-wrap: anywhere;  /* break very long names/URLs */
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* CV: let the logo scale down on small screens */
+.cv-list img{
+  width: clamp(44px, 10vw, 80px);
+  height: clamp(44px, 10vw, 80px);
+}
+
+/* CV: ensure the text column can shrink without causing overflow */
+.cv-block{ min-width: 0; max-width: 100%; }
+
+/* Small screens: put timeframe on its own line so it doesn't squeeze */
+@media (max-width: 560px){
+  .cv-list li{ gap: .75rem; }
+  .cv-timeframe{
+    flex-basis: 100%;
+    order: 3;               /* move below title/company */
+    margin-top: 2px;
+    color: var(--muted);
+  }
+}
+
+/* Belt-and-suspenders: never let the list cause horizontal scrolling */
+.cv-list{ overflow-x: hidden; }
+
+
 /* Projects (wide cards with big media) */
 /* UPDATED: let projects use the full adaptive width */
 .projects-list{
