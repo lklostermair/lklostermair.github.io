@@ -51,27 +51,42 @@ initFromHash();
 // --- CV rendering (split) ---
 const cvListAcademic = document.getElementById('cv-list-academic');
 const cvListProfessional = document.getElementById('cv-list-professional');
+// Robust normalizer for keys used in logoMap lookups
+function norm(s='') {
+  return s
+    .normalize('NFKC')                 // unify Unicode forms
+    .replace(/\u00A0/g, ' ')           // NBSP -> space
+    .toLowerCase()
+    .trim()
+    .replace(/[\u2010-\u2015]/g, '-')  // all hyphen/dash variants -> '-'
+    .replace(/\s+/g, ' ');             // collapse spaces
+}
 
-// Known logos in your repo
-const logoMap = {
+// Build a normalized logoMap once
+const rawLogoMap = {
   'Baind AG': 'assets/companies/baind.jpg',
   'Munich Institute of Robotics and Machine Intelligence': 'assets/companies/MIRMI.png',
-  'Technical University of Munich': 'assets/companies/TUM.png',
+  'TU Munich': 'assets/companies/TUM.png',
   'F. Hoffmann La Roche AG': 'assets/companies/Roche.svg',
   'Syskron GmbH / Krones AG': 'assets/companies/Krones.svg',
   'BMW AG': 'assets/companies/BMW.png',
   'University of Applied Sciences Regensburg': 'assets/companies/OTHR.png',
   'Universidad EAN, Bogotá': 'assets/companies/EAN.png',
   'Stanford University': 'assets/companies/Stanford.png',
-  'IN-HAND Lab (Prof. Piazza)': 'assets/companies/IN-HAND-Logo.png'
+  'TUM IN-HAND Lab (Prof. Piazza)': 'assets/companies/IN-HAND-Logo.png'
 };
 
+const logoMap = Object.fromEntries(
+  Object.entries(rawLogoMap).map(([k, v]) => [norm(k), v])
+);
+
 function guessLogoPath(name) {
-  if (!name) return '';
-  if (logoMap[name]) return logoMap[name];
-  const safe = name.replace(/\s+/g, '_');
-  // adjust extension if most of yours are .png/.jpg
-  return `assets/companies/${safe}.png`;
+  const key = norm(name || '');
+  // prefer mapped path if present
+  if (logoMap[key]) return logoMap[key];
+  // consistent fallback filename: spaces -> underscores, keep () & dots
+  const fallback = key.replace(/\s/g, '_');
+  return `assets/companies/${fallback}.png`;
 }
 
 function mapCV(data) {
@@ -140,4 +155,86 @@ async function loadCV() {
 }
 loadCV();
 
-renderProjects();
+// --- Projects rendering ---
+const projectsList = document.getElementById('projects-list');
+
+function projectMediaHTML(media) {
+  if (!media) return '';
+  if (media.youtubeId) {
+    const id = encodeURIComponent(media.youtubeId.trim());
+    return `
+      <div class="project-media">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/${id}"
+            title="YouTube video"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>`;
+  }
+  if (Array.isArray(media.images) && media.images.length > 0) {
+    const imgs = media.images.map(src => `<img src="${src}" loading="lazy" alt="">`).join('');
+    return `<div class="project-media"><div class="media-gallery">${imgs}</div></div>`;
+  }
+  return '';
+}
+
+function projectLinksHTML(links) {
+  if (!Array.isArray(links) || links.length === 0) return '';
+  return `<div class="project-links">
+    ${links.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
+  </div>`;
+}
+
+function projectTagsHTML(tags) {
+  if (!Array.isArray(tags) || tags.length === 0) return '';
+  return `<div class="project-tags">
+    ${tags.map(t => `<span class="tag">${t}</span>`).join('')}
+  </div>`;
+}
+
+function renderProjects(items) {
+  if (!projectsList) return;
+  projectsList.innerHTML = '';
+  const frag = document.createDocumentFragment();
+
+  items.forEach(p => {
+    const li = document.createElement('li');
+    li.className = 'project-card';
+    li.innerHTML = `
+      <div class="project-header">
+        <div class="project-title">${p.title || ''}</div>
+        <div class="project-meta">
+          <span class="project-timeframe">${p.year || ''}</span>
+        </div>
+        ${projectTagsHTML(p.tags)}
+      </div>
+      <div class="project-summary">${p.summary || ''}</div>
+      ${projectMediaHTML(p.media)}
+      ${projectLinksHTML(p.links)}
+    `;
+    frag.appendChild(li);
+  });
+
+  projectsList.appendChild(frag);
+}
+
+async function loadProjects() {
+  try {
+    const res = await fetch('assets/projects.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error('projects.json must be an array');
+    renderProjects(data);
+  } catch (err) {
+    console.error('Projects load failed', err);
+    if (projectsList) {
+      projectsList.innerHTML = `<li><em>Could not load projects (see console).</em></li>`;
+    }
+  }
+}
+
+loadProjects();

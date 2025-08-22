@@ -3,14 +3,14 @@
     "year": "2025–present",
     "position": "Visiting Student Researcher",
     "institution": "Stanford University",
-    "description": "Work on underwater robotic grasping.",
+    "description": "TBD",
     "category": "academic"
   },
   {
     "year": "2025",
     "position": "Student Research Scientist",
-    "institution": "IN-HAND Lab (Prof. Piazza)",
-    "description": "Tactile informed reinforcement learning for grasping.",
+    "institution": "TUM IN-HAND Lab (Prof. Piazza)",
+    "description": "Simulation based tactile informed reinforcement learning for grasping.",
     "category": "academic"
   },
   {
@@ -29,9 +29,9 @@
   },
   {
     "year": "2024–present",
-    "position": "M. Sc. Biomedical Engineering and Medical Physics",
-    "institution": "Technical University of Munich",
-    "description": "Studying deep learning and robotics, currently ranked in the top 12% of the program.",
+    "position": "M. Sc. Biomedical Engineering & Medical Physics",
+    "institution": "TU Munich",
+    "description": "Studying deep learning and robotics.",
     "category": "academic"
   },
   {
@@ -52,7 +52,7 @@
     "year": "2022",
     "position": "Semester Abroad",
     "institution": "Universidad EAN, Bogotá",
-    "description": "Took courses in chemistry, finance, and project management — finished with a perfect GPA.",
+    "description": "Took courses in chemistry, finance, and project management. Also went hitchhiking alot through the country.",
     "category": "academic"
   },
   {
@@ -66,7 +66,7 @@
     "year": "2021",
     "position": "Teaching Assistant",
     "institution": "University of Applied Sciences Regensburg",
-    "description": "Helped teach Technical Mechanics III – Dynamics.",
+    "description": "Helped teach Technical Mechanics III – Dynamics to other students.",
     "category": "professional"
   },
 
@@ -74,7 +74,7 @@
     "year": "2019–2023",
     "position": "B. Sc. Biomedical Engineering",
     "institution": "University of Applied Sciences Regensburg",
-    "description": "Focused on machine learning and dynamics, graduated in the top 20%.",
+    "description": "Focused on machine learning and dynamics.",
     "category": "academic"
   }
 ]

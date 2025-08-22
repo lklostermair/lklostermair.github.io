@@ -1,0 +1,68 @@
+[
+  {
+    "year": "2025",
+    "title": "TinkerHand – robo.innovate Hackathon",
+    "summary": "Built robotic assistant with speech2text pipeline that selects ACT policies through keyword recognition.",
+    "media": {
+    },
+    "links": [
+      {"label": "LinkedIn Video", "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u?utm_source=share&utm_medium=member_desktop&rcm=ACoAADhpcTYBY0-GKrOhlxFCskkvSt0Hw8AMf5E"},
+      {"label": "GitHub", "href": "https://github.com/lklostermair/G.H.O.S.T.-Robotic-Hand"}
+    ],
+  "tags": ["hackathon", "robotics", "speech2text"]
+  },
+  {
+    "year": "2024",
+    "title": "G.H.O.S.T. – Tendon-Driven Robotic Hand",
+    "summary": "DIY robotic hand actuated with nylon tendons made < 200$. Wireless control via flex sensor glove.",
+    "media": {
+      "images": [
+        "assets/projects/ghost/hand_front.jpg",
+        "assets/projects/ghost/Hand_v1.gif",
+        "assets/projects/ghost/glove__prototype.jpeg"
+      ]
+    },
+    "links": [
+      {"label": "GitHub", "href": "https://github.com/lklostermair/G.H.O.S.T.-Robotic-Hand"}
+    ],
+    "tags": ["robotics", "grasping", "control"]
+  },
+  {   
+    "year": "2024",
+    "title": "Generative Classifiers as Trustworthy Alternative in Tactile Classification",
+    "summary": "Explored invertible neural networks and generative classifiers for robust tactile material classification. Was a part of [CIT433027] Advanced Deep Learning for Robotics.",
+    "media": {
+      "youtubeId": "watch?v=623yRPx9Pkc"
+    },
+    "links": [
+      {"label": "Report", "href": "assets/projects/tactilerl/final-report-17.pdf"},
+      {"label": "GitHub", "href": "https://github.com/lklostermair/tum-adlr-wise24-17"}
+    ],
+    "tags": ["ML", "tactile material classification"]
+  },
+  {
+    "year": "2024",
+    "title": "Neural Networks Control Video",
+    "summary": "3blue1brown style video about neural networks and their employment in robotic control for [MW2388] Applied Biorobotics.",
+    "media": {
+      "youtubeId": "YcPs4sjyHLo?si=9FFxQ5cbXvouagSm"
+    },
+    "tags": ["ML", "Neural Networks", "control"]
+  },
+
+  {
+    "year": "2023",
+    "title": "Robotic Arm – HackaHealth ETH Zürich",
+    "summary": "Developed adaptive robotic arm prototype for quadriplegic patient with 3 funded design iterations.",
+    "media": {
+        "images":[
+            "assets/projects/grasper/v3_assembly.png",
+            "assets/projects/grasper/working_grasper.png"
+        ]
+    },
+    "links": [
+      {"label": "GitHub", "href": "https://github.com/lklostermair/hackahealth2023-roboticgrasper"}
+    ],
+    "tags": ["hackathon", "robotics", "assistive technology"]
+  }
+]
