@@ -24,13 +24,14 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Build site
         run: |
-          # build your static site into ./dist
           mkdir -p dist
-          cp -r . dist
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+          rsync -a --delete \
+            --exclude '.git*' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            --exclude 'dist' \
+            ./ dist/
+
 
   deploy:
     needs: build
