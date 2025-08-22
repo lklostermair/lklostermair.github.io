@@ -7,7 +7,6 @@
   <meta name="description" content="Personal website"/>
   <link rel="canonical" href="https://lklostermair.github.io/"/>
 
-  <!-- Social cards -->
   <meta property="og:title" content="Lukas Klostermair"/>
   <meta property="og:description" content="Personal website"/>
   <meta property="og:type" content="website"/>
@@ -16,7 +15,6 @@
   <meta name="twitter:card" content="summary"/>
   <meta name="theme-color" content="#ffffff"/>
 
-  <!-- Tiny critical CSS: DO NOT override font-family here -->
   <style>
     body{margin:0;line-height:1.7}
     main{max-width:960px;margin:auto;padding:0 1rem}
@@ -24,7 +22,6 @@
     .portrait{flex:none;width:320px;height:320px;border-radius:50%;overflow:hidden}
   </style>
 
-  <!-- Preload fonts (optional but nice) -->
   <link rel="preload" href="assets/fonts/DinaRemaster-Regular-01.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/DinaRemaster-Bold-02.ttf" as="font" type="font/ttf" crossorigin>
 
@@ -38,19 +35,20 @@
     <div class="portrait" aria-hidden="true">
       <img src="assets/portrait.jpg" width="320" height="320" alt="Portrait" fetchpriority="high">
     </div>
-
     <div class="info">
       <h1 id="name">Lukas Klostermair</h1>
-      <p class="subtitle" id="title">Robotics Software  Engineer</p>
+      <p class="subtitle" id="title">Robotics Software Engineer</p>
     </div>
   </header>
 
   <main id="content">
-    <section id="about" aria-labelledby="about-h" class="visible">
+    <section id="about" aria-labelledby="about-h">
       <h2 id="about-h" class="visually-hidden">About</h2>
       <p class="bio">
-       Hi, I'm Lukas! I'm a soon-to-be graduate with a background in biomedical engineering, and I'm especially interested in robots. In my free time, I like to shred on the slopes, in the ocean, or on my guitar (though I'm bad at all three). 
-       Feel free to reach out if you’d like to collaborate or just chat about things :)
+        Hi, I'm Lukas! I'm a soon-to-be graduate with a background in biomedical engineering, and I'm especially interested in robots.
+        In my free time, I like to shred on the slopes, in the ocean, or on my guitar (though I'm bad at all three).
+        Feel free to reach out if you’d like to collaborate or just chat about things :)
+      </p>
       <nav class="top-nav" aria-label="Primary" role="tablist">
         <button role="tab" id="tab-cv" aria-controls="panel-cv" aria-selected="true">cv</button>
         <button role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="false">projects</button>
@@ -61,18 +59,15 @@
     <section class="panels-area">
       <div id="panel-cv" role="tabpanel" aria-labelledby="tab-cv" class="panel active">
         <h2 class="panel-title">cv</h2>
-
         <section class="cv-section">
           <h3 class="cv-section-title">Academics</h3>
           <ul id="cv-list-academic" class="list cv-list"></ul>
         </section>
-
         <section class="cv-section">
           <h3 class="cv-section-title">Professional</h3>
           <ul id="cv-list-professional" class="list cv-list"></ul>
         </section>
       </div>
-
 
       <div id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" class="panel">
         <h2 class="panel-title">projects</h2>
@@ -99,7 +94,6 @@
   <footer>
     <div>© <span id="footer-name">Lukas Klostermair</span> – Last updated <span id="updated"></span></div>
   </footer>
-
 
   <script type="module" src="script.js" defer></script>
 </body>
