@@ -1,37 +1,44 @@
-name: pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# Required for OIDC + Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# (optional but recommended) avoid parallel deploys
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm ci || npm install
-      - run: npx htmlhint "**/*.html" || true
-      - run: npx stylelint "**/*.css" || true
-      - if: github.event_name == 'push'
+      - uses: actions/configure-pages@v5
+      - name: Build site
         run: |
-          mkdir _site
-          rsync -av --exclude=_site --exclude=.git --exclude=node_modules . _site
-      - if: github.event_name == 'push'
+          # build your static site into ./dist
+          mkdir -p dist
+          cp -r . dist
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: dist
+
   deploy:
     needs: build
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4

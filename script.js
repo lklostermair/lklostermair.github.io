@@ -62,7 +62,7 @@ function norm(s='') {
     .replace(/\s+/g, ' ');             // collapse spaces
 }
 
-// Build a normalized logoMap once
+
 const rawLogoMap = {
   'Baind AG': 'assets/companies/baind.jpg',
   'Munich Institute of Robotics and Machine Intelligence': 'assets/companies/MIRMI.png',
@@ -238,3 +238,4 @@ async function loadProjects() {
 }
 
 loadProjects();
+
