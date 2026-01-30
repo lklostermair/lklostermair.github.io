@@ -28,6 +28,22 @@
     "tags": ["teleoperation", "multimodal data", "imitation iearning", "diffusion policies"]
   },
   {
+    "year": "2026",
+    "title": "HIVE - Battlefield Management System",
+    "summary": "Sebastian Thrun hackathon in SF. We built a battlefield management system capable of multi agent path planning with an A* algorithm and 3D map visualization.",
+    "media": {
+      "images": [
+
+        "assets/projects/hive/Screenshot_20260129_181749.png",
+        "assets/projects/hive/Screenshot_20260129_181933.png"
+      ]
+    },
+    "links": [
+      { "label": "GitHub", "href": "https://github.com/maxileutschafft/sf_hackathon/tree/feature/unified-visualization-hive" }
+    ],
+    "tags": ["UAVs", "multi-agent planning", "3D geovisualization"]
+  },
+  {
     "year": "2025",
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
     "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper currently under review at ICRCA 2026.",

@@ -99,6 +99,18 @@ header.hero{
 .top-nav button:hover,.top-nav button:focus{background-size:100% 2px; opacity:1}
 .top-nav [aria-selected="true"]{ background-size:100% 2px; opacity:1; }
 
+.quote{
+  max-width:660px;
+  margin:0 auto 2rem;
+  padding:0 var(--page-pad);
+  text-align:center;
+  font-size: 1.2rem;
+  font-style:italic;
+  color:var(--muted);
+}
+.quote p{margin:0 0 .25rem}
+.quote cite{font-style:normal}
+
 .bio{max-width:860px;margin:0 auto 1.5rem;color:var(--text);padding:0 var(--page-pad)}
 
 .panel{display:none;opacity:0;transform:translateY(18px);transition:opacity .3s ease, transform .3s ease; text-align:center}
