@@ -1,8 +1,36 @@
 [
   {
+    "year": "2026",
+    "title": "Building an Electric Guitar from Scratch",
+    "summary": "Cool father-son project we've been working on. Sora mockup as well as the current project status. Still haven't decided on blue or green, hm...",
+    "media": {
+      "images": [
+        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM.jpeg",
+        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (2).jpeg",
+        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (3).jpeg",
+        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (1).jpeg"
+
+      ]
+    },
+    "tags": ["woodworking", "electric"]
+  },
+    {
+    "year": "2026",
+    "title": "LEAP-FT - Multimodal learning for dexterous manipulation with an anthropomorphic hand",
+    "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR based teleoperation approach with visual tactile feedback for data gathering. Working on training an Adaptive Compiance Diffusion Policy to utilize multimodal data for dexterous manipulation tasks.",
+    "media": {
+      "images": [
+        "assets/projects/leapft/Screenshot_20260129_170017.png",
+        "assets/projects/leapft/Screenshot_20260129_170123.png",
+        "assets/projects/leapft/WhatsApp Image 2026-01-29 at 5.19.18 PM.jpeg"
+      ]
+    },
+    "tags": ["teleoperation", "multimodal data", "imitation iearning", "diffusion policies"]
+  },
+  {
     "year": "2025",
-    "title": "Tactile-Feedback Grasping in MuJoCo",
-    "summary": "Currently working on this...",
+    "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
+    "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper currently under review at ICRCA 2026.",
     "media": {
       "images": [
         "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
