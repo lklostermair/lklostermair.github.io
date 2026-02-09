@@ -1,4 +1,17 @@
 [
+    {
+    "year": "2026",
+    "title": "LEAP-FT - Multimodal learning for dexterous manipulation with an anthropomorphic hand",
+    "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR-based teleoperation approach with visual tactile feedback for data gathering. Working on training an Adaptive Compliance Diffusion Policy to utilize multimodal data for dexterous manipulation tasks.",
+    "media": {
+      "images": [
+        "assets/projects/leapft/Screenshot_20260129_170017.png",
+        "assets/projects/leapft/Screenshot_20260129_170123.png",
+        "assets/projects/leapft/WhatsApp Image 2026-01-29 at 5.19.18 PM.jpeg"
+      ]
+    },
+    "tags": ["teleoperation", "multimodal data", "imitation learning", "diffusion policies"]
+  },
   {
     "year": "2026",
     "title": "Building an Electric Guitar from Scratch",
@@ -13,19 +26,6 @@
       ]
     },
     "tags": ["woodworking", "electric"]
-  },
-    {
-    "year": "2026",
-    "title": "LEAP-FT - Multimodal learning for dexterous manipulation with an anthropomorphic hand",
-    "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR based teleoperation approach with visual tactile feedback for data gathering. Working on training an Adaptive Compiance Diffusion Policy to utilize multimodal data for dexterous manipulation tasks.",
-    "media": {
-      "images": [
-        "assets/projects/leapft/Screenshot_20260129_170017.png",
-        "assets/projects/leapft/Screenshot_20260129_170123.png",
-        "assets/projects/leapft/WhatsApp Image 2026-01-29 at 5.19.18 PM.jpeg"
-      ]
-    },
-    "tags": ["teleoperation", "multimodal data", "imitation iearning", "diffusion policies"]
   },
   {
     "year": "2026",
@@ -46,7 +46,7 @@
   {
     "year": "2025",
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
-    "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper currently under review at ICRCA 2026.",
+    "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper accepted to ICRCA 2026.",
     "media": {
       "images": [
         "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
@@ -61,7 +61,7 @@
   {
     "year": "2025",
     "title": "Pwnagotchi – AI-Powered WiFi Exploration Buddy",
-    "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via A2C an reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
+    "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via A2C a reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
     "media": {
       "images": [
         "assets/projects/pwnagotchi/pwn_1.JPG",
@@ -76,7 +76,7 @@
   {
     "year": "2025",
     "title": "TinkerHand – robo.innovate Hackathon",
-    "summary": "For the hackathon, our team built a robotic assistant with an speech2text pipeline that selects trained ACT policies through keyword recognition. Our goal was to develop a buddy similar to 'Dummy' in Iron Man (see pic). We built this with the kind sponsoring of materials and compute of <a href='https://www.ycombinator.com/companies/the-robot-learning-company'>tlrc (Y-Combinator 2025)</a>.",
+    "summary": "For the hackathon, our team built a robotic assistant with an speech-to-text pipeline that selects trained ACT policies through keyword recognition. Our goal was to develop a buddy similar to 'Dummy' in Iron Man (see pic). We built this with the kind sponsoring of materials and compute of <a href='https://www.ycombinator.com/companies/the-robot-learning-company'>tlrc (Y-Combinator 2025)</a>.",
     "media": {
       "images":[
         "assets/projects/tinker/logo.png",
@@ -93,7 +93,7 @@
   {
     "year": "2024",
     "title": "G.H.O.S.T. – Tendon-Driven Robotic Hand",
-    "summary": "I fully designed, built and programmed a DIY robotic hand actuated with nylon tendons. My goal was to keep my budget < 200$. For control I implemented a wireless glove that operated via self-made flex sensors.",
+    "summary": "I fully designed, built and programmed a DIY robotic hand actuated with nylon tendons. My goal was to keep my budget under 200$. For control I implemented a wireless glove that operated via self-made flex sensors.",
     "media": {
       "images": [
         "assets/projects/ghost/hand_front.jpg",
@@ -125,8 +125,8 @@
   },
   {
     "year": "2024",
-    "title": "Generative Classifiers as Trustworthy Alternative in Tactile Classification",
-    "summary": "Our team of 2 explored invertible neural networks and generative classifiers for robust tactile material classification. We aimed to match the current state of the art, whilst improving explainability. Was a part of [CIT433027] Advanced Deep Learning for Robotics.",
+    "title": "Generative Classifiers as a Trustworthy Alternative in Tactile Classification",
+    "summary": "Our team of 2 explored invertible neural networks and generative classifiers for robust tactile material classification. We aimed to match the current state of the art, whilst improving explainability. This project was a part of [CIT433027] Advanced Deep Learning for Robotics.",
     "media": {
       "youtubeId": "623yRPx9Pkc",
       "images": [
@@ -143,7 +143,7 @@
   {
     "year": "2024",
     "title": "Neural Networks Control Video",
-    "summary": "3blue1brown style video about neural networks and their employment in robotic control for [MW2388] Applied Biorobotics. I tried to combine .pptx with AI voice overs to get a really professional look.",
+    "summary": "3blue1brown style video about neural networks and their employment in robotic control for [MW2388] Applied Biorobotics. I tried to combine .pptx with AI voice-overs to get a really professional look.",
     "media": {
       "youtubeId": "YcPs4sjyHLo"
     },
@@ -152,7 +152,7 @@
   {
     "year": "2023",
     "title": "Robotic Arm – HackaHealth ETH Zürich",
-    "summary": "Our team developed an adaptive robotic arm prototype for quadriplegic patient over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
+    "summary": "Our team developed an adaptive robotic arm prototype for patient with quadriplegia over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
     "media": {
       "images": [
         "assets/projects/grasper/v3_assembly.png",

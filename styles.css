@@ -276,3 +276,12 @@ footer{
   margin-left:50%;
   transform:translateX(-50%);
 }
+
+
+/* MapMyVisitors widget scaling */
+#mapmyvisitors-wrapper {
+  transform: scale(0.4);
+  transform-origin: center top;
+  overflow: hidden;
+  height: 1000px;
+}
