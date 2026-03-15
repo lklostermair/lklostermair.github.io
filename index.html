@@ -21,7 +21,7 @@
   <style>
     body{margin:0;line-height:1.7}
     main{max-width:clamp(720px,92vw,1400px);margin:auto;padding:0 clamp(12px,2vw,32px)}
-    header.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2rem;padding:4rem 1rem 2rem;max-width:860px;margin:0 auto}
+    header.hero{min-height:70svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.5rem;padding:2rem 1rem}
     .portrait{flex:none;width:320px;height:320px;border-radius:50%;overflow:hidden}
   </style>
   <script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)})()</script>
@@ -30,7 +30,7 @@
   <link rel="preload" href="assets/fonts/DinaRemaster-Bold-02.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  <noscript><link rel="stylesheet" href="styles.css"><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -50,7 +50,7 @@
         <img src="assets/portrait-960.jpg" width="960" height="960" alt="Portrait" fetchpriority="high">
       </picture>
     </div>
-    <div class="info">
+    <div class="info reveal">
       <h1 id="name">Lukas Klostermair</h1>
       <p class="subtitle" id="title">Robotics Engineer</p>
     </div>
@@ -59,56 +59,48 @@
   <main id="content">
     <section id="about" aria-labelledby="about-h">
       <h2 id="about-h" class="visually-hidden">About</h2>
-      <blockquote class="quote">
+      <blockquote class="quote reveal">
         <p>"One does not discover new lands without consenting to lose sight of the shore."</p>
         <cite>— André Gide</cite>
       </blockquote>
-      <p class="bio">
+      <p class="bio reveal">
         Hi, I'm Lukas! I'm a soon-to-be graduate with a background in engineering and physics. I like to build things that teach me something when they break and am especially interested in everything concerning robotics.
         I spend my free time on the slopes, in the ocean, or playing my guitar. Feel free to reach out if you’d like to collaborate or just chat about things :)
       </p>
-      <nav class="top-nav" aria-label="Primary" role="tablist">
-        <button role="tab" id="tab-cv" aria-controls="panel-cv" aria-selected="true">cv</button>
-        <button role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="false">projects</button>
-        <button role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false">contact</button>
-      </nav>
     </section>
 
-    <section class="panels-area">
-      <div id="panel-cv" role="tabpanel" aria-labelledby="tab-cv" class="panel active">
-        <h2 class="panel-title">cv</h2>
-        <section class="cv-section">
-          <h3 class="cv-section-title">Academics</h3>
-          <ul id="cv-list-academic" class="list cv-list"></ul>
-        </section>
-        <section class="cv-section">
-          <h3 class="cv-section-title">Professional</h3>
-          <ul id="cv-list-professional" class="list cv-list"></ul>
-        </section>
-      </div>
+    <nav class="section-nav" aria-label="Sections">
+      <a href="#cv">cv</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
 
-      <div id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" class="panel">
-        <h2 class="panel-title">projects</h2>
-        <ul id="projects-list" class="list projects-list"></ul>
-      </div>
+    <section id="cv" class="page-section reveal">
+      <h2 class="section-title">cv</h2>
+      <ul id="cv-timeline" class="timeline"></ul>
+    </section>
 
-      <div id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" class="panel">
-        <h2 class="panel-title">contact</h2>
-        <div class="contact-grid">
-          <div class="contact-info">
-            <p>Currently based in Stanford, CA</p>
-          </div>
-          <div class="social-icons" role="group" aria-label="Social links">
-            <a href="https://github.com/lklostermair" target="_blank" rel="noopener" aria-label="GitHub">
-              <img src="assets/social/github.svg" width="32" height="32" alt="GitHub">
-            </a>
-            <a href="https://www.linkedin.com/in/lukas-klostermair-09ab61224" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <img src="assets/social/linkedin.svg" width="32" height="32" alt="LinkedIn">
-            </a>
-            <a href="mailto:lukas.klostermair@gmail.com" aria-label="Send email">
-              <img src="assets/social/gmail.svg" width="32" height="32" alt="Email">
-            </a>
-          </div>
+    <section id="projects" class="page-section reveal">
+      <h2 class="section-title">projects</h2>
+      <ul id="projects-list" class="projects-list"></ul>
+    </section>
+
+    <section id="contact" class="page-section reveal">
+      <h2 class="section-title">contact</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Currently based in Stanford, CA</p>
+        </div>
+        <div class="social-icons" role="group" aria-label="Social links">
+          <a href="https://github.com/lklostermair" target="_blank" rel="noopener" aria-label="GitHub">
+            <img src="assets/social/github.svg" width="32" height="32" alt="GitHub">
+          </a>
+          <a href="https://www.linkedin.com/in/lukas-klostermair-09ab61224" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img src="assets/social/linkedin.svg" width="32" height="32" alt="LinkedIn">
+          </a>
+          <a href="mailto:lukas.klostermair@gmail.com" aria-label="Send email">
+            <img src="assets/social/gmail.svg" width="32" height="32" alt="Email">
+          </a>
         </div>
       </div>
     </section>

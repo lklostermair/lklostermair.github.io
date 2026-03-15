@@ -1,60 +1,73 @@
 const updated = document.getElementById('updated');
 if (updated) updated.textContent = new Date(document.lastModified).toLocaleDateString();
 
-const tabs = [...document.querySelectorAll('.top-nav [role="tab"]')];
-const panels = [...document.querySelectorAll('[role="tabpanel"]')];
-
-function activateTab(tab, pushHash = true) {
-  tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
-  panels.forEach(p => p.classList.toggle('active', p.id === tab.getAttribute('aria-controls')));
-  if (pushHash) {
-    const hash = tab.id.replace('tab-', '');
-    history.replaceState(null, '', `#${hash}`);
-    const target = document.querySelector('.panels-area');
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-}
-function getTabByHash(hash) {
-  return tabs.find(t => t.id === `tab-${hash}`);
-}
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => activateTab(tab));
-  tab.addEventListener('keydown', e => {
-    const i = tabs.indexOf(tab);
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      e.preventDefault(); const next = tabs[(i + 1) % tabs.length]; next.focus(); activateTab(next);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault(); const prev = tabs[(i - 1 + tabs.length) % tabs.length]; prev.focus(); activateTab(prev);
-    } else if (e.key === 'Home') {
-      e.preventDefault(); tabs[0].focus(); activateTab(tabs[0]);
-    } else if (e.key === 'End') {
-      e.preventDefault(); tabs[tabs.length - 1].focus(); activateTab(tabs[tabs.length - 1]);
-    }
+// Scroll reveal observer
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
   });
-});
-function initFromHash() {
-  const raw = (location.hash || '').replace('#', '').trim();
-  const valid = raw && getTabByHash(raw);
-  activateTab(valid || tabs[0], false);
-}
-window.addEventListener('hashchange', initFromHash);
-initFromHash();
+}, { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-const cvListAcademic = document.getElementById('cv-list-academic');
-const cvListProfessional = document.getElementById('cv-list-professional');
+function observeItems(selector) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0 });
+  document.querySelectorAll(selector).forEach((el, i) => {
+    el.style.setProperty('--delay', `${i * 0.05}s`);
+    obs.observe(el);
+  });
+}
+
+// Active section tracker for sticky nav
+(function setupActiveNav() {
+  const navLinks = document.querySelectorAll('.section-nav a');
+  const sections = document.querySelectorAll('.page-section');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+  sections.forEach(s => obs.observe(s));
+})();
+
+// Auto-hide nav on scroll down, show on scroll up
+(function setupNavAutoHide() {
+  const nav = document.querySelector('.section-nav');
+  if (!nav) return;
+  let lastY = 0, ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        nav.classList.toggle('hidden', y > lastY && y > 100);
+        lastY = y;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+
+const cvTimeline = document.getElementById('cv-timeline');
 
 function norm(s = '') {
   return s.normalize('NFKC').replace(/\u00A0/g, ' ').toLowerCase().trim().replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ');
 }
 const rawLogoMap = {
-  'Baind AG': 'assets/companies/baind.jpg',
+  'Baind AG': 'assets/companies/baind.png',
   'Munich Institute of Robotics and Machine Intelligence': 'assets/companies/MIRMI.png',
   'TU Munich': 'assets/companies/TUM.png',
   'F. Hoffmann La Roche AG': 'assets/companies/Roche.svg',
   'Syskron GmbH / Krones AG': 'assets/companies/Krones.svg',
   'BMW AG': 'assets/companies/BMW.png',
   'University of Applied Sciences Regensburg': 'assets/companies/OTHR.png',
-  'Universidad EAN, Bogotá': 'assets/companies/EAN.png',
+  'Universidad EAN, Bogota': 'assets/companies/EAN.png',
   'Stanford BDML (Prof. Cutkosky)': 'assets/companies/Stanford.png',
   'TUM IN-HAND Lab (Prof. Piazza)': 'assets/companies/IN-HAND-Logo.png'
 };
@@ -71,6 +84,7 @@ function mapCV(data) {
     const company = item.institution || item.company || '';
     return {
       company,
+      url: item.url || '',
       position: item.position || item.role || '',
       timeframe: item.year || item.timeframe || '',
       description: item.description || '',
@@ -79,33 +93,36 @@ function mapCV(data) {
     };
   });
 }
-function classifyItem(it) {
-  return it.category === 'academic' ? 'academic' : 'professional';
+function parseStartYear(timeframe) {
+  const m = (timeframe || '').match(/\d{4}/);
+  return m ? parseInt(m[0], 10) : 0;
 }
 function rowHTML(item) {
   const img = item.image ? `<img src="${item.image}" alt="${item.company} logo" onerror="this.style.display='none'">` : '';
+  const companyHTML = item.url
+    ? `<a href="${item.url}" target="_blank" rel="noopener" class="cv-company">${item.company || ''}</a>`
+    : `<span class="cv-company">${item.company || ''}</span>`;
   return `
-    ${img}
+    <div class="cv-logo">${img}</div>
     <div class="cv-block">
-      <div class="cv-headline">
-        <span class="cv-title">${item.position || ''}</span>
-        ${item.company ? `<span class="cv-company">at ${item.company}</span>` : ''}
-        ${item.timeframe ? `<span class="cv-timeframe">— ${item.timeframe}</span>` : ''}
-      </div>
+      <div class="cv-title">${item.position || ''}</div>
+      ${item.company ? `<div class="cv-meta">${companyHTML}${item.timeframe ? ` -- ${item.timeframe}` : ''}</div>` : ''}
       ${item.description ? `<div class="cv-desc">${item.description}</div>` : ''}
     </div>
-  `;
+    <div class="cv-spacer"></div>`;
 }
-function renderList(targetUL, items) {
-  if (!targetUL) return;
-  targetUL.innerHTML = '';
+function renderTimeline(target, items) {
+  if (!target) return;
+  items.sort((a, b) => parseStartYear(b.timeframe) - parseStartYear(a.timeframe));
+  target.innerHTML = '';
   const frag = document.createDocumentFragment();
   items.forEach(item => {
     const li = document.createElement('li');
+    li.dataset.side = item.category === 'academic' ? 'left' : 'right';
     li.innerHTML = rowHTML(item);
     frag.appendChild(li);
   });
-  targetUL.appendChild(frag);
+  target.appendChild(frag);
 }
 async function loadCV() {
   try {
@@ -114,11 +131,10 @@ async function loadCV() {
     const json = await res.json();
     if (!Array.isArray(json)) throw new Error('cv.json must be an array');
     const mapped = mapCV(json);
-    renderList(cvListAcademic, mapped.filter(it => classifyItem(it) === 'academic'));
-    renderList(cvListProfessional, mapped.filter(it => classifyItem(it) === 'professional'));
+    renderTimeline(cvTimeline, mapped);
+    observeItems('.timeline li');
   } catch (err) {
-    if (cvListAcademic) cvListAcademic.innerHTML = `<li><em>Could not load CV (see console).</em></li>`;
-    if (cvListProfessional) cvListProfessional.innerHTML = '';
+    if (cvTimeline) cvTimeline.innerHTML = `<li><em>Could not load CV.</em></li>`;
     console.error('CV load failed', err);
   }
 }
@@ -145,9 +161,12 @@ function projectMediaHTML(media, title) {
   }
   if (Array.isArray(media.images) && media.images.length > 0) {
     const imgs = media.images.map((src, i) =>
-      `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img">`
+      `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}">`
     ).join('');
-    return `<div class="project-media"><div class="media-gallery">${imgs}</div></div>`;
+    const nav = media.images.length > 1
+      ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`).join('')}</div>`
+      : '';
+    return `<div class="project-media"><div class="carousel"><div class="carousel-inner">${imgs}</div>${nav}</div></div>`;
   }
   return '';
 }
@@ -169,7 +188,7 @@ function renderProjects(items) {
   const frag = document.createDocumentFragment();
   items.forEach(p => {
     const li = document.createElement('li');
-    li.className = 'project-card';
+    li.className = 'project-card' + (p.featured ? ' featured' : '');
     li.innerHTML = `
       <div class="project-header">
         <div class="project-title">${p.title || ''}</div>
@@ -191,6 +210,22 @@ async function loadProjects() {
     const data = await res.json();
     if (!Array.isArray(data)) throw new Error('projects.json must be an array');
     renderProjects(data);
+    observeItems('.projects-list li');
+    document.querySelectorAll('.carousel').forEach(c => {
+      const imgs = c.querySelectorAll('.gallery-img');
+      if (imgs.length < 2) return;
+      let timer = setInterval(() => {
+        const cur = [...imgs].findIndex(img => img.classList.contains('active'));
+        carouselGo(c, cur + 1);
+      }, 5000);
+      c.addEventListener('mouseenter', () => clearInterval(timer));
+      c.addEventListener('mouseleave', () => {
+        timer = setInterval(() => {
+          const cur = [...imgs].findIndex(img => img.classList.contains('active'));
+          carouselGo(c, cur + 1);
+        }, 5000);
+      });
+    });
   } catch (err) {
     if (projectsList) projectsList.innerHTML = `<li><em>Could not load projects (see console).</em></li>`;
     console.error('Projects load failed', err);
@@ -242,9 +277,10 @@ let triggerElement = null;
 
 function openLightbox(img) {
   triggerElement = img;
-  const gallery = img.closest('.media-gallery');
-  galleryImages = gallery ? [...gallery.querySelectorAll('.gallery-img')] : [img];
+  const inner = img.closest('.carousel-inner') || img.closest('.carousel');
+  galleryImages = inner ? [...inner.querySelectorAll('.gallery-img')] : [img];
   currentIndex = galleryImages.indexOf(img);
+  if (currentIndex < 0) currentIndex = 0;
   showImage(currentIndex);
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -264,8 +300,32 @@ function closeLightbox() {
   triggerElement = null;
 }
 
+function carouselGo(carousel, idx) {
+  const imgs = [...carousel.querySelectorAll('.gallery-img')];
+  const dots = [...carousel.querySelectorAll('.carousel-dot')];
+  const i = (idx + imgs.length) % imgs.length;
+  imgs.forEach((img, j) => img.classList.toggle('active', j === i));
+  dots.forEach((d, j) => d.classList.toggle('active', j === i));
+}
+
 document.addEventListener('click', e => {
-  if (e.target.classList.contains('gallery-img')) openLightbox(e.target);
+  if (e.target.classList.contains('gallery-img') && e.target.classList.contains('active')) {
+    openLightbox(e.target);
+    return;
+  }
+  const prev = e.target.closest('.carousel-prev');
+  const next = e.target.closest('.carousel-next');
+  if (prev || next) {
+    e.stopPropagation();
+    const carousel = e.target.closest('.carousel');
+    const imgs = [...carousel.querySelectorAll('.gallery-img')];
+    const cur = imgs.findIndex(img => img.classList.contains('active'));
+    carouselGo(carousel, cur + (prev ? -1 : 1));
+    return;
+  }
+  if (e.target.classList.contains('carousel-dot')) {
+    carouselGo(e.target.closest('.carousel'), parseInt(e.target.dataset.i, 10));
+  }
 });
 lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });

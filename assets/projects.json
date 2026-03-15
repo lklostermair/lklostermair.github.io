@@ -1,6 +1,7 @@
 [
     {
     "year": "2026",
+    "featured": true,
     "title": "LEAP-FT - Multimodal learning for dexterous manipulation with an anthropomorphic hand",
     "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR-based teleoperation approach with visual tactile feedback for data gathering. Working on training an Adaptive Compliance Diffusion Policy to utilize multimodal data for dexterous manipulation tasks.",
     "media": {

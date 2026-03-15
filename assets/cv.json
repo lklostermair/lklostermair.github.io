@@ -1,9 +1,9 @@
-
 [
   {
-   "year": "2025–present",
+    "year": "2025–present",
     "position": "Master Thesis",
     "institution": "Stanford BDML (Prof. Cutkosky)",
+    "url": "https://bdml.stanford.edu/",
     "description": "Multimodal imitation learning for robust dexterous manipulation",
     "category": "academic"
   },
@@ -11,6 +11,7 @@
     "year": "2025",
     "position": "Master Project",
     "institution": "TUM IN-HAND Lab (Prof. Piazza)",
+    "url": "https://www.ce.cit.tum.de/en/nhcr/home/",
     "description": "Simulation based tactile informed reinforcement learning for grasping.",
     "category": "academic"
   },
@@ -18,6 +19,7 @@
     "year": "2024–2025",
     "position": "Student Machine Learning Engineer",
     "institution": "Baind AG",
+    "url": "https://www.baind.de/",
     "description": "Work on ML data pipelines for timeseries forecasts and non intrusive load monitoring.",
     "category": "professional"
   },
@@ -25,6 +27,7 @@
     "year": "2024",
     "position": "Teaching Assistant",
     "institution": "Munich Institute of Robotics and Machine Intelligence",
+    "url": "https://www.mirmi.tum.de/en/mirmi/home/",
     "description": "Designed a modular prosthetic hand socket and worked on semi-autonomous grasping with object recognition.",
     "category": "professional"
   },
@@ -32,6 +35,7 @@
     "year": "2024–present",
     "position": "M. Sc. Biomedical Engineering & Medical Physics",
     "institution": "TU Munich",
+    "url": "https://www.tum.de/en/",
     "description": "Studying deep learning and robotics.",
     "category": "academic"
   },
@@ -39,6 +43,7 @@
     "year": "2023",
     "position": "Student Researcher",
     "institution": "F. Hoffmann La Roche AG",
+    "url": "https://www.roche.com/",
     "description": "Bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime.",
     "category": "professional"
   },
@@ -46,13 +51,15 @@
     "year": "2022–2023",
     "position": "Student Project Manager",
     "institution": "Syskron GmbH / Krones AG",
+    "url": "https://www.krones.com/",
     "description": "Created budget forecasts for 20+ projects and set up a cleaner, standardized budgeting template.",
     "category": "professional"
   },
   {
     "year": "2022",
     "position": "Semester Abroad",
-    "institution": "Universidad EAN, Bogotá",
+    "institution": "Universidad EAN, Bogota",
+    "url": "https://universidadean.edu.co/",
     "description": "Took courses in chemistry, finance, and project management. Also went backpacking alot through the country.",
     "category": "academic"
   },
@@ -60,6 +67,7 @@
     "year": "2021–2022",
     "position": "Innovation Intern",
     "institution": "BMW AG",
+    "url": "https://www.bmw.com/",
     "description": "Handled big datasets for an ML project and built nationwide micro-IT tools in PowerApps.",
     "category": "professional"
   },
@@ -67,14 +75,15 @@
     "year": "2021",
     "position": "Teaching Assistant",
     "institution": "University of Applied Sciences Regensburg",
-    "description": "Helped teach Technical Mechanics III – Dynamics to other students.",
+    "url": "https://www.oth-regensburg.de/en/",
+    "description": "Helped teach Technical Mechanics III - Dynamics to other students.",
     "category": "professional"
   },
-
   {
     "year": "2019–2023",
     "position": "B. Sc. Biomedical Engineering",
     "institution": "University of Applied Sciences Regensburg",
+    "url": "https://www.oth-regensburg.de/en/",
     "description": "Focused on machine learning and dynamics.",
     "category": "academic"
   }
