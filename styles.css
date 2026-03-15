@@ -1,13 +1,15 @@
 @font-face{
   font-family:'Dina';
-  src:url('assets/fonts/DinaRemaster-Regular-01.ttf') format('truetype');
+  src:url('assets/fonts/DinaRemaster-Regular-01.woff2') format('woff2'),
+      url('assets/fonts/DinaRemaster-Regular-01.ttf') format('truetype');
   font-weight:400;
   font-style:normal;
   font-display:swap;
 }
 @font-face{
   font-family:'Dina';
-  src:url('assets/fonts/DinaRemaster-Bold-02.ttf') format('truetype');
+  src:url('assets/fonts/DinaRemaster-Bold-02.woff2') format('woff2'),
+      url('assets/fonts/DinaRemaster-Bold-02.ttf') format('truetype');
   font-weight:700;
   font-style:normal;
   font-display:swap;
@@ -28,6 +30,16 @@
 @media (min-width: 1800px){
   :root{ --content-max: 1600px; }
 }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f0f0f;--text:#e5e5e5;--muted:#9ca3af;--line:#2a2a2a;
+    --accent:#ff7da3;--accent-soft:#3d1525;--card:#1a1a1a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f0f0f;--text:#e5e5e5;--muted:#9ca3af;--line:#2a2a2a;
+  --accent:#ff7da3;--accent-soft:#3d1525;--card:#1a1a1a;
+}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -38,6 +50,7 @@ body{
   line-height:1.7;
   background:var(--bg);
   color:var(--text);
+  transition:background .2s ease, color .2s ease;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
@@ -51,8 +64,7 @@ a{
 }
 a:hover,a:focus{background-size:100% 2px;}
 :focus-visible{outline:3px solid color-mix(in oklab,var(--accent) 60%, transparent); outline-offset:4px; border-radius:6px;}
-.skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:.5rem 1rem;z-index:100;}
-.skip-link:focus{top:0}
+.skip-link{position:absolute;left:-9999px;top:-9999px}
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 main{
@@ -113,8 +125,17 @@ header.hero{
 
 .bio{max-width:860px;margin:0 auto 1.5rem;color:var(--text);padding:0 var(--page-pad)}
 
-.panel{display:none;opacity:0;transform:translateY(18px);transition:opacity .3s ease, transform .3s ease; text-align:center}
-.panel.active{display:block;opacity:1;transform:none}
+.panel{
+  visibility:hidden;height:0;overflow:hidden;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .3s ease, transform .3s ease, visibility 0s .3s;
+  text-align:center;
+}
+.panel.active{
+  visibility:visible;height:auto;overflow:visible;
+  opacity:1;transform:none;
+  transition:opacity .3s ease, transform .3s ease, visibility 0s 0s;
+}
 .panel-title{font-size:1.35rem;margin:1rem 0 .75rem}
 
 .list{list-style:none;margin:0 auto 1rem;padding:0;max-width:760px;text-align:left}
@@ -180,8 +201,15 @@ header.hero{
   flex-direction:column;
   gap:.75rem;
   margin:1.25rem 0 2rem;
-  border-bottom:1px solid var(--line);
-  padding-bottom:1.5rem;
+  padding:1.25rem;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  transition:box-shadow .2s ease, transform .2s ease;
+}
+.projects-list li:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,.15);
+  transform:translateY(-2px);
 }
 .project-title{ font-size:1.25rem; font-weight:700; }
 .project-meta{ display:flex; gap:.75rem; align-items:baseline; color:var(--muted); }
@@ -190,7 +218,7 @@ header.hero{
 .project-links a{
   display:inline-flex; align-items:center; gap:.35rem;
   padding:.25rem .6rem; border:1px solid var(--line); border-radius:999px;
-  background:#fff;
+  background:var(--card);
 }
 
 .project-media{ width:100%; }
@@ -206,7 +234,7 @@ header.hero{
   aspect-ratio: var(--ratio, 4/3);
   border-radius:12px;
   overflow:hidden;
-  background:#f6f7f9;
+  background:var(--line);
   box-shadow:0 12px 40px rgba(17,17,17,.06);
 }
 .media-gallery .tile img{
@@ -215,7 +243,7 @@ header.hero{
   object-fit:cover; object-position:center;
   display:block;
 }
-.media-gallery .tile.contain img{ object-fit:contain; background:#fff; }
+.media-gallery .tile.contain img{ object-fit:contain; background:var(--bg); }
 
 .projects-list .media-gallery{
   justify-items:center;
@@ -245,31 +273,54 @@ header.hero{
 
 .project-tags{ display:flex; gap:.5rem; flex-wrap:wrap; }
 .project-tags .tag{
-  font-size:.85rem; color:#b10f4e; background:var(--accent-soft);
+  font-size:.85rem; color:var(--accent); background:var(--accent-soft);
   border:1px solid var(--accent); border-radius:999px; padding:.15rem .55rem;
 }
 
 .filter-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:.5rem 0 1rem}
 .filter-chips button{
-  padding:.3rem .8rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:inherit;cursor:pointer
+  padding:.3rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--card);color:inherit;cursor:pointer
 }
-.filter-chips button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:#b10f4e}
+.filter-chips button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 
 footer{
   border-top:1px solid var(--line); margin-top:3rem; padding:2rem 1rem;
   text-align:center; display:flex; flex-direction:column; gap:.75rem; align-items:center; color:var(--muted);
 }
 .social-icons{display:flex;gap:.8rem;justify-content:center}
-.social-icons a{opacity:.9}
-.social-icons a:hover{opacity:1}
+.social-icons a{opacity:.9;background-image:none}
+.social-icons a:hover,.social-icons a:focus{opacity:1;background-image:none}
+.contact-grid{
+  display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:2rem 0;
+}
+.contact-info{text-align:center;color:var(--muted);line-height:1.8}
+.contact-info a{color:var(--text);font-weight:700}
+.contact-grid .social-icons{gap:1.5rem}
+.contact-grid .social-icons img{width:32px;height:32px;transition:transform .16s ease}
+.contact-grid .social-icons a:hover img{transform:scale(1.15)}
+[data-theme="dark"] .social-icons img[alt="GitHub"]{filter:invert(1)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .social-icons img[alt="GitHub"]{filter:invert(1)}
+}
 
 .not-found{display:grid;place-items:center;height:100vh;text-align:center}
+
+.theme-toggle{
+  position:fixed;top:1rem;right:1rem;z-index:50;
+  appearance:none;background:var(--card);border:1px solid var(--line);
+  border-radius:50%;width:36px;height:36px;cursor:pointer;
+  display:grid;place-items:center;color:var(--text);
+  transition:border-color .16s ease;
+}
+.theme-toggle:hover{border-color:var(--accent)}
+.theme-toggle svg{width:18px;height:18px}
+[data-theme="dark"] .icon-sun{display:none}
+[data-theme="dark"] .icon-moon{display:block !important}
 
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
 }
 
-.skip-link{ display:none !important; }
 
 .full-bleed{
   width:100vw;
@@ -278,10 +329,46 @@ footer{
 }
 
 
-/* MapMyVisitors widget scaling */
-#mapmyvisitors-wrapper {
-  transform: scale(0.4);
-  transform-origin: center top;
-  overflow: hidden;
-  height: 1000px;
+.gallery-img{cursor:zoom-in}
+.lightbox{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.88);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity .2s ease, visibility 0s .2s;
+  cursor:zoom-out;
+}
+.lightbox.open{
+  opacity:1;visibility:visible;
+  transition:opacity .2s ease, visibility 0s 0s;
+}
+.lightbox img{
+  max-width:90vw;max-height:90vh;object-fit:contain;
+  border-radius:6px;cursor:default;
+}
+.lightbox-close{
+  position:absolute;top:1rem;right:1rem;
+  background:none;border:none;color:#fff;
+  font-size:2rem;cursor:pointer;line-height:1;
+  width:40px;height:40px;
+}
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:#fff;
+  font-size:2rem;cursor:pointer;padding:1rem;
+}
+.lightbox-nav.prev{left:.5rem}
+.lightbox-nav.next{right:.5rem}
+
+#mapmyvisitors-badge{
+  width:600px;height:400px;
+  transform:scale(0.5);transform-origin:center top;
+  margin-bottom:-200px;
+  overflow:hidden;
+  opacity:.6;transition:opacity .16s ease;
+}
+#mapmyvisitors-badge:hover{opacity:1}
+[data-theme="dark"] #mapmyvisitors-badge{filter:invert(1) hue-rotate(180deg)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) #mapmyvisitors-badge{filter:invert(1) hue-rotate(180deg)}
 }

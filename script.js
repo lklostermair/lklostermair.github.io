@@ -10,6 +10,8 @@ function activateTab(tab, pushHash = true) {
   if (pushHash) {
     const hash = tab.id.replace('tab-', '');
     history.replaceState(null, '', `#${hash}`);
+    const target = document.querySelector('.panels-area');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
 function getTabByHash(hash) {
@@ -107,7 +109,7 @@ function renderList(targetUL, items) {
 }
 async function loadCV() {
   try {
-    const res = await fetch('assets/cv.json', { cache: 'no-store' });
+    const res = await fetch('assets/cv.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     if (!Array.isArray(json)) throw new Error('cv.json must be an array');
@@ -124,7 +126,7 @@ loadCV();
 
 const projectsList = document.getElementById('projects-list');
 
-function projectMediaHTML(media) {
+function projectMediaHTML(media, title) {
   if (!media) return '';
   if (media.youtubeId) {
     const id = encodeURIComponent(media.youtubeId.trim());
@@ -133,7 +135,7 @@ function projectMediaHTML(media) {
         <div class="video-wrap">
           <iframe
             src="https://www.youtube.com/embed/${id}"
-            title="YouTube video"
+            title="${title || 'Project'} video"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
@@ -142,7 +144,9 @@ function projectMediaHTML(media) {
       </div>`;
   }
   if (Array.isArray(media.images) && media.images.length > 0) {
-    const imgs = media.images.map(src => `<img src="${src}" loading="lazy" alt="">`).join('');
+    const imgs = media.images.map((src, i) =>
+      `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img">`
+    ).join('');
     return `<div class="project-media"><div class="media-gallery">${imgs}</div></div>`;
   }
   return '';
@@ -173,7 +177,7 @@ function renderProjects(items) {
         ${projectTagsHTML(p.tags)}
       </div>
       <div class="project-summary">${p.summary || ''}</div>
-      ${projectMediaHTML(p.media)}
+      ${projectMediaHTML(p.media, p.title)}
       ${projectLinksHTML(p.links)}
     `;
     frag.appendChild(li);
@@ -182,7 +186,7 @@ function renderProjects(items) {
 }
 async function loadProjects() {
   try {
-    const res = await fetch('assets/projects.json', { cache: 'no-store' });
+    const res = await fetch('assets/projects.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     if (!Array.isArray(data)) throw new Error('projects.json must be an array');
@@ -193,3 +197,93 @@ async function loadProjects() {
   }
 }
 loadProjects();
+
+const themeToggle = document.querySelector('.theme-toggle');
+const sunIcon = themeToggle?.querySelector('.icon-sun');
+const moonIcon = themeToggle?.querySelector('.icon-moon');
+
+function getEffectiveTheme() {
+  const stored = localStorage.getItem('theme');
+  if (stored) return stored;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  if (sunIcon && moonIcon) {
+    sunIcon.style.display = theme === 'dark' ? 'none' : 'block';
+    moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
+  }
+}
+applyTheme(getEffectiveTheme());
+themeToggle?.addEventListener('click', () => {
+  const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (!localStorage.getItem('theme')) applyTheme(getEffectiveTheme());
+});
+
+document.body.insertAdjacentHTML('beforeend', `
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-nav prev" aria-label="Previous">&lsaquo;</button>
+    <img alt="">
+    <button class="lightbox-nav next" aria-label="Next">&rsaquo;</button>
+  </div>`);
+
+const lightbox = document.getElementById('lightbox');
+const lbImg = lightbox.querySelector('img');
+const lbPrev = lightbox.querySelector('.prev');
+const lbNext = lightbox.querySelector('.next');
+let galleryImages = [];
+let currentIndex = 0;
+let triggerElement = null;
+
+function openLightbox(img) {
+  triggerElement = img;
+  const gallery = img.closest('.media-gallery');
+  galleryImages = gallery ? [...gallery.querySelectorAll('.gallery-img')] : [img];
+  currentIndex = galleryImages.indexOf(img);
+  showImage(currentIndex);
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lightbox.querySelector('.lightbox-close').focus();
+}
+function showImage(i) {
+  currentIndex = (i + galleryImages.length) % galleryImages.length;
+  lbImg.src = galleryImages[currentIndex].src;
+  lbImg.alt = galleryImages[currentIndex].alt;
+  lbPrev.style.display = galleryImages.length > 1 ? '' : 'none';
+  lbNext.style.display = galleryImages.length > 1 ? '' : 'none';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  if (triggerElement) triggerElement.focus();
+  triggerElement = null;
+}
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('gallery-img')) openLightbox(e.target);
+});
+lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+lbPrev.addEventListener('click', e => { e.stopPropagation(); showImage(currentIndex - 1); });
+lbNext.addEventListener('click', e => { e.stopPropagation(); showImage(currentIndex + 1); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+  if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+  if (e.key === 'Tab') {
+    const focusable = lightbox.querySelectorAll('button:not([style*="display: none"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  }
+});
