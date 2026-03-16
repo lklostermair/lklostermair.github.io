@@ -297,7 +297,17 @@ footer{
   :root:not([data-theme="light"]) .timeline img[src*="OTHR"]{filter:invert(1)}
 }
 
-.not-found{display:grid;place-items:center;height:100vh;text-align:center}
+.not-found{display:grid;place-items:center;height:100vh;text-align:center;padding:2rem}
+.not-found-content{display:flex;flex-direction:column;align-items:center;gap:.75rem}
+.not-found-code{font-size:clamp(5rem,15vw,10rem);margin:0;line-height:1;letter-spacing:-.04em;color:var(--accent)}
+.not-found-msg{margin:0;color:var(--muted);font-size:1.1rem}
+.not-found-link{
+  margin-top:1rem;padding:.5rem 1.5rem;
+  border:1px solid var(--line);border-radius:999px;
+  background:var(--card);color:var(--text);
+  transition:border-color .16s ease;
+}
+.not-found-link:hover{border-color:var(--accent);background-size:0% 2px}
 
 .theme-toggle{
   position:fixed;top:1rem;right:1rem;z-index:50;
