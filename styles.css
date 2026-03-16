@@ -75,7 +75,7 @@ main{
 header.hero{
   min-height:70svh;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; gap:1.5rem; padding:2rem var(--page-pad);
+  text-align:center; gap:1.5rem; padding:2rem var(--page-pad) 0.5rem;
 }
 .hero .info{flex:none; max-width:860px}
 
@@ -105,9 +105,8 @@ header.hero{
   position:sticky;top:0;z-index:40;
   display:flex;gap:1.5rem;justify-content:center;
   padding:.75rem 1rem;
-  background:color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
+  background:var(--bg);
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
   transition:transform .3s ease;
 }
 .section-nav.hidden{transform:translateY(-100%)}
@@ -122,7 +121,7 @@ header.hero{
 
 .quote{
   max-width:660px;
-  margin:0 auto 2rem;
+  margin:0 auto 1rem;
   padding:0 var(--page-pad);
   text-align:center;
   font-size: 1.2rem;
@@ -132,7 +131,7 @@ header.hero{
 .quote p{margin:0 0 .25rem}
 .quote cite{font-style:normal}
 
-.bio{max-width:860px;margin:0 auto 1.5rem;color:var(--text);padding:0 var(--page-pad)}
+.bio{max-width:860px;margin:0 auto 1.5rem;color:var(--text);padding:0 var(--page-pad);text-align:center}
 
 .reveal{
   opacity:0;transform:translateY(10px);
@@ -152,7 +151,7 @@ header.hero{
 
 .timeline{
   position:relative;list-style:none;margin:0 auto;padding:1rem 0;
-  max-width:900px;text-align:left;
+  max-width:1000px;text-align:left;
 }
 .timeline::before{
   content:'';position:absolute;left:50%;top:0;bottom:0;
@@ -324,6 +323,7 @@ footer{
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
   .reveal, .timeline li, .projects-list li{opacity:1;transform:none}
+  .invader-gutter{display:none}
 }
 
 
@@ -410,6 +410,45 @@ footer{
 }
 .lightbox-nav.prev{left:.5rem}
 .lightbox-nav.next{right:.5rem}
+
+/* Space invader decorations */
+.invader-gutter{
+  position:fixed;top:0;bottom:0;
+  pointer-events:none;z-index:1;overflow:hidden;
+  transition:opacity .4s ease;
+}
+.invader-gutter--left{left:0;width:calc((100vw - 800px) / 2)}
+.invader-gutter--right{right:0;width:calc((100vw - 800px) / 2)}
+.invader-sprite{
+  position:absolute;width:32px;height:32px;
+  image-rendering:pixelated;
+  opacity:.12;
+  pointer-events:auto;
+  cursor:crosshair;
+  animation:invader-march-x var(--march-dur,3s) steps(6) infinite alternate;
+  animation-delay:var(--march-delay,0s);
+}
+.invader-sprite.invader-explode{
+  width:auto;height:16px;
+  max-width:none;
+  margin-left:18px;margin-top:8px;
+  animation:invader-death .4s ease-out forwards;
+  pointer-events:none;cursor:default;
+}
+@keyframes invader-march-x{
+  from{transform:translateX(0)}
+  to{transform:translateX(var(--march-dist,60px))}
+}
+@keyframes invader-death{
+  0%{transform:scale(1);opacity:.2}
+  50%{transform:scale(1.6);opacity:.35}
+  100%{transform:scale(2);opacity:0}
+}
+[data-theme="dark"] .invader-sprite{filter:invert(1);opacity:.15}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .invader-sprite{filter:invert(1);opacity:.15}
+}
+@media(max-width:1200px){.invader-gutter{display:none}}
 
 #mapmyvisitors-badge{
   width:600px;height:400px;
