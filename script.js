@@ -40,11 +40,12 @@ function observeItems(selector) {
   const nav = document.querySelector('.section-nav');
   if (!nav) return;
   let lastY = 0, ticking = false;
+  const navTop = nav.offsetTop;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const y = window.scrollY;
-        nav.classList.toggle('hidden', y > lastY && y > 100);
+        nav.classList.toggle('hidden', y > lastY && y > navTop);
         lastY = y;
         ticking = false;
       });
@@ -347,3 +348,119 @@ document.addEventListener('keydown', e => {
     }
   }
 });
+
+// Space invader gutter decorations
+(function setupInvaders() {
+  const types = [
+    { frames: ['assets/invaders/typeA1.png', 'assets/invaders/typeA2.png'] },
+    { frames: ['assets/invaders/typeB1.png', 'assets/invaders/typeB2.png'] },
+    { frames: ['assets/invaders/typeC1.png', 'assets/invaders/typeC2.png'] },
+  ];
+  const EXPLODE_SRC = 'assets/invaders/explode.png';
+
+  const leftGutter = document.createElement('div');
+  leftGutter.className = 'invader-gutter invader-gutter--left';
+  leftGutter.setAttribute('aria-hidden', 'true');
+  const rightGutter = document.createElement('div');
+  rightGutter.className = 'invader-gutter invader-gutter--right';
+  rightGutter.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(leftGutter);
+  document.body.appendChild(rightGutter);
+
+  const allSprites = [];
+  function rand(min, max) { return min + Math.random() * (max - min); }
+
+  function resetSprite(img, scatter) {
+    const t = Math.floor(Math.random() * types.length);
+    img.dataset.type = t;
+    img.dataset.frame = '0';
+    img.dataset.dead = '0';
+    img.src = types[t].frames[0];
+    img.classList.remove('invader-explode');
+    img.style.left = rand(5, 75) + '%';
+    img.style.setProperty('--march-dist', rand(40, 80) + 'px');
+    img.style.setProperty('--march-dur', rand(2.5, 3.5) + 's');
+    img.style.setProperty('--march-delay', -rand(0, 3) + 's');
+    img._y = scatter ? rand(-600, -40) : -40;
+    img.style.top = img._y + 'px';
+    img._speed = rand(0.15, 0.35);
+  }
+
+  function createSprite(container, idx, total) {
+    const img = document.createElement('img');
+    img.className = 'invader-sprite';
+    img.alt = '';
+    img._container = container;
+    resetSprite(img, false);
+    // Stagger start positions above viewport so they drop in evenly spaced
+    const spacing = window.innerHeight / total;
+    img._y = -(idx * spacing) - 40;
+    img.style.top = img._y + 'px';
+    container.appendChild(img);
+    allSprites.push(img);
+
+    img.addEventListener('click', () => {
+      if (img.dataset.dead === '1') return;
+      img.dataset.dead = '1';
+      // Freeze position: read bounding rect, set left in px
+      const rect = img.getBoundingClientRect();
+      const gutterRect = img._container.getBoundingClientRect();
+      img.style.left = (rect.left - gutterRect.left) + 'px';
+      img.src = EXPLODE_SRC;
+      img.classList.add('invader-explode');
+      setTimeout(() => {
+        img.style.left = '';
+        resetSprite(img, false);
+      }, 500);
+    });
+  }
+
+  const spritesPerSide = 5;
+  for (let i = 0; i < spritesPerSide; i++) {
+    createSprite(leftGutter, i, spritesPerSide);
+    createSprite(rightGutter, i, spritesPerSide);
+  }
+
+  // Frame swap
+  setInterval(() => {
+    allSprites.forEach(img => {
+      if (img.dataset.dead === '1') return;
+      const t = parseInt(img.dataset.type);
+      const f = img.dataset.frame === '0' ? 1 : 0;
+      img.dataset.frame = String(f);
+      img.src = types[t].frames[f];
+    });
+  }, 500);
+
+  // Vertical drift via JS (allows regeneration)
+  function tick() {
+    allSprites.forEach(img => {
+      if (img.dataset.dead === '1') return;
+      img._y += img._speed;
+      if (img._y > window.innerHeight + 40) {
+        resetSprite(img, false);
+      }
+      img.style.top = img._y + 'px';
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // Fade out earlier as CV section ends
+  const projects = document.getElementById('projects');
+  let fadeTicking = false;
+  function updateFade() {
+    if (!projects) return;
+    const rect = projects.getBoundingClientRect();
+    const fade = Math.max(0, Math.min(1, rect.top / (window.innerHeight * 1.8)));
+    leftGutter.style.opacity = fade;
+    rightGutter.style.opacity = fade;
+  }
+  window.addEventListener('scroll', () => {
+    if (!fadeTicking) {
+      requestAnimationFrame(() => { updateFade(); fadeTicking = false; });
+      fadeTicking = true;
+    }
+  }, { passive: true });
+  updateFade();
+})();
