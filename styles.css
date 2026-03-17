@@ -448,7 +448,20 @@ footer{
 @media(prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .invader-sprite{filter:invert(1);opacity:.15}
 }
-@media(max-width:1200px){.invader-gutter{display:none}}
+/* Score counter */
+.invader-score{
+  position:fixed;top:20px;left:20px;
+  font-family:'Dina',monospace;font-size:28px;font-weight:700;
+  color:var(--text);opacity:.15;
+  letter-spacing:.15em;
+  pointer-events:none;z-index:2;
+  transition:opacity .4s ease;
+}
+[data-theme="dark"] .invader-score{opacity:.2}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .invader-score{opacity:.2}
+}
+@media(max-width:1200px){.invader-gutter,.invader-score{display:none}}
 
 #mapmyvisitors-badge{
   width:600px;height:400px;

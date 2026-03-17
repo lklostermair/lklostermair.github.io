@@ -367,6 +367,19 @@ document.addEventListener('keydown', e => {
   document.body.appendChild(leftGutter);
   document.body.appendChild(rightGutter);
 
+  // Score counter
+  let score = 0;
+  const scoreEl = document.createElement('div');
+  scoreEl.className = 'invader-score';
+  scoreEl.setAttribute('aria-hidden', 'true');
+  scoreEl.textContent = '0000';
+  document.body.appendChild(scoreEl);
+
+  function bumpScore() {
+    score++;
+    scoreEl.textContent = String(score).padStart(4, '0');
+  }
+
   const allSprites = [];
   function rand(min, max) { return min + Math.random() * (max - min); }
 
@@ -402,6 +415,7 @@ document.addEventListener('keydown', e => {
     img.addEventListener('click', () => {
       if (img.dataset.dead === '1') return;
       img.dataset.dead = '1';
+      bumpScore();
       // Freeze position: read bounding rect, set left in px
       const rect = img.getBoundingClientRect();
       const gutterRect = img._container.getBoundingClientRect();
@@ -455,6 +469,7 @@ document.addEventListener('keydown', e => {
     const fade = Math.max(0, Math.min(1, rect.top / (window.innerHeight * 1.8)));
     leftGutter.style.opacity = fade;
     rightGutter.style.opacity = fade;
+    scoreEl.style.opacity = fade;
   }
   window.addEventListener('scroll', () => {
     if (!fadeTicking) {
