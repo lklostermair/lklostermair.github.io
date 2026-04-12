@@ -2,8 +2,8 @@
     {
     "year": "2026",
     "featured": true,
-    "title": "LEAP-FT - Multimodal learning for dexterous manipulation with an anthropomorphic hand",
-    "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR-based teleoperation approach with visual tactile feedback for data gathering. Working on training an Adaptive Compliance Diffusion Policy to utilize multimodal data for dexterous manipulation tasks.",
+    "title": "Tactile-Informed Diffusion Policy Learning for Robust Dexterous Manipulation",
+    "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR-based teleoperation approach with visual tactile feedback for data gathering. Trained a Diffusion Policy to utilize multimodal data for dexterous manipulation tasks and compared impact of tactile information on policy performance.",
     "media": {
       "images": [
         "assets/projects/leapft/Screenshot_20260129_170017.png",
@@ -47,7 +47,7 @@
   {
     "year": "2025",
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
-    "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper accepted to ICRCA 2026.",
+    "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper accepted to ICRCA 2026, which won 'Best Presentation Award'.",
     "media": {
       "images": [
         "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
