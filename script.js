@@ -21,19 +21,28 @@ function observeItems(selector) {
   });
 }
 
-// Active section tracker for sticky nav
-(function setupActiveNav() {
-  const navLinks = document.querySelectorAll('.section-nav a');
-  const sections = document.querySelectorAll('.page-section');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }
-    });
-  }, { rootMargin: '-20% 0px -60% 0px' });
-  sections.forEach(s => obs.observe(s));
-})();
+// Tab switching
+const TABS = ['cv', 'projects', 'publications', 'contact'];
+function activateTab(id) {
+  if (!TABS.includes(id)) id = 'cv';
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    const active = btn.dataset.tab === id;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', String(active));
+  });
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.classList.toggle('active', panel.id === id);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    history.replaceState(null, '', '#' + tab);
+    activateTab(tab);
+  });
+});
+const initTab = location.hash.slice(1);
+activateTab(TABS.includes(initTab) ? initTab : 'cv');
 
 // Auto-hide nav on scroll down, show on scroll up
 (function setupNavAutoHide() {
@@ -107,7 +116,7 @@ function rowHTML(item) {
     <div class="cv-logo">${img}</div>
     <div class="cv-block">
       <div class="cv-title">${item.position || ''}</div>
-      ${item.company ? `<div class="cv-meta">${companyHTML}${item.timeframe ? ` -- ${item.timeframe}` : ''}</div>` : ''}
+      ${item.company ? `<div class="cv-meta">${companyHTML}${item.timeframe ? ` — ${item.timeframe}` : ''}</div>` : ''}
       ${item.description ? `<div class="cv-desc">${item.description}</div>` : ''}
     </div>
     <div class="cv-spacer"></div>`;
@@ -183,11 +192,16 @@ function projectTagsHTML(tags) {
     ${tags.map(t => `<span class="tag">${t}</span>`).join('')}
   </div>`;
 }
+const FILTER_CATS = ['All', 'Robotics', 'ML', 'Hackathons', 'Misc'];
+let activeFilter = 'All';
+let loadedProjects = [];
+
 function renderProjects(items) {
   if (!projectsList) return;
+  const visible = activeFilter === 'All' ? items : items.filter(p => Array.isArray(p.categories) && p.categories.includes(activeFilter));
   projectsList.innerHTML = '';
   const frag = document.createDocumentFragment();
-  items.forEach(p => {
+  visible.forEach(p => {
     const li = document.createElement('li');
     li.className = 'project-card' + (p.featured ? ' featured' : '');
     li.innerHTML = `
@@ -210,6 +224,21 @@ async function loadProjects() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     if (!Array.isArray(data)) throw new Error('projects.json must be an array');
+    loadedProjects = data;
+    const chips = document.getElementById('filter-chips');
+    if (chips) {
+      chips.innerHTML = FILTER_CATS.map(cat =>
+        `<button aria-pressed="${cat === 'All'}" data-cat="${cat}">${cat}</button>`
+      ).join('');
+      chips.addEventListener('click', e => {
+        const btn = e.target.closest('button[data-cat]');
+        if (!btn) return;
+        activeFilter = btn.dataset.cat;
+        chips.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === btn));
+        renderProjects(loadedProjects);
+        observeItems('.projects-list li');
+      });
+    }
     renderProjects(data);
     observeItems('.projects-list li');
     document.querySelectorAll('.carousel').forEach(c => {
@@ -233,6 +262,50 @@ async function loadProjects() {
   }
 }
 loadProjects();
+
+async function loadPublications() {
+  const list = document.getElementById('publications-list');
+  if (!list) return;
+  try {
+    const res = await fetch('assets/publications.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    list.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    data.filter(p => !p.draft).forEach(p => {
+      const li = document.createElement('li');
+      li.className = 'pub-card';
+      const imgHTML = p.image
+        ? `<img class="pub-thumb" src="${p.image}" alt="${p.title}" loading="lazy">`
+        : `<div class="pub-thumb-placeholder"></div>`;
+      const badges = [];
+      if (p.status) badges.push(`<span class="pub-badge">${p.status}</span>`);
+      if (p.award) badges.push(`<span class="pub-badge">${p.award}</span>`);
+      const linksHTML = Array.isArray(p.links) && p.links.length
+        ? `<div class="pub-links">${p.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('')}</div>`
+        : '';
+      li.innerHTML = `
+        ${imgHTML}
+        <div class="pub-body">
+          <div class="pub-title">${p.title}</div>
+          ${p.authors ? `<div class="pub-authors">${p.authors}</div>` : ''}
+          <div class="pub-meta">
+            ${p.venue ? `<span>${p.venue}</span>` : ''}
+            ${p.year ? `<span>${p.year}</span>` : ''}
+            ${badges.join('')}
+          </div>
+          ${linksHTML}
+        </div>
+      `;
+      frag.appendChild(li);
+    });
+    list.appendChild(frag);
+  } catch (err) {
+    if (list) list.innerHTML = '<li><em>Could not load publications.</em></li>';
+    console.error('Publications load failed', err);
+  }
+}
+loadPublications();
 
 const themeToggle = document.querySelector('.theme-toggle');
 const sunIcon = themeToggle?.querySelector('.icon-sun');
@@ -460,22 +533,4 @@ document.addEventListener('keydown', e => {
   }
   requestAnimationFrame(tick);
 
-  // Fade out earlier as CV section ends
-  const projects = document.getElementById('projects');
-  let fadeTicking = false;
-  function updateFade() {
-    if (!projects) return;
-    const rect = projects.getBoundingClientRect();
-    const fade = Math.max(0, Math.min(1, rect.top / (window.innerHeight * 1.8)));
-    leftGutter.style.opacity = fade;
-    rightGutter.style.opacity = fade;
-    scoreEl.style.opacity = fade;
-  }
-  window.addEventListener('scroll', () => {
-    if (!fadeTicking) {
-      requestAnimationFrame(() => { updateFade(); fadeTicking = false; });
-      fadeTicking = true;
-    }
-  }, { passive: true });
-  updateFade();
 })();

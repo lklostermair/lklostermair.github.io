@@ -4,11 +4,11 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Lukas Klostermair</title>
-  <meta name="description" content="Robotics, deep learning, and other fun stuff. Personal site of Lukas Klostermair."/>
+  <meta name="description" content="Research Scientist working on robotics, dexterous manipulation, and machine learning. Personal site of Lukas Klostermair."/>
   <link rel="canonical" href="https://lklostermair.github.io/"/>
 
   <meta property="og:title" content="Lukas Klostermair"/>
-  <meta property="og:description" content="Robotics, deep learning, and other fun stuff. Personal site of Lukas Klostermair."/>
+  <meta property="og:description" content="Research Scientist working on robotics, dexterous manipulation, and machine learning. Personal site of Lukas Klostermair."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://lklostermair.github.io/"/>
   <meta property="og:image" content="https://lklostermair.github.io/assets/portrait-960.jpg"/>
@@ -52,44 +52,47 @@
     </div>
     <div class="info reveal">
       <h1 id="name">Lukas Klostermair</h1>
-      <p class="subtitle" id="title">Robotics Engineer</p>
+      <p class="subtitle" id="title">Research Scientist</p>
     </div>
   </header>
 
   <main id="content">
     <section id="about" aria-labelledby="about-h">
       <h2 id="about-h" class="visually-hidden">About</h2>
-      <blockquote class="quote reveal">
-        <p>"One does not discover new lands without consenting to lose sight of the shore."</p>
-        <cite>— André Gide</cite>
-      </blockquote>
-      <p class="bio reveal">
-        Hi, I'm Lukas! I'm a soon-to-be graduate with a background in engineering and physics. I like to build things that teach me something when they break and am especially interested in everything related robotics.
+<p class="bio reveal">
+        Hi, I'm Lukas! I have a background in engineering and physics. I like to build things that teach me something when they break and am especially interested in everything related robotics.
         I spend my free time on the slopes, in the ocean, or playing my guitar. Feel free to reach out if you’d like to collaborate or just chat about things :)
       </p>
     </section>
 
-    <nav class="section-nav" aria-label="Sections">
-      <a href="#cv">cv</a>
-      <a href="#projects">projects</a>
-      <a href="#contact">contact</a>
+    <nav class="section-nav" aria-label="Sections" role="tablist">
+      <button class="tab-btn" data-tab="cv" role="tab" aria-selected="true">cv</button>
+      <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">projects</button>
+      <button class="tab-btn" data-tab="publications" role="tab" aria-selected="false">publications</button>
+      <button class="tab-btn" data-tab="contact" role="tab" aria-selected="false">contact</button>
     </nav>
 
-    <section id="cv" class="page-section reveal">
+    <section id="cv" class="page-section tab-panel" role="tabpanel">
       <h2 class="section-title">cv</h2>
       <ul id="cv-timeline" class="timeline"></ul>
     </section>
 
-    <section id="projects" class="page-section reveal">
+    <section id="projects" class="page-section tab-panel" role="tabpanel">
       <h2 class="section-title">projects</h2>
+      <div id="filter-chips" class="filter-chips"></div>
       <ul id="projects-list" class="projects-list"></ul>
     </section>
 
-    <section id="contact" class="page-section reveal">
+    <section id="publications" class="page-section tab-panel" role="tabpanel">
+      <h2 class="section-title">publications</h2>
+      <ul id="publications-list" class="pub-list"></ul>
+    </section>
+
+    <section id="contact" class="page-section tab-panel" role="tabpanel">
       <h2 class="section-title">contact</h2>
       <div class="contact-grid">
         <div class="contact-info">
-          <p>Currently based in Stanford, CA</p>
+          <p>Currently based in Palo Alto, CA</p>
         </div>
         <div class="social-icons" role="group" aria-label="Social links">
           <a href="https://github.com/lklostermair" target="_blank" rel="noopener" aria-label="GitHub">
@@ -101,13 +104,16 @@
           <a href="mailto:lukas.klostermair@gmail.com" aria-label="Send email">
             <img src="assets/social/gmail.svg" width="32" height="32" alt="Email">
           </a>
+          <a href="https://scholar.google.com/citations?hl=en&user=JqG80zQAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar">
+            <img src="assets/social/scholar.svg" width="32" height="32" alt="Google Scholar">
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div>Lukas Klostermair -- Last updated <span id="updated"></span></div>
+    <div>Lukas Klostermair — Last updated <span id="updated"></span></div>
     <div id="mapmyvisitors-badge">
       <script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=080808&w=a&t=tt&d=axUZJFdC_DHaht04Srx1sVULDDt5-CIbEaVj_d1T_RU&co=ffffff&cmo=3acc3a&cmn=3a69cc&ct=808080'></script>
     </div>
