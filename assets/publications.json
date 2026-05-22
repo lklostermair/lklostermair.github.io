@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
+    "authors": "D. Bernardini, S. Deshini, L. Klostermair, C. Piazza",
+    "venue": "ICRCA 2026",
+    "status": "in print",
+    "award": "Best Presentation Award",
+    "image": "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
+    "links": [
+      { "label": "Project Page", "href": "https://lklostermair.github.io/grasping-in-the-dark/" },
+      { "label": "GitHub", "href": "https://github.com/taz5/Soft-Hand-Gripper" }
+    ]
+  },
+  {
+    "title": "GIRAF — Greatly Increased Reach for Adaptive Fieldwork",
+    "authors": "S.J. Wang, L.Y. Chung, L. Klostermair, D. Morton, M. Cutkosky",
+    "venue": "ICRA 2026 — Workshop on Intelligent Space Robotics and Systems",
+    "image": "assets/projects/giraf/concept.jpg",
+    "links": [
+      { "label": "Project Page", "href": "https://stanleywang1.github.io/icra26_workshop/" },
+      { "label": "Paper", "href": "https://arxiv.org/abs/2603.29240" }
+    ]
+  }
+]
