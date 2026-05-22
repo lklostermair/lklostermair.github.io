@@ -1,20 +1,37 @@
 [
-    {
+  {
     "year": "2026",
     "featured": true,
+    "categories": ["Robotics", "ML"],
     "title": "Tactile-Informed Diffusion Policy Learning for Robust Dexterous Manipulation",
     "summary": "Developed tactile fingertip for LEAP Hand. Implemented a VR-based teleoperation approach with visual tactile feedback for data gathering. Trained a Diffusion Policy to utilize multimodal data for dexterous manipulation tasks and compared impact of tactile information on policy performance.",
     "media": {
       "images": [
-        "assets/projects/leapft/Screenshot_20260129_170017.png",
-        "assets/projects/leapft/Screenshot_20260129_170123.png",
-        "assets/projects/leapft/WhatsApp Image 2026-01-29 at 5.19.18 PM.jpeg"
+        "assets/projects/leapft/hardware_setup.jpg",
+        "assets/projects/leapft/holding_inflated.jpg",
+        "assets/projects/leapft/leapft_fingertip_explanation.png",
+        "assets/projects/leapft/leapft_fingertip_diagram.png",
+        "assets/projects/leapft/vr_view.jpg"
       ]
     },
     "tags": ["teleoperation", "multimodal data", "imitation learning", "diffusion policies"]
   },
   {
     "year": "2026",
+    "categories": ["Hackathons", "ML"],
+    "title": "dandelion — Legal Playbook Assistant",
+    "summary": "Munich Legal Hackathon. Built a local AI assistant that turns legal playbooks and contracts into a structured, searchable vault. Ask questions in text or voice, get source-grounded answers with citations, and propose rule updates that go through a lawyer-approval workflow before committing. Won 2nd place out of 25 teams.",
+    "media": {
+      "images": [
+        "assets/projects/dandelion/Screenshot_20260427_174600.png",
+        "assets/projects/dandelion/dandelion_brand.png"
+      ]
+    },
+    "tags": ["hackathon", "AI", "legal tech", "RAG"]
+  },
+  {
+    "year": "2026",
+    "categories": ["Misc"],
     "title": "Building an Electric Guitar from Scratch",
     "summary": "Cool father-son project we've been working on. Sora mockup as well as the current project status. Still haven't decided on blue or green, hm...",
     "media": {
@@ -23,18 +40,17 @@
         "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (2).jpeg",
         "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (3).jpeg",
         "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (1).jpeg"
-
       ]
     },
     "tags": ["woodworking", "electric"]
   },
   {
     "year": "2026",
+    "categories": ["Hackathons"],
     "title": "HIVE - Battlefield Management System",
-    "summary": "Sebastian Thrun hackathon in SF. We built a battlefield management system capable of multi agent path planning with an A* algorithm and 3D map visualization.",
+    "summary": "Sebastian Thrun hackathon in SF. We built a battlefield management system capable of multi-agent path planning with an A* algorithm and 3D map visualization.",
     "media": {
       "images": [
-
         "assets/projects/hive/Screenshot_20260129_181749.png",
         "assets/projects/hive/Screenshot_20260129_181933.png"
       ]
@@ -46,6 +62,7 @@
   },
   {
     "year": "2025",
+    "categories": ["Robotics", "ML"],
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
     "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper accepted to ICRCA 2026, which won 'Best Presentation Award'.",
     "media": {
@@ -61,6 +78,7 @@
   },
   {
     "year": "2025",
+    "categories": ["Misc"],
     "title": "Pwnagotchi – AI-Powered WiFi Exploration Buddy",
     "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via A2C a reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
     "media": {
@@ -76,23 +94,24 @@
   },
   {
     "year": "2025",
+    "categories": ["Hackathons", "Robotics"],
     "title": "TinkerHand – robo.innovate Hackathon",
-    "summary": "For the hackathon, our team built a robotic assistant with an speech-to-text pipeline that selects trained ACT policies through keyword recognition. Our goal was to develop a buddy similar to 'Dummy' in Iron Man (see pic). We built this with the kind sponsoring of materials and compute of <a href='https://www.ycombinator.com/companies/the-robot-learning-company'>tlrc (Y-Combinator 2025)</a>.",
+    "summary": "For the hackathon, our team built a robotic assistant with a speech-to-text pipeline that selects trained ACT policies through keyword recognition. Our goal was to develop a buddy similar to 'Dummy' in Iron Man (see pic). We built this with the kind sponsoring of materials and compute of <a href='https://www.ycombinator.com/companies/the-robot-learning-company'>tlrc (Y-Combinator 2025)</a>.",
     "media": {
-      "images":[
+      "images": [
         "assets/projects/tinker/logo.png",
         "assets/projects/tinker/solder.png",
         "assets/projects/tinker/dume.png"
       ]
     },
     "links": [
-      { "label": "LinkedIn Video", "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u?utm_source=share&utm_medium=member_desktop&rcm=ACoAADhpcTYBY0-GKrOhlxFCskkvSt0Hw8AMf5E" },
-      { "label": "GitHub", "href": "https://github.com/lklostermair/G.H.O.S.T.-Robotic-Hand" }
+      { "label": "LinkedIn Video", "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u?utm_source=share&utm_medium=member_desktop&rcm=ACoAADhpcTYBY0-GKrOhlxFCskkvSt0Hw8AMf5E" }
     ],
     "tags": ["hackathon", "robotics", "speech2text"]
   },
   {
     "year": "2024",
+    "categories": ["Robotics"],
     "title": "G.H.O.S.T. – Tendon-Driven Robotic Hand",
     "summary": "I fully designed, built and programmed a DIY robotic hand actuated with nylon tendons. My goal was to keep my budget under 200$. For control I implemented a wireless glove that operated via self-made flex sensors.",
     "media": {
@@ -110,6 +129,7 @@
   },
   {
     "year": "2024",
+    "categories": ["Robotics", "ML"],
     "title": "Semi-Autonomous Control for Robotic Hand Grasping",
     "summary": "Our team developed a semi-autonomous control framework for a tendon-driven robotic hand. I was mainly working on the mechanical components and tuning of the grasping. We then combined vision-based object recognition to assist grasp initiation according to object classification, e.g. pen -> pinch; tv remote -> grasp.",
     "media": {
@@ -119,13 +139,11 @@
         "assets/projects/semiautocontrol/model.jpg"
       ]
     },
-    "links": [
-      { "label": "GitHub", "href": "https://github.com/lklostermair/G.H.O.S.T.-Robotic-Hand" }
-    ],
     "tags": ["robotics", "grasping", "semi-autonomous control"]
   },
   {
     "year": "2024",
+    "categories": ["ML", "Robotics"],
     "title": "Generative Classifiers as a Trustworthy Alternative in Tactile Classification",
     "summary": "Our team of 2 explored invertible neural networks and generative classifiers for robust tactile material classification. We aimed to match the current state of the art, whilst improving explainability. This project was a part of [CIT433027] Advanced Deep Learning for Robotics.",
     "media": {
@@ -143,6 +161,7 @@
   },
   {
     "year": "2024",
+    "categories": ["ML"],
     "title": "Neural Networks Control Video",
     "summary": "3blue1brown style video about neural networks and their employment in robotic control for [MW2388] Applied Biorobotics. I tried to combine .pptx with AI voice-overs to get a really professional look.",
     "media": {
@@ -152,6 +171,7 @@
   },
   {
     "year": "2023",
+    "categories": ["Hackathons", "Robotics"],
     "title": "Robotic Arm – HackaHealth ETH Zürich",
     "summary": "Our team developed an adaptive robotic arm prototype for patient with quadriplegia over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
     "media": {

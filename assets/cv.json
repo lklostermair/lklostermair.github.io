@@ -1,10 +1,10 @@
 [
   {
-    "year": "2025–present",
+    "year": "2025–2026",
     "position": "Master Thesis",
     "institution": "Stanford BDML (Prof. Cutkosky)",
     "url": "https://bdml.stanford.edu/",
-    "description": "Multimodal imitation learning for robust dexterous manipulation",
+    "description": "Researched multimodal imitation learning for robust dexterous manipulation.",
     "category": "academic"
   },
   {
@@ -12,7 +12,7 @@
     "position": "Master Project",
     "institution": "TUM IN-HAND Lab (Prof. Piazza)",
     "url": "https://www.ce.cit.tum.de/en/nhcr/home/",
-    "description": "Simulation based tactile informed reinforcement learning for grasping.",
+    "description": "Researched simulation-based tactile-informed reinforcement learning for robotic grasping.",
     "category": "academic"
   },
   {
@@ -20,7 +20,7 @@
     "position": "Student Machine Learning Engineer",
     "institution": "Baind AG",
     "url": "https://www.baind.de/",
-    "description": "Work on ML data pipelines for timeseries forecasts and non intrusive load monitoring.",
+    "description": "Worked on ML data pipelines for time series forecasts and non-intrusive load monitoring.",
     "category": "professional"
   },
   {
@@ -32,11 +32,11 @@
     "category": "professional"
   },
   {
-    "year": "2024–present",
+    "year": "2024–2026",
     "position": "M. Sc. Biomedical Engineering & Medical Physics",
     "institution": "TU Munich",
     "url": "https://www.tum.de/en/",
-    "description": "Studying deep learning and robotics.",
+    "description": "Studied deep learning and robotics.",
     "category": "academic"
   },
   {
@@ -44,7 +44,7 @@
     "position": "Student Researcher",
     "institution": "F. Hoffmann La Roche AG",
     "url": "https://www.roche.com/",
-    "description": "Bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime.",
+    "description": "Wrote bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime.",
     "category": "professional"
   },
   {
@@ -60,7 +60,7 @@
     "position": "Semester Abroad",
     "institution": "Universidad EAN, Bogota",
     "url": "https://universidadean.edu.co/",
-    "description": "Took courses in chemistry, finance, and project management. Also went backpacking alot through the country.",
+    "description": "Took courses in chemistry, finance, and project management. Also went backpacking a lot through the country.",
     "category": "academic"
   },
   {
