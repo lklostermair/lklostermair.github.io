@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands">
+  <meta name="keywords" content="robotics, tactile learning, blind grasping, soft hands, reinforcement learning, MuJoCo, attention, SAC">
+  <meta property="og:title" content="Grasping in the Dark">
+  <meta property="og:description" content="Temporal tactile learning for blind grasping with underactuated soft hands.">
+  <meta property="og:image" content="https://lklostermair.github.io/grasping-in-the-dark/static/figures/intro_picture.png">
+  <meta property="og:url" content="https://lklostermair.github.io/grasping-in-the-dark/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Grasping in the Dark">
+  <meta name="twitter:description" content="Temporal tactile learning for blind grasping with underactuated soft hands.">
+  <meta name="twitter:image" content="https://lklostermair.github.io/grasping-in-the-dark/static/figures/intro_picture.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grasping in the Dark</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://www.linkedin.com/in/dbernardini/">Daniele Bernardini</a><sup>1,2,3</sup>,</span>
+            <span class="author-block"><a href="https://www.linkedin.com/in/suraj-deshini-9b755b60/">Suraj Deshini</a><sup>1,3*</sup>,</span>
+            <span class="author-block"><a href="https://lklostermair.github.io">Lukas Klostermair</a><sup>1,4*</sup>,</span>
+            <span class="author-block"><a href="https://www.linkedin.com/in/cristina-piazza-a8633a52/">Cristina Piazza</a><sup>1,2</sup></span>
+          </div>
+
+          <div class="is-size-6" style="color: #777; margin-top: 0.3rem;">
+            <sup>*</sup>equal contribution
+          </div>
+
+          <div class="is-size-6" style="margin-top: 0.5rem; line-height: 1.9;">
+            <sup>1</sup>School of Computation, Information and Technology (CIT), Technical University of Munich<br>
+            <sup>2</sup>Munich Institute of Robotics and Machine Intelligence (MIRMI)<br>
+            <sup>3</sup>Cogniviv Inc., San Francisco, CA, USA<br>
+            <sup>4</sup>Department of Mechanical Engineering, Stanford University, CA, USA
+          </div>
+
+          <div style="margin-top: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+            <img src="./static/images/icrca2026_logo.png" alt="ICRCA 2026" style="height: 2.2rem; vertical-align: middle;">
+            <span class="publication-awards">Best Presentation Award</span>
+          </div>
+
+          <div class="column has-text-centered" style="margin-top: 0.5rem;">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="./ICRCA2026___Grasping_in_the_Dark-3.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/taz5/Soft-Hand-Gripper" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEASER -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/figures/intro_picture.png"
+           alt="17-DoF soft hand grasping objects in MuJoCo using only tactile feedback"
+           style="width: 65%; height: auto; display: block; margin: 0 auto;">
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: #666; text-align: center;">
+        A blind tactile policy outperforms a privileged heuristic with access to ground-truth object pose,
+        using only a 22-sensor force array and proprioception. No visual input.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ABSTRACT -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Robotic grasping in unstructured environments often fails when visual feedback is compromised by occlusion or clutter.
+            While tactile sensing offers a robust alternative, achieving &ldquo;blind&rdquo; grasp acquisition with anthropomorphic
+            soft hands remains challenging due to high-dimensional actuation and the partial observability of contact states.
+            This work presents a reinforcement learning framework for tactile-driven grasping using a 17-DoF soft anthropomorphic hand.
+            We introduce an Attention-augmented Soft Actor-Critic (SAC) architecture that aggregates temporal tactile features to
+            resolve contact ambiguity without visual state estimation. The policy is bootstrapped via Behavior Cloning from a
+            privileged heuristic and refined under adversarial contact dynamics. Extensive validation in MuJoCo demonstrates that
+            our blind policy significantly outperforms the privileged heuristic baseline, achieving success rates of up to 65%
+            on primitive geometries. The policy learns to modulate finger stiffness to actively reject disturbances, establishing
+            that temporal tactile learning alone is sufficient for robust, autonomous grasp acquisition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- METHOD -->
+<section class="section" style="background: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            The policy receives a 112-dimensional state: 66 dimensions of tactile data from 22 three-axis force sensors distributed across the palm and fingers, plus 23 joint positions and 23 velocities. No visual input reaches the policy at any point.
+          </p>
+          <p>
+            <strong>Temporal attention encoder.</strong> A single observation is ambiguous -- a contact force spike could mean a good grip or a slip. The encoder processes a sliding window of N&nbsp;=&nbsp;16 consecutive observations through six Transformer blocks (8-head self-attention, d<sub>model</sub>&nbsp;=&nbsp;256), then collapses the sequence via temporal mean pooling to a fixed 256-dimensional latent. This lets the policy track how contact evolves over time, not just its current state.
+          </p>
+          <p>
+            <strong>Independent encoders per network.</strong> The SAC architecture has five networks: Actor, two Critics, Value, and Target Value. Each carries its own encoder with separate weights. Sharing one encoder would mix gradients from multiple loss objectives (actor loss, Bellman error, value regression), corrupting the learned representation. Independent encoders eliminate this interference at the cost of compute.
+          </p>
+          <p>
+            <strong>Bootstrapping and adversarial training.</strong> Training starts cold in a high-dimensional action space with sparse reward -- the agent would explore randomly for thousands of episodes without a warm start. We seed the replay buffer with ~350k transitions from a privileged heuristic controller using Behavior Cloning (~17.5% of buffer capacity). This gives the policy a starting point to improve from. After bootstrapping, SAC trains under adversarial contact dynamics: friction is set to &mu;<sub>train</sub>&nbsp;=&nbsp;0.5&times;nominal. Slippery contacts prevent the policy from exploiting sticky simulation artifacts and force it to learn genuine force closure. During adversarial training, success rates are near 0% -- the diagnostic signal is rising mean object height and stable loss, not task success. The policy then zero-shots to nominal physics at evaluation.
+          </p>
+        </div>
+
+        <img src="./static/figures/sense_vis.png"
+             alt="Tactile sensor readings (X, Y, Z force components) during a grasp"
+             style="width: 75%; height: auto; display: block; margin: 1.5rem auto 0.5rem;">
+        <p style="font-size: 0.85rem; color: #666; text-align: center;">
+          X, Y, and Z force components across the 22-sensor array during active contact. The policy processes 16 consecutive frames of these readings via the attention encoder.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- VIDEO -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Training Demo</h2>
+        <img src="./static/figures/training.gif"
+             alt="Training demo"
+             style="width: 100%; height: auto; display: block; margin: 0 auto;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="video-placeholder-box" style="display:none; background-image: url('./static/figures/grasping_teaser.png');">
+          <div class="video-placeholder-overlay">
+            <span class="icon is-large"><i class="fab fa-youtube"></i></span>
+            <span>Training Demo</span>
+            <code>static/figures/training.gif</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RESULTS -->
+<section class="section" style="background: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Evaluated over N&nbsp;=&nbsp;500 episodes per geometry in nominal physics (&mu;&nbsp;=&nbsp;1.0). Success on the full lift task requires holding the object at &ge;30&nbsp;cm above the initial position for 200 consecutive control steps (~2 seconds at 100&nbsp;Hz). The baseline heuristic has access to ground-truth object pose but was deliberately tuned to ~50% success -- it serves as an imperfect demonstrator seeding the replay buffer, not an oracle upper bound.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto; margin: 1.5rem 0;">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.9rem; text-align: center;">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Geometry</th>
+                <th>Heuristic (full lift)</th>
+                <th>SAC (grasp init.)</th>
+                <th><strong>SAC (full lift)</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">Box</td>
+                <td>57.2%</td>
+                <td>100%</td>
+                <td><strong>65.1%</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Cylinder</td>
+                <td>44.1%</td>
+                <td>100%</td>
+                <td><strong>62.8%</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Sphere</td>
+                <td>35.9%</td>
+                <td>100%</td>
+                <td><strong>53.3%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 1.5rem;">
+          500 episodes per geometry, nominal physics. "Grasp init." = any valid lift; "Full lift" = hold at &ge;30&nbsp;cm for 2 s. The MLP ablation (same history, flat encoder) achieves &lt;15% on Box, confirming that temporal structure drives the improvement, not just history length. Results are from a single training run; variance across seeds is future work.
+        </p>
+
+        <div class="columns" style="margin-top: 1.5rem;">
+          <div class="column has-text-centered">
+            <img src="./static/figures/actor_loss.png" alt="Actor loss convergence" style="width: 100%; height: auto;">
+            <p style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Actor loss</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/figures/entropy.png" alt="Policy entropy" style="width: 100%; height: auto;">
+            <p style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Policy entropy</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/figures/z_mean.png" alt="Mean object height" style="width: 100%; height: auto;">
+            <p style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Mean object height</p>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #666; text-align: center;">
+          Adversarial training dynamics (&mu;&nbsp;=&nbsp;0.5). Left: actor loss converges. Center: policy entropy stays high, preventing collapse. Right: mean object height rises as the agent learns to lift slippery objects -- even before it can hold them. Near-zero task success during this phase is normal; the rising height curve confirms the policy is learning to lift.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CITATION -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Citation</h2>
+        <pre><code>@inproceedings{bernardini2026grasping,
+  title={Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands},
+  author={Bernardini, Daniele and Deshini, Suraj and Klostermair, Lukas and Piazza, Cristina},
+  booktitle={Proceedings of the International Conference on Robotics, Control and Automation (ICRCA)},
+  year={2026}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>Website template adapted from <a href="https://nerfies.github.io">Nerfies</a>.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
