@@ -1,14 +1,27 @@
 [
   {
+    "title": "Compliance-Controlled Evaluation of Tactile Diffusion Policies on an Anthropomorphic Hand",
+    "authors": "L. Klostermair, S. Hong, M. Cutkosky, C. Piazza",
+    "venue": "IEEE-RAS Humanoids 2026",
+    "status": "under review",
+    "links": []
+  },
+  {
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
     "authors": "D. Bernardini, S. Deshini, L. Klostermair, C. Piazza",
     "venue": "ICRCA 2026",
-    "status": "in print",
+    "status": "in press",
     "award": "Best Presentation Award",
     "image": "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
     "links": [
-      { "label": "Project Page", "href": "https://lukasklostermair.com/grasping-in-the-dark/" },
-      { "label": "GitHub", "href": "https://github.com/taz5/Soft-Hand-Gripper" }
+      {
+        "label": "Project Page",
+        "href": "https://lukasklostermair.com/grasping-in-the-dark/"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/taz5/Soft-Hand-Gripper"
+      }
     ]
   },
   {
@@ -17,7 +30,26 @@
     "venue": "ICRA 2026 — Workshop on Intelligent Space Robotics and Systems",
     "image": "assets/projects/giraf/concept.jpg",
     "links": [
-      { "label": "Project Page", "href": "https://stanleywang1.github.io/icra26_workshop/" }
+      {
+        "label": "Project Page",
+        "href": "https://stanleywang1.github.io/icra26_workshop/"
+      }
+    ]
+  },
+  {
+    "title": "Generative Classifiers in Tactile Classification",
+    "authors": "L. Klostermair, A. Ozan",
+    "venue": "Technical Report, German Aerospace Center (DLR)",
+    "year": "2025",
+    "links": [
+      {
+        "label": "Report",
+        "href": "assets/projects/tactilerl/final-report-17.pdf"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/lklostermair/tum-adlr-wise24-17"
+      }
     ]
   }
 ]

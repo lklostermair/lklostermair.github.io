@@ -1,70 +1,78 @@
 [
   {
-    "year": "2026–present",
-    "position": "Robotic Learning Engineer",
+    "year": "Jul 2026–present",
+    "position": "Robotics Learning Research Engineer",
     "institution": "Tacta Systems",
     "url": "https://www.tactasystems.com/",
-    "description": "Researching robotic learning for dexterous manipulation.",
+    "description": "Developing dexterous manipulation policies with integrated tactile sensing, and building data pipelines and real-world deployment infrastructure for robot learning (PyTorch, ROS2, Python, C++, Docker).",
     "category": "professional"
   },
   {
-    "year": "2025–2026",
-    "position": "Master Thesis",
+    "year": "Oct 2025–Apr 2026",
+    "position": "Student Researcher · Master’s Thesis",
     "institution": "Stanford BDML (Prof. Cutkosky)",
     "url": "https://bdml.stanford.edu/",
-    "description": "Researched multimodal imitation learning for robust dexterous manipulation.",
+    "description": "Instrumented a LEAP Hand with four CoinFT force/torque fingertip sensors and trained a compliance-aware multimodal diffusion policy. Built a VR teleoperation pipeline with live force feedback and collected 240 demonstrations; tactile input improved grasp success from 45% to 65% on compliant objects.",
     "category": "academic"
   },
   {
-    "year": "2025",
-    "position": "Master Project",
+    "year": "May–Oct 2025",
+    "position": "Student Researcher",
     "institution": "TUM IN-HAND Lab (Prof. Piazza)",
     "url": "https://www.ce.cit.tum.de/en/nhcr/home/",
-    "description": "Researched simulation-based tactile-informed reinforcement learning for robotic grasping.",
+    "description": "Developed tactile-only grasping policies using SAC and MuJoCo, achieving up to 65% success on primitive geometries. Evaluated robustness to variations in object pose, mass, geometry, and sensor noise; co-authored the ICRCA 2026 paper.",
     "category": "academic"
   },
   {
-    "year": "2024–2025",
-    "position": "Student Machine Learning Engineer",
+    "year": "Dec 2024–Sep 2025",
+    "position": "ML Software Engineer (Working Student)",
     "institution": "Baind AG",
     "url": "https://www.baind.de/",
-    "description": "Worked on ML data pipelines for time series forecasts and non-intrusive load monitoring.",
+    "description": "Deployed two production ML pipelines for building automation and reduced inference runtime by 40–60%. Worked on load monitoring, time-series forecasting, and a Neural ODE-based reinforcement learning environment for building energy management.",
     "category": "professional"
   },
   {
-    "year": "2024",
-    "position": "Teaching Assistant",
-    "institution": "Munich Institute of Robotics and Machine Intelligence",
-    "url": "https://www.mirmi.tum.de/en/mirmi/home/",
-    "description": "Designed a modular prosthetic hand socket and worked on semi-autonomous grasping with object recognition.",
-    "category": "professional"
-  },
-  {
-    "year": "2024–2026",
-    "position": "M. Sc. Biomedical Engineering & Medical Physics",
-    "institution": "TU Munich",
-    "url": "https://www.tum.de/en/",
-    "description": "Studied deep learning and robotics.",
+    "year": "Oct 2024–Feb 2025",
+    "position": "Project Member · Advanced Deep Learning in Robotics",
+    "institution": "TUM & DLR AIDX Lab (Prof. Bäuml)",
+    "url": "https://aidx-lab.org/",
+    "description": "Designed an invertible neural network-based generative classifier for tactile material recognition in TensorFlow. Conducted an ablation study on TactNet-II and published a technical report.",
     "category": "academic"
   },
   {
-    "year": "2023",
-    "position": "Student Researcher",
+    "year": "Sep–Dec 2024",
+    "position": "Teaching Assistant · Neurorehabilitation and Motor Learning",
+    "institution": "TUM IN-HAND Lab (Prof. Piazza)",
+    "url": "https://www.ce.cit.tum.de/en/nhcr/home/",
+    "description": "Supervised students designing hand prosthesis sockets with modular control strategies and guided semi-autonomous grasping with object recognition.",
+    "category": "professional"
+  },
+  {
+    "year": "Apr 2024–Apr 2026",
+    "position": "M.Sc. Biomedical Engineering & Medical Physics",
+    "institution": "TU Munich",
+    "url": "https://www.tum.de/en/",
+    "description": "Focused on deep learning, reinforcement learning, computer vision, tactile sensing, and robotic manipulation. Graduated with a GPA of 1.5 (German scale; 1.0 = best).",
+    "category": "academic"
+  },
+  {
+    "year": "Mar–Nov 2023",
+    "position": "Student Researcher · Bachelor’s Thesis",
     "institution": "F. Hoffmann La Roche AG",
     "url": "https://www.roche.com/",
-    "description": "Wrote bachelor thesis on improving depyrogenation tunnel validation using predictive models to cut downtime.",
+    "description": "Developed a predictive model for pharmaceutical equipment validation, reducing downtime by 60%. Conducted statistical evaluations and a time-to-kill study for pyrogenic bacteria.",
     "category": "professional"
   },
   {
-    "year": "2022–2023",
-    "position": "Student Project Manager",
+    "year": "Sep 2022–Feb 2023",
+    "position": "Technical Project Management (Working Student)",
     "institution": "Syskron GmbH / Krones AG",
     "url": "https://www.krones.com/",
-    "description": "Created budget forecasts for 20+ projects and set up a cleaner, standardized budgeting template.",
+    "description": "Standardized budgeting across DACH technical departments and combined four data streams into a single business intelligence system.",
     "category": "professional"
   },
   {
-    "year": "2022",
+    "year": "Jan–Jul 2022",
     "position": "Semester Abroad",
     "institution": "Universidad EAN, Bogota",
     "url": "https://universidadean.edu.co/",
@@ -72,27 +80,27 @@
     "category": "academic"
   },
   {
-    "year": "2021–2022",
+    "year": "Sep 2021–Feb 2022",
     "position": "Innovation Intern",
     "institution": "BMW AG",
     "url": "https://www.bmw.com/",
-    "description": "Handled big datasets for an ML project and built nationwide micro-IT tools in PowerApps.",
+    "description": "Built internal tooling for rapid deployment in high-stakes assembly environments.",
     "category": "professional"
   },
   {
-    "year": "2021",
-    "position": "Teaching Assistant",
+    "year": "Mar–Aug 2021",
+    "position": "Teaching Assistant · Technical Mechanics III (Dynamics)",
     "institution": "University of Applied Sciences Regensburg",
     "url": "https://www.oth-regensburg.de/en/",
-    "description": "Helped teach Technical Mechanics III - Dynamics to other students.",
+    "description": "Tutored students in dynamics and authored the official formulary for the final exam.",
     "category": "professional"
   },
   {
-    "year": "2019–2023",
-    "position": "B. Sc. Biomedical Engineering",
+    "year": "Sep 2019–Nov 2023",
+    "position": "B.Sc. Biomedical Engineering",
     "institution": "University of Applied Sciences Regensburg",
     "url": "https://www.oth-regensburg.de/en/",
-    "description": "Focused on machine learning and dynamics.",
+    "description": "Focused on machine learning, probability and statistics, dynamics, and biomechanics. Graduated with a GPA of 1.8 (top 20%); completed the bachelor’s thesis at Roche.",
     "category": "academic"
   }
 ]

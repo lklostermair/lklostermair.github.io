@@ -1,7 +1,25 @@
 [
   {
+    "year": "2025–2026",
+    "categories": [
+      "Robotics",
+      "ML"
+    ],
+    "title": "Tactile Diffusion Policies for Dexterous Manipulation",
+    "summary": "At Stanford BDML, instrumented a LEAP Hand with four CoinFT six-axis force/torque fingertip sensors and built VR teleoperation with live force feedback. Collected 240 multimodal demonstrations and trained a compliance-aware diffusion policy with attention fusion and modality dropout. Tactile input improved grasp success from 45% to 65% on compliant objects. First-author paper under review at IEEE-RAS Humanoids 2026.",
+    "tags": [
+      "tactile sensing",
+      "diffusion policies",
+      "PyTorch",
+      "teleoperation"
+    ]
+  },
+  {
     "year": "2026",
-    "categories": ["Hackathons", "ML"],
+    "categories": [
+      "Hackathons",
+      "ML"
+    ],
     "title": "dandelion — Legal Playbook Assistant",
     "summary": "Munich Legal Hackathon. Built a local AI assistant that turns legal playbooks and contracts into a structured, searchable vault. Ask questions in text or voice, get source-grounded answers with citations, and propose rule updates that go through a lawyer-approval workflow before committing. Won 2nd place out of 25 teams.",
     "media": {
@@ -10,11 +28,18 @@
         "assets/projects/dandelion/dandelion_brand.png"
       ]
     },
-    "tags": ["hackathon", "AI", "legal tech", "RAG"]
+    "tags": [
+      "hackathon",
+      "AI",
+      "legal tech",
+      "RAG"
+    ]
   },
   {
     "year": "2026",
-    "categories": ["Misc"],
+    "categories": [
+      "Misc"
+    ],
     "title": "Building an Electric Guitar from Scratch",
     "summary": "Cool father-son project we've been working on. Sora mockup as well as the current project status. Still haven't decided on blue or green, hm...",
     "media": {
@@ -25,11 +50,16 @@
         "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (1).jpeg"
       ]
     },
-    "tags": ["woodworking", "electric"]
+    "tags": [
+      "woodworking",
+      "electric"
+    ]
   },
   {
-    "year": "2026",
-    "categories": ["Hackathons"],
+    "year": "2025",
+    "categories": [
+      "Hackathons"
+    ],
     "title": "HIVE - Battlefield Management System",
     "summary": "Sebastian Thrun hackathon in SF. We built a battlefield management system capable of multi-agent path planning with an A* algorithm and 3D map visualization.",
     "media": {
@@ -39,13 +69,23 @@
       ]
     },
     "links": [
-      { "label": "GitHub", "href": "https://github.com/maxileutschafft/sf_hackathon/tree/feature/unified-visualization-hive" }
+      {
+        "label": "GitHub",
+        "href": "https://github.com/maxileutschafft/sf_hackathon/tree/feature/unified-visualization-hive"
+      }
     ],
-    "tags": ["UAVs", "multi-agent planning", "3D geovisualization"]
+    "tags": [
+      "UAVs",
+      "multi-agent planning",
+      "3D geovisualization"
+    ]
   },
   {
     "year": "2025",
-    "categories": ["Robotics", "ML"],
+    "categories": [
+      "Robotics",
+      "ML"
+    ],
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
     "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper accepted to ICRCA 2026, which won 'Best Presentation Award'.",
     "media": {
@@ -55,13 +95,23 @@
       ]
     },
     "links": [
-      { "label": "GitHub", "href": "https://github.com/taz5/Soft-Hand-Gripper" }
+      {
+        "label": "GitHub",
+        "href": "https://github.com/taz5/Soft-Hand-Gripper"
+      }
     ],
-    "tags": ["mujoco", "tactile", "grasping", "RL"]
+    "tags": [
+      "mujoco",
+      "tactile",
+      "grasping",
+      "RL"
+    ]
   },
   {
     "year": "2025",
-    "categories": ["Misc"],
+    "categories": [
+      "Misc"
+    ],
     "title": "Pwnagotchi – AI-Powered WiFi Exploration Buddy",
     "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via A2C a reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
     "media": {
@@ -71,13 +121,24 @@
       ]
     },
     "links": [
-      { "label": "GitHub (Original Project)", "href": "https://github.com/evilsocket/pwnagotchi" }
+      {
+        "label": "GitHub (Original Project)",
+        "href": "https://github.com/evilsocket/pwnagotchi"
+      }
     ],
-    "tags": ["pwnagotchi", "AI", "networking", "security"]
+    "tags": [
+      "pwnagotchi",
+      "AI",
+      "networking",
+      "security"
+    ]
   },
   {
     "year": "2025",
-    "categories": ["Hackathons", "Robotics"],
+    "categories": [
+      "Hackathons",
+      "Robotics"
+    ],
     "title": "TinkerHand – robo.innovate Hackathon",
     "summary": "For the hackathon, our team built a robotic assistant with a speech-to-text pipeline that selects trained ACT policies through keyword recognition. Our goal was to develop a buddy similar to 'Dummy' in Iron Man (see pic). We built this with the kind sponsoring of materials and compute of <a href='https://www.ycombinator.com/companies/the-robot-learning-company'>tlrc (Y-Combinator 2025)</a>.",
     "media": {
@@ -88,15 +149,24 @@
       ]
     },
     "links": [
-      { "label": "LinkedIn Video", "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u?utm_source=share&utm_medium=member_desktop&rcm=ACoAADhpcTYBY0-GKrOhlxFCskkvSt0Hw8AMf5E" }
+      {
+        "label": "LinkedIn Video",
+        "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u?utm_source=share&utm_medium=member_desktop&rcm=ACoAADhpcTYBY0-GKrOhlxFCskkvSt0Hw8AMf5E"
+      }
     ],
-    "tags": ["hackathon", "robotics", "speech2text"]
+    "tags": [
+      "hackathon",
+      "robotics",
+      "speech2text"
+    ]
   },
   {
     "year": "2024",
-    "categories": ["Robotics"],
+    "categories": [
+      "Robotics"
+    ],
     "title": "G.H.O.S.T. – Tendon-Driven Robotic Hand",
-    "summary": "I fully designed, built and programmed a DIY robotic hand actuated with nylon tendons. My goal was to keep my budget under 200$. For control I implemented a wireless glove that operated via self-made flex sensors.",
+    "summary": "Designed, built, and programmed a low-cost (<$150) 3D-printed robotic hand with a radio-controlled glove interface. The project covered CAD in Fusion360, PCB design, 3D printing, and Arduino-based embedded control.",
     "media": {
       "images": [
         "assets/projects/ghost/hand_front.jpg",
@@ -106,13 +176,23 @@
       ]
     },
     "links": [
-      { "label": "GitHub", "href": "https://github.com/lklostermair/G.H.O.S.T.-Robotic-Hand" }
+      {
+        "label": "GitHub",
+        "href": "https://github.com/lklostermair/G.H.O.S.T.-Robotic-Hand"
+      }
     ],
-    "tags": ["robotics", "grasping", "control"]
+    "tags": [
+      "robotics",
+      "grasping",
+      "control"
+    ]
   },
   {
     "year": "2024",
-    "categories": ["Robotics", "ML"],
+    "categories": [
+      "Robotics",
+      "ML"
+    ],
     "title": "Semi-Autonomous Control for Robotic Hand Grasping",
     "summary": "Our team developed a semi-autonomous control framework for a tendon-driven robotic hand. I was mainly working on the mechanical components and tuning of the grasping. We then combined vision-based object recognition to assist grasp initiation according to object classification, e.g. pen -> pinch; tv remote -> grasp.",
     "media": {
@@ -122,13 +202,20 @@
         "assets/projects/semiautocontrol/model.jpg"
       ]
     },
-    "tags": ["robotics", "grasping", "semi-autonomous control"]
+    "tags": [
+      "robotics",
+      "grasping",
+      "semi-autonomous control"
+    ]
   },
   {
-    "year": "2024",
-    "categories": ["ML", "Robotics"],
+    "year": "2024–2025",
+    "categories": [
+      "ML",
+      "Robotics"
+    ],
     "title": "Generative Classifiers as a Trustworthy Alternative in Tactile Classification",
-    "summary": "Our team of 2 explored invertible neural networks and generative classifiers for robust tactile material classification. We aimed to match the current state of the art, whilst improving explainability. This project was a part of [CIT433027] Advanced Deep Learning for Robotics.",
+    "summary": "Designed an invertible neural network-based generative classifier for tactile material recognition in TensorFlow at the TUM/DLR AIDX Lab. Conducted an ablation study on TactNet-II and published a technical report as part of Advanced Deep Learning in Robotics.",
     "media": {
       "youtubeId": "623yRPx9Pkc",
       "images": [
@@ -136,25 +223,46 @@
       ]
     },
     "links": [
-      { "label": "Poster", "href": "assets/projects/tactilerl/final-poster-17.pdf" },
-      { "label": "Report", "href": "assets/projects/tactilerl/final-report-17.pdf" },
-      { "label": "GitHub", "href": "https://github.com/lklostermair/tum-adlr-wise24-17" }
+      {
+        "label": "Poster",
+        "href": "assets/projects/tactilerl/final-poster-17.pdf"
+      },
+      {
+        "label": "Report",
+        "href": "assets/projects/tactilerl/final-report-17.pdf"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/lklostermair/tum-adlr-wise24-17"
+      }
     ],
-    "tags": ["ML", "tactile material classification"]
+    "tags": [
+      "ML",
+      "tactile material classification"
+    ]
   },
   {
     "year": "2024",
-    "categories": ["ML"],
+    "categories": [
+      "ML"
+    ],
     "title": "Neural Networks Control Video",
     "summary": "3blue1brown style video about neural networks and their employment in robotic control for [MW2388] Applied Biorobotics. I tried to combine .pptx with AI voice-overs to get a really professional look.",
     "media": {
       "youtubeId": "YcPs4sjyHLo"
     },
-    "tags": ["ML", "Neural Networks", "control"]
+    "tags": [
+      "ML",
+      "Neural Networks",
+      "control"
+    ]
   },
   {
-    "year": "2023",
-    "categories": ["Hackathons", "Robotics"],
+    "year": "2023–2024",
+    "categories": [
+      "Hackathons",
+      "Robotics"
+    ],
     "title": "Robotic Arm – HackaHealth ETH Zürich",
     "summary": "Our team developed an adaptive robotic arm prototype for patient with quadriplegia over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
     "media": {
@@ -164,8 +272,15 @@
       ]
     },
     "links": [
-      { "label": "GitHub", "href": "https://github.com/lklostermair/hackahealth2023-roboticgrasper" }
+      {
+        "label": "GitHub",
+        "href": "https://github.com/lklostermair/hackahealth2023-roboticgrasper"
+      }
     ],
-    "tags": ["hackathon", "robotics", "assistive technology"]
+    "tags": [
+      "hackathon",
+      "robotics",
+      "assistive technology"
+    ]
   }
 ]
