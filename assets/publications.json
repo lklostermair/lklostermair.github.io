@@ -7,7 +7,7 @@
     "award": "Best Presentation Award",
     "image": "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
     "links": [
-      { "label": "Project Page", "href": "https://lklostermair.github.io/grasping-in-the-dark/" },
+      { "label": "Project Page", "href": "https://lukasklostermair.com/grasping-in-the-dark/" },
       { "label": "GitHub", "href": "https://github.com/taz5/Soft-Hand-Gripper" }
     ]
   },

@@ -504,16 +504,3 @@ footer{
   .pub-card{flex-direction:column}
   .pub-thumb,.pub-thumb-placeholder{width:100%;height:160px}
 }
-
-#mapmyvisitors-badge{
-  width:600px;height:400px;
-  transform:scale(0.5);transform-origin:center top;
-  margin-bottom:-200px;
-  overflow:hidden;
-  opacity:.6;transition:opacity .16s ease;
-}
-#mapmyvisitors-badge:hover{opacity:1}
-[data-theme="dark"] #mapmyvisitors-badge{filter:invert(1) hue-rotate(180deg)}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) #mapmyvisitors-badge{filter:invert(1) hue-rotate(180deg)}
-}
