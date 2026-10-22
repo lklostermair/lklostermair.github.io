@@ -29,6 +29,7 @@ function activateTab(id) {
     const active = btn.dataset.tab === id;
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-selected', String(active));
+    btn.tabIndex = active ? 0 : -1;
   });
   document.querySelectorAll('.tab-panel').forEach(panel => {
     panel.classList.toggle('active', panel.id === id);
@@ -41,28 +42,18 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     activateTab(tab);
   });
 });
+document.querySelector('.section-nav').addEventListener('keydown', e => {
+  const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+  if (!keys.includes(e.key)) return;
+  e.preventDefault();
+  const index = TABS.indexOf(document.activeElement.dataset.tab);
+  const next = e.key === 'Home' ? 0 : e.key === 'End' ? TABS.length - 1 : (index + (e.key === 'ArrowRight' ? 1 : -1) + TABS.length) % TABS.length;
+  const button = document.querySelector(`[data-tab="${TABS[next]}"]`);
+  button.click(); button.focus();
+});
+window.addEventListener('hashchange', () => activateTab(location.hash.slice(1)));
 const initTab = location.hash.slice(1);
 activateTab(TABS.includes(initTab) ? initTab : 'cv');
-
-// Auto-hide nav on scroll down, show on scroll up
-(function setupNavAutoHide() {
-  const nav = document.querySelector('.section-nav');
-  if (!nav) return;
-  let lastY = 0, ticking = false;
-  const navTop = nav.offsetTop;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        nav.classList.toggle('hidden', y > lastY && y > navTop);
-        lastY = y;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-})();
-
 
 const cvTimeline = document.getElementById('cv-timeline');
 
@@ -173,10 +164,10 @@ function projectMediaHTML(media, title) {
   }
   if (Array.isArray(media.images) && media.images.length > 0) {
     const imgs = media.images.map((src, i) =>
-      `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}">`
+      `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}" tabindex="${i === 0 ? 0 : -1}" role="button" aria-label="Enlarge image ${i + 1}">`
     ).join('');
     const nav = media.images.length > 1
-      ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`).join('')}</div>`
+      ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<button type="button" class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Show image ${i + 1}"></button>`).join('')}</div>`
       : '';
     return `<div class="project-media"><div class="carousel"><div class="carousel-inner">${imgs}</div>${nav}</div></div>`;
   }
@@ -243,21 +234,6 @@ async function loadProjects() {
     }
     renderProjects(data);
     observeItems('.projects-list li');
-    document.querySelectorAll('.carousel').forEach(c => {
-      const imgs = c.querySelectorAll('.gallery-img');
-      if (imgs.length < 2) return;
-      let timer = setInterval(() => {
-        const cur = [...imgs].findIndex(img => img.classList.contains('active'));
-        carouselGo(c, cur + 1);
-      }, 5000);
-      c.addEventListener('mouseenter', () => clearInterval(timer));
-      c.addEventListener('mouseleave', () => {
-        timer = setInterval(() => {
-          const cur = [...imgs].findIndex(img => img.classList.contains('active'));
-          carouselGo(c, cur + 1);
-        }, 5000);
-      });
-    });
   } catch (err) {
     if (projectsList) projectsList.innerHTML = `<li><em>Could not load projects (see console).</em></li>`;
     console.error('Projects load failed', err);
@@ -314,12 +290,14 @@ const sunIcon = themeToggle?.querySelector('.icon-sun');
 const moonIcon = themeToggle?.querySelector('.icon-moon');
 
 function getEffectiveTheme() {
-  const stored = localStorage.getItem('theme');
+  let stored;
+  try { stored = localStorage.getItem('theme'); } catch {}
   if (stored) return stored;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
+  themeToggle?.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   if (sunIcon && moonIcon) {
     sunIcon.style.display = theme === 'dark' ? 'none' : 'block';
     moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
@@ -328,11 +306,11 @@ function applyTheme(theme) {
 applyTheme(getEffectiveTheme());
 themeToggle?.addEventListener('click', () => {
   const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('theme', next);
+  try { localStorage.setItem('theme', next); } catch {}
   applyTheme(next);
 });
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (!localStorage.getItem('theme')) applyTheme(getEffectiveTheme());
+  applyTheme(getEffectiveTheme());
 });
 
 document.body.insertAdjacentHTML('beforeend', `
@@ -380,7 +358,7 @@ function carouselGo(carousel, idx) {
   const imgs = [...carousel.querySelectorAll('.gallery-img')];
   const dots = [...carousel.querySelectorAll('.carousel-dot')];
   const i = (idx + imgs.length) % imgs.length;
-  imgs.forEach((img, j) => img.classList.toggle('active', j === i));
+  imgs.forEach((img, j) => { img.classList.toggle('active', j === i); img.tabIndex = j === i ? 0 : -1; });
   dots.forEach((d, j) => d.classList.toggle('active', j === i));
 }
 
@@ -408,6 +386,7 @@ lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightb
 lbPrev.addEventListener('click', e => { e.stopPropagation(); showImage(currentIndex - 1); });
 lbNext.addEventListener('click', e => { e.stopPropagation(); showImage(currentIndex + 1); });
 document.addEventListener('keydown', e => {
+  if (e.target.classList.contains('gallery-img') && ['Enter', ' '].includes(e.key)) { e.preventDefault(); openLightbox(e.target); return; }
   if (!lightbox.classList.contains('open')) return;
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
@@ -423,116 +402,3 @@ document.addEventListener('keydown', e => {
     }
   }
 });
-
-// Space invader gutter decorations
-(function setupInvaders() {
-  const types = [
-    { frames: ['assets/invaders/typeA1.png', 'assets/invaders/typeA2.png'] },
-    { frames: ['assets/invaders/typeB1.png', 'assets/invaders/typeB2.png'] },
-    { frames: ['assets/invaders/typeC1.png', 'assets/invaders/typeC2.png'] },
-  ];
-  const EXPLODE_SRC = 'assets/invaders/explode.png';
-
-  const leftGutter = document.createElement('div');
-  leftGutter.className = 'invader-gutter invader-gutter--left';
-  leftGutter.setAttribute('aria-hidden', 'true');
-  const rightGutter = document.createElement('div');
-  rightGutter.className = 'invader-gutter invader-gutter--right';
-  rightGutter.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(leftGutter);
-  document.body.appendChild(rightGutter);
-
-  // Score counter
-  let score = 0;
-  const scoreEl = document.createElement('div');
-  scoreEl.className = 'invader-score';
-  scoreEl.setAttribute('aria-hidden', 'true');
-  scoreEl.textContent = '0000';
-  document.body.appendChild(scoreEl);
-
-  function bumpScore() {
-    score++;
-    scoreEl.textContent = String(score).padStart(4, '0');
-  }
-
-  const allSprites = [];
-  function rand(min, max) { return min + Math.random() * (max - min); }
-
-  function resetSprite(img, scatter) {
-    const t = Math.floor(Math.random() * types.length);
-    img.dataset.type = t;
-    img.dataset.frame = '0';
-    img.dataset.dead = '0';
-    img.src = types[t].frames[0];
-    img.classList.remove('invader-explode');
-    img.style.left = rand(5, 75) + '%';
-    img.style.setProperty('--march-dist', rand(40, 80) + 'px');
-    img.style.setProperty('--march-dur', rand(2.5, 3.5) + 's');
-    img.style.setProperty('--march-delay', -rand(0, 3) + 's');
-    img._y = scatter ? rand(-600, -40) : -40;
-    img.style.top = img._y + 'px';
-    img._speed = rand(0.15, 0.35);
-  }
-
-  function createSprite(container, idx, total) {
-    const img = document.createElement('img');
-    img.className = 'invader-sprite';
-    img.alt = '';
-    img._container = container;
-    resetSprite(img, false);
-    // Stagger start positions above viewport so they drop in evenly spaced
-    const spacing = window.innerHeight / total;
-    img._y = -(idx * spacing) - 40;
-    img.style.top = img._y + 'px';
-    container.appendChild(img);
-    allSprites.push(img);
-
-    img.addEventListener('click', () => {
-      if (img.dataset.dead === '1') return;
-      img.dataset.dead = '1';
-      bumpScore();
-      // Freeze position: read bounding rect, set left in px
-      const rect = img.getBoundingClientRect();
-      const gutterRect = img._container.getBoundingClientRect();
-      img.style.left = (rect.left - gutterRect.left) + 'px';
-      img.src = EXPLODE_SRC;
-      img.classList.add('invader-explode');
-      setTimeout(() => {
-        img.style.left = '';
-        resetSprite(img, false);
-      }, 500);
-    });
-  }
-
-  const spritesPerSide = 5;
-  for (let i = 0; i < spritesPerSide; i++) {
-    createSprite(leftGutter, i, spritesPerSide);
-    createSprite(rightGutter, i, spritesPerSide);
-  }
-
-  // Frame swap
-  setInterval(() => {
-    allSprites.forEach(img => {
-      if (img.dataset.dead === '1') return;
-      const t = parseInt(img.dataset.type);
-      const f = img.dataset.frame === '0' ? 1 : 0;
-      img.dataset.frame = String(f);
-      img.src = types[t].frames[f];
-    });
-  }, 500);
-
-  // Vertical drift via JS (allows regeneration)
-  function tick() {
-    allSprites.forEach(img => {
-      if (img.dataset.dead === '1') return;
-      img._y += img._speed;
-      if (img._y > window.innerHeight + 40) {
-        resetSprite(img, false);
-      }
-      img.style.top = img._y + 'px';
-    });
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-
-})();
