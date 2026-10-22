@@ -6,7 +6,7 @@
       "ML"
     ],
     "title": "Tactile Diffusion Policies for Dexterous Manipulation",
-    "summary": "At Stanford BDML, instrumented a LEAP Hand with four CoinFT six-axis force/torque fingertip sensors and built VR teleoperation with live force feedback. Collected 240 multimodal demonstrations and trained a compliance-aware diffusion policy with attention fusion and modality dropout. Tactile input improved grasp success from 45% to 65% on compliant objects. First-author paper under review at IEEE-RAS Humanoids 2026.",
+    "summary": "At Stanford BDML, instrumented a LEAP Hand with four CoinFT six-axis force/torque fingertip sensors and built VR teleoperation with live force feedback. Collected 240 multimodal demonstrations and trained a compliance-aware diffusion policy with attention fusion and modality dropout. Tactile input improved grasp success from 45% to 65% on compliant objects. Continuing this research and preparing a revised manuscript.",
     "tags": [
       "tactile sensing",
       "diffusion policies",
