@@ -1,11 +1,5 @@
 [
   {
-    "title": "Compliance-Controlled Evaluation of Tactile Diffusion Policies on an Anthropomorphic Hand",
-    "authors": "L. Klostermair, S. Hong, M. Cutkosky, C. Piazza",
-    "status": "manuscript in preparation",
-    "links": []
-  },
-  {
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
     "authors": "D. Bernardini, S. Deshini, L. Klostermair, C. Piazza",
     "venue": "ICRCA 2026",
@@ -32,22 +26,6 @@
       {
         "label": "Project Page",
         "href": "https://stanleywang1.github.io/icra26_workshop/"
-      }
-    ]
-  },
-  {
-    "title": "Generative Classifiers in Tactile Classification",
-    "authors": "L. Klostermair, A. Ozan",
-    "venue": "Technical Report, German Aerospace Center (DLR)",
-    "year": "2025",
-    "links": [
-      {
-        "label": "Report",
-        "href": "assets/projects/tactilerl/final-report-17.pdf"
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/lklostermair/tum-adlr-wise24-17"
       }
     ]
   }
