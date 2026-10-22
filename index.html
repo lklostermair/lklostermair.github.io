@@ -35,18 +35,27 @@
       ]
     }
   </script>
-  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)"/>
-  <meta name="theme-color" content="#121c23" media="(prefers-color-scheme: dark)"/>
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
+  <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)"/>
 
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 
-  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
-  <link rel="stylesheet" href="styles.css">
-  <noscript><style>.tab-panel{display:block}.reveal{opacity:1;transform:none}</style></noscript>
+  <style>
+    body{margin:0;line-height:1.7}
+    main{max-width:clamp(720px,92vw,1400px);margin:auto;padding:0 clamp(12px,2vw,32px)}
+    header.hero{min-height:55svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.5rem;padding:2rem 1rem}
+    .portrait{flex:none;width:320px;height:320px;border-radius:50%;overflow:hidden}
+  </style>
+  <script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)})()</script>
+
+  <link rel="preload" href="assets/fonts/DinaRemaster-Regular-01.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/DinaRemaster-Bold-02.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles.css"><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
-  <div class="site-bar"><a class="brand" href="/" aria-label="Lukas Klostermair home"><img src="/assets/favicon.svg" width="40" height="40" alt=""><span>Lukas Klostermair<span class="brand-sub">Robotics &amp; learning</span></span></a><span class="location">Palo Alto, California</span>
   <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
     <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
@@ -54,54 +63,57 @@
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
       <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
     </svg>
-  </button></div>
+  </button>
 
   <header class="hero" aria-labelledby="name">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot"></span> Engineer. Researcher. Builder.</p>
-      <h1 id="name">Lukas<br>Klostermair<span class="accent">.</span></h1>
-      <p class="hero-statement">Teaching robots to <br><em>feel their way.</em></p>
-      <p class="hero-description">I work on dexterous manipulation, tactile sensing, and robot learning at <a href="https://www.tactasystems.com/">Tacta Systems</a>. Turning contact into understanding, and research into real-world robots.</p>
-      <div class="hero-actions"><a class="button primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="button secondary" href="mailto:lukas.klostermair@gmail.com">Say hello <span aria-hidden="true">↗</span></a></div>
-      <p class="hero-footnote">Previously Stanford BDML · M.Sc. at TUM</p>
+    <div class="portrait" aria-hidden="true">
+      <picture>
+        <source srcset="assets/portrait-960.webp" type="image/webp">
+        <img src="assets/portrait-960.jpg" width="960" height="960" alt="Portrait" fetchpriority="high">
+      </picture>
     </div>
-    <div class="portrait-frame">
-      <div class="portrait"><picture><source srcset="assets/portrait-960.webp" type="image/webp"><img src="assets/portrait-960.jpg" width="960" height="960" alt="Lukas with his surfboard at the beach" fetchpriority="high"></picture></div>
-      <div class="portrait-caption"><span>Beyond the lab</span><span>Usually near the ocean ↗</span></div>
-      <span class="figure-label" aria-hidden="true">FIG. 01 / A WORK IN PROGRESS</span>
+    <div class="info reveal">
+      <h1 id="name">Lukas Klostermair</h1>
     </div>
   </header>
 
   <main id="content">
-    <section class="about-strip" aria-label="About me"><span class="eyebrow">A little about me</span><p>I like building things that teach me something when they break. Outside the lab, you’ll find me on the slopes, in the ocean, or playing guitar.</p></section>
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h" class="visually-hidden">About</h2>
+<p class="bio reveal">
+        Hi, I'm Lukas! I’m a Robotics Learning Research Engineer at Tacta Systems in Palo Alto, working on dexterous manipulation, tactile sensing, and learning-based control. I completed my master’s at TUM and researched tactile diffusion policies at Stanford’s Biomimetics &amp; Dexterous Manipulation Lab. I like to build things that teach me something when they break.
+        I spend my free time on the slopes, in the ocean, or playing my guitar. Feel free to reach out if you’d like to collaborate or just chat about things :)
+      </p>
+    </section>
+
     <nav class="section-nav" aria-label="Sections" role="tablist">
-      <button class="tab-btn" id="tab-cv" data-tab="cv" role="tab" aria-controls="cv" aria-selected="true">Experience</button>
-      <button class="tab-btn" id="tab-projects" data-tab="projects" role="tab" aria-controls="projects" aria-selected="false">Projects</button>
-      <button class="tab-btn" id="tab-publications" data-tab="publications" role="tab" aria-controls="publications" aria-selected="false">Research</button>
-      <button class="tab-btn" id="tab-contact" data-tab="contact" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+      <button class="tab-btn" data-tab="cv" role="tab" aria-selected="true">cv</button>
+      <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">projects</button>
+      <button class="tab-btn" data-tab="publications" role="tab" aria-selected="false">publications</button>
+      <button class="tab-btn" data-tab="contact" role="tab" aria-selected="false">contact</button>
     </nav>
 
-    <section id="cv" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-cv" tabindex="0">
-      <div class="section-heading"><p class="eyebrow">Experience</p><h2 class="section-title">The path so far.</h2><p>Research, engineering, and the people I’ve learned from.</p></div>
+    <section id="cv" class="page-section tab-panel" role="tabpanel">
+      <h2 class="section-title">cv</h2>
       <ul id="cv-timeline" class="timeline"></ul>
     </section>
 
-    <section id="projects" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-projects" tabindex="0">
-      <div class="section-heading"><p class="eyebrow">Projects</p><h2 class="section-title">Ideas made tangible.</h2><p>Robots, experiments, and things built out of curiosity.</p></div>
+    <section id="projects" class="page-section tab-panel" role="tabpanel">
+      <h2 class="section-title">projects</h2>
       <div id="filter-chips" class="filter-chips"></div>
       <ul id="projects-list" class="projects-list"></ul>
     </section>
 
-    <section id="publications" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-publications" tabindex="0">
-      <div class="section-heading"><p class="eyebrow">Research</p><h2 class="section-title">Notes from the lab.</h2><p>Publications, technical reports, and work in progress.</p></div>
+    <section id="publications" class="page-section tab-panel" role="tabpanel">
+      <h2 class="section-title">publications</h2>
       <ul id="publications-list" class="pub-list"></ul>
     </section>
 
-    <section id="contact" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-contact" tabindex="0">
-      <div class="section-heading"><p class="eyebrow">Contact</p><h2 class="section-title">Let’s build something.</h2><p>Robotics, research, or a good conversation. My inbox is open.</p></div>
+    <section id="contact" class="page-section tab-panel" role="tabpanel">
+      <h2 class="section-title">contact</h2>
       <div class="contact-grid">
         <div class="contact-info">
-          <a class="contact-email" href="mailto:lukas.klostermair@gmail.com">lukas.klostermair@gmail.com ↗</a><p>Based in Palo Alto, California.</p>
+          <p>Currently based in Palo Alto, CA</p>
         </div>
         <div class="social-icons" role="group" aria-label="Social links">
           <a href="https://github.com/lklostermair" target="_blank" rel="noopener" aria-label="GitHub">
@@ -122,7 +134,7 @@
   </main>
 
   <footer>
-    <a class="footer-brand" href="#">LK<span class="accent">.</span></a><div>Built with curiosity. <span class="footer-date">Updated <span id="updated"></span></span></div><a href="mailto:lukas.klostermair@gmail.com">Get in touch ↗</a>
+    <div>Lukas Klostermair — Last updated <span id="updated"></span></div>
   </footer>
 
   <script type="module" src="script.js"></script>

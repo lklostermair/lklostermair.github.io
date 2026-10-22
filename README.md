@@ -5,18 +5,9 @@ Static site served via GitHub Pages at https://lukasklostermair.com/.
 ## Customize
 - Update navigation content in `index.html`.
 - Update theme tokens in `styles.css` under the `:root[data-theme="*"]` blocks.
-- Replace `assets/portrait-960.jpg` and `assets/portrait-960.webp` and social SVGs in `assets/social/`.
+- Replace `assets/portrait.jpg` and social SVGs in `assets/social/`.
 
-CV entries are loaded from `assets/cv.json`. Projects and publications are loaded from `assets/projects.json` and `assets/publications.json`.
-
-## Visual design
-
-The site uses warm ivory, ink-blue, and burnt-orange theme tokens with system
-sans-serif typography and small monospace labels. `assets/favicon.svg` is the
-shared LK linkage mark. Keep layout changes responsive at 320px and above.
-Tabs support arrow keys, Home/End, and URL hashes; galleries are manually
-controlled and support keyboard activation and Escape to close. Respect reduced
-motion preferences.
+CV entries are loaded from `assets/cv.json`. Project entries can be added in `script.js` under the `projectData` array.
 
 ## Development
 Start a local server (e.g., `npx serve` or `python -m http.server`) and open the page through it. Direct `file://` viewing blocks the JSON fetch used for the CV section.
@@ -30,7 +21,7 @@ npm run lint
 Pushes to `main` deploy the site through `.github/workflows/pages.yml`.
 The custom domain is configured in repository Settings > Pages; the Actions
 deployment does not require a `CNAME` file. Keep Enforce HTTPS enabled once the
-certificate is available. Cloudflare manages DNS; the GitHub Pages records use DNS-only mode. The domain is registered with Namecheap.
+certificate is available. Namecheap BasicDNS points the domain to GitHub Pages.
 
 When adding a public page, give it a canonical URL on
 `https://lukasklostermair.com` and add it to `sitemap.xml`. Keep `robots.txt`
@@ -42,7 +33,7 @@ The homepage and research page load the shared `analytics.js` integration for
 [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/).
 It replaces the previous MapMyVisitors widget. Cloudflare Web Analytics is free
 and does not use analytics cookies or browser storage. Hosting and DNS remain
-on GitHub Pages and Cloudflare respectively.
+on GitHub Pages and Namecheap respectively.
 
 Activation (required before any data is collected):
 
