@@ -4,7 +4,7 @@
     "position": "Research Engineer",
     "institution": "Tacta Systems",
     "url": "https://www.tactasystems.com/",
-    "description": "Developing dexterous manipulation policies with integrated tactile sensing, and building data pipelines and real-world deployment infrastructure for robot learning (PyTorch, ROS2, Python, C++, Docker).",
+    "description": "Developing dexterous manipulation policies with integrated tactile sensing, and building data pipelines and real-world deployment infrastructure for robot learning.",
     "category": "professional"
   },
   {
@@ -12,7 +12,7 @@
     "position": "Student Researcher · Master’s Thesis",
     "institution": "Stanford BDML (Prof. Cutkosky)",
     "url": "https://bdml.stanford.edu/",
-    "description": "Instrumented a LEAP Hand with four CoinFT force/torque fingertip sensors and trained a compliance-aware multimodal diffusion policy. Built a VR teleoperation pipeline with live force feedback and collected 240 demonstrations; tactile input improved grasp success from 45% to 65% on compliant objects.",
+    "description": "Instrumented a LEAP Hand with fingertip force/torque sensors and trained a tactile diffusion policy for grasping compliant objects. Built a VR teleoperation pipeline with live force feedback to collect demonstrations.",
     "category": "academic"
   },
   {
@@ -20,7 +20,7 @@
     "position": "Student Researcher",
     "institution": "TUM IN-HAND Lab (Prof. Piazza)",
     "url": "https://www.ce.cit.tum.de/en/nhcr/home/",
-    "description": "Developed tactile-only grasping policies using SAC and MuJoCo, achieving up to 65% success on primitive geometries. Evaluated robustness to variations in object pose, mass, geometry, and sensor noise; co-authored the ICRCA 2026 paper.",
+    "description": "Developed tactile-only grasping policies with reinforcement learning in simulation and tested their robustness to changes in object pose, mass, geometry, and sensor noise. Co-authored the ICRCA 2026 paper.",
     "category": "academic"
   },
   {
@@ -28,7 +28,7 @@
     "position": "ML Software Engineer (Working Student)",
     "institution": "Baind AG",
     "url": "https://www.baind.de/",
-    "description": "Deployed two production ML pipelines for building automation and reduced inference runtime by 40–60%. Worked on load monitoring, time-series forecasting, and a Neural ODE-based reinforcement learning environment for building energy management.",
+    "description": "Built and deployed machine learning pipelines for building automation. Worked on load monitoring, time-series forecasting, and a reinforcement learning environment for building energy management.",
     "category": "professional"
   },
   {
@@ -36,7 +36,7 @@
     "position": "Project Member · Advanced Deep Learning in Robotics",
     "institution": "TUM & DLR AIDX Lab (Prof. Bäuml)",
     "url": "https://aidx-lab.org/",
-    "description": "Designed an invertible neural network-based generative classifier for tactile material recognition in TensorFlow. Conducted an ablation study on TactNet-II and published a technical report.",
+    "description": "Designed a generative classifier based on invertible neural networks for tactile material recognition and wrote a technical report on it.",
     "category": "academic"
   },
   {
@@ -52,7 +52,7 @@
     "position": "M.Sc. Biomedical Engineering & Medical Physics",
     "institution": "TU Munich",
     "url": "https://www.tum.de/en/",
-    "description": "Focused on deep learning, reinforcement learning, computer vision, tactile sensing, and robotic manipulation. Graduated with a GPA of 1.5 (German scale; 1.0 = best).",
+    "description": "Focused on deep learning, reinforcement learning, computer vision, tactile sensing, and robotic manipulation.",
     "category": "academic"
   },
   {
@@ -60,7 +60,7 @@
     "position": "Student Researcher · Bachelor’s Thesis",
     "institution": "F. Hoffmann La Roche AG",
     "url": "https://www.roche.com/",
-    "description": "Developed a predictive model for pharmaceutical equipment validation, reducing downtime by 60%. Conducted statistical evaluations and a time-to-kill study for pyrogenic bacteria.",
+    "description": "Developed a predictive model for pharmaceutical equipment validation. Ran statistical evaluations and a time-to-kill study for pyrogenic bacteria.",
     "category": "professional"
   },
   {
@@ -84,7 +84,7 @@
     "position": "Innovation Intern",
     "institution": "BMW AG",
     "url": "https://www.bmw.com/",
-    "description": "Built internal tooling for rapid deployment in high-stakes assembly environments.",
+    "description": "Built internal tooling for assembly environments.",
     "category": "professional"
   },
   {
@@ -92,7 +92,7 @@
     "position": "Teaching Assistant · Technical Mechanics III (Dynamics)",
     "institution": "University of Applied Sciences Regensburg",
     "url": "https://www.oth-regensburg.de/en/",
-    "description": "Tutored students in dynamics and authored the official formulary for the final exam.",
+    "description": "Tutored students in dynamics and wrote the formulary for the final exam.",
     "category": "professional"
   },
   {
@@ -100,7 +100,7 @@
     "position": "B.Sc. Biomedical Engineering",
     "institution": "University of Applied Sciences Regensburg",
     "url": "https://www.oth-regensburg.de/en/",
-    "description": "Focused on machine learning, probability and statistics, dynamics, and biomechanics. Graduated with a GPA of 1.8 (top 20%); completed the bachelor’s thesis at Roche.",
+    "description": "Focused on machine learning, probability and statistics, dynamics, and biomechanics. Completed the bachelor’s thesis at Roche.",
     "category": "academic"
   }
 ]
