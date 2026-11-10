@@ -181,10 +181,10 @@ function projectVideoHTML(media, title) {
 function projectCarouselHTML(media, title) {
   if (!Array.isArray(media.images) || media.images.length === 0) return '';
   const imgs = media.images.map((src, i) =>
-    `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}">`
+    `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}" role="button" tabindex="${i === 0 ? 0 : -1}">`
   ).join('');
   const nav = media.images.length > 1
-    ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`).join('')}</div>`
+    ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<button type="button" class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Show image ${i + 1}"></button>`).join('')}</div>`
     : '';
   return `<div class="carousel"><div class="carousel-inner">${imgs}</div>${nav}</div>`;
 }
@@ -393,7 +393,10 @@ function carouselGo(carousel, idx) {
   const imgs = [...carousel.querySelectorAll('.gallery-img')];
   const dots = [...carousel.querySelectorAll('.carousel-dot')];
   const i = (idx + imgs.length) % imgs.length;
-  imgs.forEach((img, j) => img.classList.toggle('active', j === i));
+  imgs.forEach((img, j) => {
+    img.classList.toggle('active', j === i);
+    img.tabIndex = j === i ? 0 : -1;
+  });
   dots.forEach((d, j) => d.classList.toggle('active', j === i));
 }
 
@@ -421,6 +424,20 @@ lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightb
 lbPrev.addEventListener('click', e => { e.stopPropagation(); showImage(currentIndex - 1); });
 lbNext.addEventListener('click', e => { e.stopPropagation(); showImage(currentIndex + 1); });
 document.addEventListener('keydown', e => {
+  const onImage = e.target.classList?.contains('gallery-img');
+  if (onImage && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    openLightbox(e.target);
+    return;
+  }
+  if (onImage && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+    const carousel = e.target.closest('.carousel');
+    const imgs = [...carousel.querySelectorAll('.gallery-img')];
+    const next = imgs.indexOf(e.target) + (e.key === 'ArrowLeft' ? -1 : 1);
+    carouselGo(carousel, next);
+    imgs[(next + imgs.length) % imgs.length].focus();
+    return;
+  }
   if (!lightbox.classList.contains('open')) return;
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') showImage(currentIndex - 1);

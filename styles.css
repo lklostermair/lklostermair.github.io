@@ -385,6 +385,7 @@ footer{
 }
 .carousel-dot{
   width:8px;height:8px;border-radius:50%;
+  appearance:none;border:0;padding:0;
   background:var(--line);cursor:pointer;
   transition:background .15s ease;
 }
