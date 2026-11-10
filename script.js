@@ -172,7 +172,7 @@ function projectMediaHTML(media, title) {
       <div class="project-media">
         <div class="video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/${id}"
+            src="https://www.youtube-nocookie.com/embed/${id}"
             title="${title || 'Project'} video"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
