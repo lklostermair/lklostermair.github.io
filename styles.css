@@ -251,6 +251,10 @@ header.hero{
 }
 
 .project-media{ width:100%; }
+.project-media--split{display:grid;gap:1rem;align-items:center}
+@media (min-width: 900px){
+  .project-media--split{grid-template-columns:1fr 1fr}
+}
 @media (min-width: 1600px){
   :root{ --media-max-h: 420px; }
 }

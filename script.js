@@ -164,12 +164,10 @@ loadCV();
 
 const projectsList = document.getElementById('projects-list');
 
-function projectMediaHTML(media, title) {
-  if (!media) return '';
-  if (media.youtubeId) {
-    const id = encodeURIComponent(media.youtubeId.trim());
-    return `
-      <div class="project-media">
+function projectVideoHTML(media, title) {
+  if (!media.youtubeId) return '';
+  const id = encodeURIComponent(media.youtubeId.trim());
+  return `
         <div class="video-wrap">
           <iframe
             src="https://www.youtube-nocookie.com/embed/${id}"
@@ -178,19 +176,23 @@ function projectMediaHTML(media, title) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen></iframe>
-        </div>
-      </div>`;
-  }
-  if (Array.isArray(media.images) && media.images.length > 0) {
-    const imgs = media.images.map((src, i) =>
-      `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}">`
-    ).join('');
-    const nav = media.images.length > 1
-      ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`).join('')}</div>`
-      : '';
-    return `<div class="project-media"><div class="carousel"><div class="carousel-inner">${imgs}</div>${nav}</div></div>`;
-  }
-  return '';
+        </div>`;
+}
+function projectCarouselHTML(media, title) {
+  if (!Array.isArray(media.images) || media.images.length === 0) return '';
+  const imgs = media.images.map((src, i) =>
+    `<img src="${src}" loading="lazy" alt="${title || 'Project'} - image ${i + 1}" class="gallery-img${i === 0 ? ' active' : ''}">`
+  ).join('');
+  const nav = media.images.length > 1
+    ? `<button class="carousel-btn carousel-prev" aria-label="Previous image">&lsaquo;</button><button class="carousel-btn carousel-next" aria-label="Next image">&rsaquo;</button><div class="carousel-dots">${media.images.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`).join('')}</div>`
+    : '';
+  return `<div class="carousel"><div class="carousel-inner">${imgs}</div>${nav}</div>`;
+}
+function projectMediaHTML(media, title) {
+  if (!media) return '';
+  const parts = [projectVideoHTML(media, title), projectCarouselHTML(media, title)].filter(Boolean);
+  if (parts.length === 0) return '';
+  return `<div class="project-media${parts.length > 1 ? ' project-media--split' : ''}">${parts.join('')}</div>`;
 }
 function projectLinksHTML(links) {
   if (!Array.isArray(links) || links.length === 0) return '';
