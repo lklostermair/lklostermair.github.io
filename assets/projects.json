@@ -24,8 +24,8 @@
     "summary": "Munich Legal Hackathon. Built a local AI assistant that turns legal playbooks and contracts into a structured, searchable vault. Ask questions in text or voice, get source-grounded answers with citations, and propose rule updates that go through a lawyer-approval workflow before committing. Won 2nd place out of 25 teams.",
     "media": {
       "images": [
-        "assets/projects/dandelion/Screenshot_20260427_174600.png",
-        "assets/projects/dandelion/dandelion_brand.png"
+        "assets/projects/dandelion/dandelion-1.webp",
+        "assets/projects/dandelion/dandelion-2.webp"
       ]
     },
     "tags": [
@@ -44,10 +44,10 @@
     "summary": "Cool father-son project we've been working on. Sora mockup as well as the current project status. Still haven't decided on blue or green, hm...",
     "media": {
       "images": [
-        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM.jpeg",
-        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (2).jpeg",
-        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (3).jpeg",
-        "assets/projects/guitar/WhatsApp Image 2026-01-29 at 5.18.48 PM (1).jpeg"
+        "assets/projects/guitar/guitar-1.webp",
+        "assets/projects/guitar/guitar-2.webp",
+        "assets/projects/guitar/guitar-3.webp",
+        "assets/projects/guitar/guitar-4.webp"
       ]
     },
     "tags": [
@@ -64,8 +64,8 @@
     "summary": "Sebastian Thrun hackathon in SF. We built a battlefield management system capable of multi-agent path planning with an A* algorithm and 3D map visualization.",
     "media": {
       "images": [
-        "assets/projects/hive/Screenshot_20260129_181749.png",
-        "assets/projects/hive/Screenshot_20260129_181933.png"
+        "assets/projects/hive/hive-1.webp",
+        "assets/projects/hive/hive-2.webp"
       ]
     },
     "links": [
@@ -90,8 +90,8 @@
     "summary": "Worked on tactile-only robotic grasping using SAC-based reinforcement learning in MuJoCo. Tested how robust the policies are with domain randomization (object pose, mass, geometry, sensor noise), and wrapped everything in a clean, Dockerized codebase for reproducible experiments. Also co-authored a paper accepted to ICRCA 2026, which won 'Best Presentation Award'.",
     "media": {
       "images": [
-        "assets/projects/mujoco/Screenshot from 2025-08-12 10-30-22.png",
-        "assets/projects/mujoco/Screenshot from 2025-08-19 18-08-31.png"
+        "assets/projects/mujoco/mujoco-1.webp",
+        "assets/projects/mujoco/mujoco-2.webp"
       ]
     },
     "links": [
@@ -120,8 +120,8 @@
     "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via an A2C reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
     "media": {
       "images": [
-        "assets/projects/pwnagotchi/pwn_1.JPG",
-        "assets/projects/pwnagotchi/pwn_2.JPG"
+        "assets/projects/pwnagotchi/pwnagotchi-1.webp",
+        "assets/projects/pwnagotchi/pwnagotchi-2.webp"
       ]
     },
     "links": [
@@ -147,9 +147,9 @@
     "summary": "For the hackathon, our team built a robotic assistant with a speech-to-text pipeline that selects trained ACT policies through keyword recognition. Our goal was to develop a buddy similar to 'Dummy' in Iron Man (see pic). We built this with the kind sponsoring of materials and compute of <a href='https://www.ycombinator.com/companies/the-robot-learning-company'>tlrc (Y-Combinator 2025)</a>.",
     "media": {
       "images": [
-        "assets/projects/tinker/logo.png",
-        "assets/projects/tinker/solder.png",
-        "assets/projects/tinker/dume.png"
+        "assets/projects/tinker/tinker-1.webp",
+        "assets/projects/tinker/tinker-2.webp",
+        "assets/projects/tinker/tinker-3.webp"
       ]
     },
     "links": [
@@ -173,10 +173,10 @@
     "summary": "Designed, built, and programmed a low-cost (<$150) 3D-printed robotic hand with a radio-controlled glove interface. The project covered CAD in Fusion360, PCB design, 3D printing, and Arduino-based embedded control.",
     "media": {
       "images": [
-        "assets/projects/ghost/hand_front.jpg",
+        "assets/projects/ghost/ghost-1.webp",
         "assets/projects/ghost/Hand_v1.gif",
-        "assets/projects/ghost/glove__prototype.jpeg",
-        "assets/projects/ghost/IMG_3982.jpg"
+        "assets/projects/ghost/ghost-2.webp",
+        "assets/projects/ghost/ghost-3.webp"
       ]
     },
     "links": [
@@ -201,9 +201,9 @@
     "summary": "Our team developed a semi-autonomous control framework for a tendon-driven robotic hand. I was mainly working on the mechanical components and tuning of the grasping. We then combined vision-based object recognition to assist grasp initiation according to object classification, e.g. pen -> pinch; tv remote -> grasp.",
     "media": {
       "images": [
-        "assets/projects/semiautocontrol/hand_1.jpg",
-        "assets/projects/semiautocontrol/hand_2.JPG",
-        "assets/projects/semiautocontrol/model.jpg"
+        "assets/projects/semiautocontrol/semiautocontrol-1.webp",
+        "assets/projects/semiautocontrol/semiautocontrol-2.webp",
+        "assets/projects/semiautocontrol/semiautocontrol-3.webp"
       ]
     },
     "tags": [
@@ -223,7 +223,7 @@
     "media": {
       "youtubeId": "623yRPx9Pkc",
       "images": [
-        "assets/projects/tactilerl/agile_justin.jpg"
+        "assets/projects/tactilerl/tactilerl-1.webp"
       ]
     },
     "links": [
@@ -271,8 +271,8 @@
     "summary": "Our team developed an adaptive robotic arm prototype for a patient with quadriplegia over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
     "media": {
       "images": [
-        "assets/projects/grasper/v3_assembly.png",
-        "assets/projects/grasper/working_grasper.png"
+        "assets/projects/grasper/grasper-1.webp",
+        "assets/projects/grasper/grasper-2.webp"
       ]
     },
     "links": [
