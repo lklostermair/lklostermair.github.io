@@ -30,6 +30,12 @@ jobs:
             --exclude '.github' \
             --exclude 'node_modules' \
             --exclude 'dist' \
+            --exclude 'README.md' \
+            --exclude 'package.json' \
+            --exclude 'package-lock.json' \
+            --exclude '.htmlhintrc' \
+            --exclude '.stylelintrc.json' \
+            --exclude '_config.yml' \
             ./ dist/
 
       - name: Upload Pages artifact
