@@ -96,6 +96,10 @@
     },
     "links": [
       {
+        "label": "Project Page",
+        "href": "grasping-in-the-dark/"
+      },
+      {
         "label": "GitHub",
         "href": "https://github.com/taz5/Soft-Hand-Gripper"
       }
@@ -113,7 +117,7 @@
       "Misc"
     ],
     "title": "Pwnagotchi – AI-Powered WiFi Exploration Buddy",
-    "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via A2C a reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
+    "summary": "Set up and customized a Pwnagotchi, a Tamagotchi-like wearable companion that learns from WiFi environments via an A2C reinforcement learning policy. Configured plugins, tethering, and web UI access to explore & learn about common network security protocols.",
     "media": {
       "images": [
         "assets/projects/pwnagotchi/pwn_1.JPG",
@@ -151,7 +155,7 @@
     "links": [
       {
         "label": "LinkedIn Video",
-        "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u?utm_source=share&utm_medium=member_desktop&rcm=ACoAADhpcTYBY0-GKrOhlxFCskkvSt0Hw8AMf5E"
+        "href": "https://www.linkedin.com/posts/lukasklostermair_last-week-i-had-the-pleasure-of-participating-activity-7310235168588374016--h4u"
       }
     ],
     "tags": [
@@ -264,7 +268,7 @@
       "Robotics"
     ],
     "title": "Robotic Arm – HackaHealth ETH Zürich",
-    "summary": "Our team developed an adaptive robotic arm prototype for patient with quadriplegia over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
+    "summary": "Our team developed an adaptive robotic arm prototype for a patient with quadriplegia over the hackathon. It allowed him to pick up things and interact with his children again. 3 design iterations were funded by the ETH Student Project House.",
     "media": {
       "images": [
         "assets/projects/grasper/v3_assembly.png",
