@@ -5,9 +5,9 @@ Static site served via GitHub Pages at https://lukasklostermair.com/.
 ## Customize
 - Update navigation content in `index.html`.
 - Update theme tokens in `styles.css` under the `:root[data-theme="*"]` blocks.
-- Replace `assets/portrait.jpg` and social SVGs in `assets/social/`.
+- Replace `assets/portrait-960.jpg` and `assets/portrait-960.webp` (960 px square) and social SVGs in `assets/social/`.
 
-CV entries are loaded from `assets/cv.json`. Project entries can be added in `script.js` under the `projectData` array.
+CV, project and publication entries are loaded from `assets/cv.json`, `assets/projects.json` and `assets/publications.json`.
 
 ## Development
 Start a local server (e.g., `npx serve` or `python -m http.server`) and open the page through it. Direct `file://` viewing blocks the JSON fetch used for the CV section.
