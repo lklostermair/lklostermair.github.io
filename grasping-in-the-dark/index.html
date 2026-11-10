@@ -165,17 +165,12 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Training Demo</h2>
-        <img src="./static/figures/training.gif"
-             alt="Training demo"
-             style="width: 100%; height: auto; display: block; margin: 0 auto;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="video-placeholder-box" style="display:none; background-image: url('./static/figures/grasping_teaser.png');">
-          <div class="video-placeholder-overlay">
-            <span class="icon is-large"><i class="fab fa-youtube"></i></span>
-            <span>Training Demo</span>
-            <code>static/figures/training.gif</code>
-          </div>
-        </div>
+        <video src="./static/figures/training.mp4"
+               poster="./static/figures/training-poster.jpg"
+               width="1234" height="480"
+               autoplay loop muted playsinline preload="metadata"
+               aria-label="Training demo"
+               style="width: 100%; height: auto; display: block; margin: 0 auto;"></video>
       </div>
     </div>
   </div>
