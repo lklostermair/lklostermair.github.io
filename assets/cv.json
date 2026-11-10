@@ -12,7 +12,7 @@
     "position": "Student Researcher · Master’s Thesis",
     "institution": "Stanford BDML (Prof. Cutkosky)",
     "url": "https://bdml.stanford.edu/",
-    "description": "Instrumented a LEAP Hand with fingertip force/torque sensors and trained a tactile diffusion policy for grasping compliant objects. Built a VR teleoperation pipeline with live force feedback to collect demonstrations.",
+    "description": "Instrumented a LEAP Hand with four CoinFT force/torque fingertip sensors and trained a compliance-aware multimodal diffusion policy for grasping compliant objects. Built a VR teleoperation pipeline with live force feedback to collect demonstrations.",
     "category": "academic"
   },
   {
@@ -20,7 +20,7 @@
     "position": "Student Researcher",
     "institution": "TUM IN-HAND Lab (Prof. Piazza)",
     "url": "https://www.ce.cit.tum.de/en/nhcr/home/",
-    "description": "Developed tactile-only grasping policies with reinforcement learning in simulation and tested their robustness to changes in object pose, mass, geometry, and sensor noise. Co-authored the ICRCA 2026 paper.",
+    "description": "Developed tactile-only grasping policies using SAC and MuJoCo and tested their robustness to changes in object pose, mass, geometry, and sensor noise. Co-authored the ICRCA 2026 paper.",
     "category": "academic"
   },
   {
@@ -28,7 +28,7 @@
     "position": "ML Software Engineer (Working Student)",
     "institution": "Baind AG",
     "url": "https://www.baind.de/",
-    "description": "Built and deployed machine learning pipelines for building automation. Worked on load monitoring, time-series forecasting, and a reinforcement learning environment for building energy management.",
+    "description": "Built and deployed machine learning pipelines for building automation. Worked on load monitoring, time-series forecasting, and a Neural ODE-based reinforcement learning environment for building energy management.",
     "category": "professional"
   },
   {
@@ -36,7 +36,7 @@
     "position": "Project Member · Advanced Deep Learning in Robotics",
     "institution": "TUM & DLR AIDX Lab (Prof. Bäuml)",
     "url": "https://aidx-lab.org/",
-    "description": "Designed a generative classifier based on invertible neural networks for tactile material recognition and wrote a technical report on it.",
+    "description": "Designed an invertible neural network-based generative classifier for tactile material recognition. Conducted an ablation study on TactNet-II and published a technical report.",
     "category": "academic"
   },
   {
