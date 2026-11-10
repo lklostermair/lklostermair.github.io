@@ -208,6 +208,21 @@ const FILTER_CATS = ['All', 'Robotics', 'ML', 'Hackathons', 'Misc'];
 let activeFilter = 'All';
 let loadedProjects = [];
 
+const CAROUSEL_INTERVAL_MS = 5000;
+let carouselTimer = null;
+
+// One shared timer advances every carousel the pointer is not resting on.
+function startCarousels() {
+  clearInterval(carouselTimer);
+  carouselTimer = setInterval(() => {
+    projectsList.querySelectorAll('.carousel:not(:hover)').forEach(c => {
+      const imgs = [...c.querySelectorAll('.gallery-img')];
+      if (imgs.length < 2) return;
+      carouselGo(c, imgs.findIndex(img => img.classList.contains('active')) + 1);
+    });
+  }, CAROUSEL_INTERVAL_MS);
+}
+
 function renderProjects(items) {
   if (!projectsList) return;
   const visible = activeFilter === 'All' ? items : items.filter(p => Array.isArray(p.categories) && p.categories.includes(activeFilter));
@@ -229,6 +244,7 @@ function renderProjects(items) {
     frag.appendChild(li);
   });
   projectsList.appendChild(frag);
+  startCarousels();
 }
 async function loadProjects() {
   try {
@@ -253,21 +269,6 @@ async function loadProjects() {
     }
     renderProjects(data);
     observeItems('.projects-list li');
-    document.querySelectorAll('.carousel').forEach(c => {
-      const imgs = c.querySelectorAll('.gallery-img');
-      if (imgs.length < 2) return;
-      let timer = setInterval(() => {
-        const cur = [...imgs].findIndex(img => img.classList.contains('active'));
-        carouselGo(c, cur + 1);
-      }, 5000);
-      c.addEventListener('mouseenter', () => clearInterval(timer));
-      c.addEventListener('mouseleave', () => {
-        timer = setInterval(() => {
-          const cur = [...imgs].findIndex(img => img.classList.contains('active'));
-          carouselGo(c, cur + 1);
-        }, 5000);
-      });
-    });
   } catch (err) {
     if (projectsList) projectsList.innerHTML = `<li><em>Could not load projects (see console).</em></li>`;
     console.error('Projects load failed', err);
