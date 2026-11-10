@@ -29,6 +29,7 @@ function activateTab(id) {
     const active = btn.dataset.tab === id;
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-selected', String(active));
+    btn.tabIndex = active ? 0 : -1;
   });
   document.querySelectorAll('.tab-panel').forEach(panel => {
     panel.classList.toggle('active', panel.id === id);
@@ -41,8 +42,17 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     activateTab(tab);
   });
 });
-const initTab = location.hash.slice(1);
-activateTab(TABS.includes(initTab) ? initTab : 'cv');
+// Arrow keys move between tabs
+document.querySelector('.section-nav')?.addEventListener('keydown', e => {
+  const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+  if (!step || !e.target.matches('.tab-btn')) return;
+  const next = TABS[(TABS.indexOf(e.target.dataset.tab) + step + TABS.length) % TABS.length];
+  const btn = document.getElementById('tab-' + next);
+  btn.click();
+  btn.focus();
+});
+activateTab(location.hash.slice(1));
+window.addEventListener('hashchange', () => activateTab(location.hash.slice(1)));
 
 // Auto-hide nav on scroll down, show on scroll up
 (function setupNavAutoHide() {

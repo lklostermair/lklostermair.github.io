@@ -87,29 +87,29 @@
     </section>
 
     <nav class="section-nav" aria-label="Sections" role="tablist">
-      <button class="tab-btn" data-tab="cv" role="tab" aria-selected="true">cv</button>
-      <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">projects</button>
-      <button class="tab-btn" data-tab="publications" role="tab" aria-selected="false">publications</button>
-      <button class="tab-btn" data-tab="contact" role="tab" aria-selected="false">contact</button>
+      <button class="tab-btn" id="tab-cv" data-tab="cv" role="tab" aria-controls="cv" aria-selected="true">cv</button>
+      <button class="tab-btn" id="tab-projects" data-tab="projects" role="tab" aria-controls="projects" aria-selected="false">projects</button>
+      <button class="tab-btn" id="tab-publications" data-tab="publications" role="tab" aria-controls="publications" aria-selected="false">publications</button>
+      <button class="tab-btn" id="tab-contact" data-tab="contact" role="tab" aria-controls="contact" aria-selected="false">contact</button>
     </nav>
 
-    <section id="cv" class="page-section tab-panel" role="tabpanel">
+    <section id="cv" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-cv">
       <h2 class="section-title">cv</h2>
       <ul id="cv-timeline" class="timeline"></ul>
     </section>
 
-    <section id="projects" class="page-section tab-panel" role="tabpanel">
+    <section id="projects" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-projects">
       <h2 class="section-title">projects</h2>
       <div id="filter-chips" class="filter-chips"></div>
       <ul id="projects-list" class="projects-list"></ul>
     </section>
 
-    <section id="publications" class="page-section tab-panel" role="tabpanel">
+    <section id="publications" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-publications">
       <h2 class="section-title">publications</h2>
       <ul id="publications-list" class="pub-list"></ul>
     </section>
 
-    <section id="contact" class="page-section tab-panel" role="tabpanel">
+    <section id="contact" class="page-section tab-panel" role="tabpanel" aria-labelledby="tab-contact">
       <h2 class="section-title">contact</h2>
       <div class="contact-grid">
         <div class="contact-info">
