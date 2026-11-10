@@ -1,7 +1,7 @@
 (() => {
   // Public site token from Cloudflare Web Analytics > Manage site (not an API key).
   // Leave empty to disable analytics until the dashboard has been configured.
-  const siteToken = '';
+  const siteToken = '865a8021476f4c688fd46ecc41109fe3';
   const productionHosts = ['lukasklostermair.com', 'www.lukasklostermair.com'];
 
   if (!siteToken || !productionHosts.includes(window.location.hostname)) return;
