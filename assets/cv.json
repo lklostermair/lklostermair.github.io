@@ -1,7 +1,7 @@
 [
   {
     "year": "Jul 2026–present",
-    "position": "Robotics Learning Research Engineer",
+    "position": "Research Engineer",
     "institution": "Tacta Systems",
     "url": "https://www.tactasystems.com/",
     "description": "Developing dexterous manipulation policies with integrated tactile sensing, and building data pipelines and real-world deployment infrastructure for robot learning (PyTorch, ROS2, Python, C++, Docker).",
