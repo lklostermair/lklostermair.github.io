@@ -515,6 +515,9 @@ document.addEventListener('keydown', e => {
     });
   }
 
+  // Matches the CSS rules that hide the gutters, so hidden sprites cost nothing.
+  const hiddenQuery = window.matchMedia('(max-width: 1200px), (prefers-reduced-motion: reduce)');
+
   const spritesPerSide = 5;
   for (let i = 0; i < spritesPerSide; i++) {
     createSprite(leftGutter, i, spritesPerSide);
@@ -523,6 +526,7 @@ document.addEventListener('keydown', e => {
 
   // Frame swap
   setInterval(() => {
+    if (hiddenQuery.matches) return;
     allSprites.forEach(img => {
       if (img.dataset.dead === '1') return;
       const t = parseInt(img.dataset.type);
@@ -534,7 +538,7 @@ document.addEventListener('keydown', e => {
 
   // Vertical drift via JS (allows regeneration)
   function tick() {
-    allSprites.forEach(img => {
+    if (!hiddenQuery.matches) allSprites.forEach(img => {
       if (img.dataset.dead === '1') return;
       img._y += img._speed;
       if (img._y > window.innerHeight + 40) {
