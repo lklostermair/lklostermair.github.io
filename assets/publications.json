@@ -2,7 +2,7 @@
   {
     "title": "BUDDY: Bimanual Underwater Demonstration-Driven Policy",
     "authors": "S. Choi, V. Patel, L. Klostermair, J. Jung, H. Watkins, O. Khatib, M. Cutkosky",
-    "venue": "IROS 2026 — Workshop on Underwater Manipulation",
+    "venue": "IROS 2026 — AMBRE Workshop: Adaptive Manipulation, Bridging Rigid and Soft Robotics in Underwater Environments",
     "status": "poster",
     "image": "assets/projects/buddy/poster-thumb.jpg",
     "links": [
@@ -16,10 +16,13 @@
     "title": "Grasping in the Dark: Temporal Tactile Learning for Blind Grasping with Underactuated Soft Hands",
     "authors": "D. Bernardini, S. Deshini, L. Klostermair, C. Piazza",
     "venue": "ICRCA 2026",
-    "status": "in press",
     "award": "Best Presentation Award",
     "image": "assets/projects/mujoco/mujoco-1.webp",
     "links": [
+      {
+        "label": "Paper (IEEE)",
+        "href": "https://doi.org/10.1109/ICRCA69813.2026.11749843"
+      },
       {
         "label": "Project Page",
         "href": "https://lukasklostermair.com/grasping-in-the-dark/"
