@@ -326,10 +326,12 @@ const themeToggle = document.querySelector('.theme-toggle');
 const sunIcon = themeToggle?.querySelector('.icon-sun');
 const moonIcon = themeToggle?.querySelector('.icon-moon');
 
-function getEffectiveTheme() {
-  const stored = localStorage.getItem('theme');
-  if (stored) return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+// Earlier versions stored a manual choice that then overrode the system forever.
+try { localStorage.removeItem('theme'); } catch { /* storage blocked */ }
+
+function systemTheme() {
+  return systemDark.matches ? 'dark' : 'light';
 }
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
@@ -338,15 +340,12 @@ function applyTheme(theme) {
     moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
   }
 }
-applyTheme(getEffectiveTheme());
+applyTheme(systemTheme());
+// The toggle is a preview for this visit only; the system setting always wins on load.
 themeToggle?.addEventListener('click', () => {
-  const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('theme', next);
-  applyTheme(next);
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
 });
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (!localStorage.getItem('theme')) applyTheme(getEffectiveTheme());
-});
+systemDark.addEventListener('change', () => applyTheme(systemTheme()));
 
 document.body.insertAdjacentHTML('beforeend', `
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">

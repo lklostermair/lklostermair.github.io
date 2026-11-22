@@ -48,8 +48,8 @@ Activation (required before any data is collected):
 Until a token is supplied, analytics is disabled and makes no requests. The
 loader also skips localhost, preview hosts, Do Not Track, and Global Privacy
 Control. Browser blockers may prevent collection. This measures page loads;
-switching homepage tabs is not counted as another page view. The existing
-theme preference uses localStorage independently of analytics. Embedded videos
+switching homepage tabs is not counted as another page view. The colour
+theme follows the system setting and stores nothing. Embedded videos
 and other third-party content have their own data practices.
 
 ## Lighthouse
